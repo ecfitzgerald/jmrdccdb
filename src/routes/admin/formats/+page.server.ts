@@ -26,14 +26,18 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
 	add: async ({ request }) => {
-		const form = await request.formData();
-		const name = form.get('name')?.toString() ?? '';
+		const form        = await request.formData();
+		const name        = form.get('name')?.toString() ?? '';
+		const description = form.get('description')?.toString() ?? '';
+
 		if (!name) return fail(400, { error: 'Name is required.' });
+		if (name.length > 100)        return fail(400, { error: 'Name too long (max 100).' });
+		if (description.length > 1000) return fail(400, { error: 'Description too long (max 1000).' });
 
 		db().insert(dccFormats).values({
 			name,
 			pinCount: Number(form.get('pinCount')) || null,
-			description: form.get('description')?.toString() || null,
+			description: description || null,
 			sortOrder: Number(form.get('sortOrder')) || 0
 		}).run();
 

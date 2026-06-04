@@ -30,20 +30,30 @@ export const actions: Actions = {
 	add: async ({ request }) => {
 		const form = await request.formData();
 		const manufacturer = form.get('manufacturer')?.toString() ?? '';
-		const scale = form.get('scale')?.toString() ?? '';
-		const name = form.get('name')?.toString() ?? '';
-		const modelNumber = form.get('modelNumber')?.toString() ?? '';
+		const scale        = form.get('scale')?.toString() ?? '';
+		const name         = form.get('name')?.toString() ?? '';
+		const modelNumber  = form.get('modelNumber')?.toString() ?? '';
+		const roadName     = form.get('roadName')?.toString() ?? '';
+		const era          = form.get('era')?.toString() ?? '';
+		const notes        = form.get('notes')?.toString() ?? '';
 
 		if (!manufacturer || !scale || !name || !modelNumber) {
 			return fail(400, { error: 'Manufacturer, scale, name, and model number are required.' });
 		}
+		if (manufacturer.length > 200) return fail(400, { error: 'Manufacturer too long (max 200).' });
+		if (scale.length > 50)         return fail(400, { error: 'Scale too long (max 50).' });
+		if (name.length > 200)         return fail(400, { error: 'Name too long (max 200).' });
+		if (modelNumber.length > 100)  return fail(400, { error: 'Model number too long (max 100).' });
+		if (roadName.length > 200)     return fail(400, { error: 'Road name too long (max 200).' });
+		if (era.length > 100)          return fail(400, { error: 'Era too long (max 100).' });
+		if (notes.length > 1000)       return fail(400, { error: 'Notes too long (max 1000).' });
 
 		const d = db();
 		const [train] = d.insert(trains).values({
 			manufacturer, scale, name, modelNumber,
-			roadName: form.get('roadName')?.toString() || null,
-			era: form.get('era')?.toString() || null,
-			notes: form.get('notes')?.toString() || null
+			roadName: roadName || null,
+			era: era || null,
+			notes: notes || null
 		}).returning().all();
 
 		const formatIds = form.getAll('formatIds').map(Number).filter(Boolean);
