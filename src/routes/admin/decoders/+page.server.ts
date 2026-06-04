@@ -33,32 +33,50 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	add: async ({ request }) => {
 		const form = await request.formData();
-		const brandId = Number(form.get('brandId'));
-		const formatId = Number(form.get('formatId'));
-		const model = form.get('model')?.toString() ?? '';
-		const notes = form.get('notes')?.toString() ?? '';
-		const buyUrl = form.get('buyUrl')?.toString() ?? '';
-
-		if (!brandId || !formatId || !model) {
-			return fail(400, { error: 'Brand, format, and model are required.' });
-		}
-		if (model.length > 200) return fail(400, { error: 'Model too long (max 200).' });
+		const d = db();
+		const model   = form.get('model')?.toString() ?? '';
+		const notes   = form.get('notes')?.toString() ?? '';
+		const buyUrl  = form.get('buyUrl')?.toString() ?? '';
+		if (!model) return fail(400, { error: 'Model is required.' });
+		if (model.length > 200)  return fail(400, { error: 'Model too long (max 200).' });
 		if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
 		if (buyUrl.length > 500) return fail(400, { error: 'URL too long (max 500).' });
 
-		db()
-			.insert(decoders)
-			.values({
-				brandId,
-				formatId,
-				model,
-				notes: notes || null,
-				buyUrl: buyUrl || null,
-				motor: form.get('motor') === 'on',
-				lights: form.get('lights') === 'on',
-				soundDecoder: form.get('soundDecoder') === 'on'
-			})
-			.run();
+		// Resolve brand — existing or inline new
+		let brandId = Number(form.get('brandId'));
+		const newBrandName = form.get('newBrandName')?.toString() ?? '';
+		if (!brandId && newBrandName) {
+			const [brand] = d.insert(decoderBrands).values({
+				name: newBrandName,
+				website: form.get('newBrandWebsite')?.toString() || null
+			}).returning().all();
+			brandId = brand.id;
+		}
+		if (!brandId) return fail(400, { error: 'Brand is required.' });
+
+		// Resolve format — existing or inline new
+		let formatId = Number(form.get('formatId'));
+		const newFormatName = form.get('newFormatName')?.toString() ?? '';
+		if (!formatId && newFormatName) {
+			const pinCount = Number(form.get('newFormatPinCount')) || null;
+			const [fmt] = d.insert(dccFormats).values({
+				name: newFormatName,
+				pinCount,
+				description: form.get('newFormatDescription')?.toString() || null,
+				sortOrder: 99
+			}).returning().all();
+			formatId = fmt.id;
+		}
+		if (!formatId) return fail(400, { error: 'Format is required.' });
+
+		d.insert(decoders).values({
+			brandId, formatId, model,
+			notes: notes || null,
+			buyUrl: buyUrl || null,
+			motor: form.get('motor') === 'on',
+			lights: form.get('lights') === 'on',
+			soundDecoder: form.get('soundDecoder') === 'on'
+		}).run();
 
 		return { success: true };
 	},

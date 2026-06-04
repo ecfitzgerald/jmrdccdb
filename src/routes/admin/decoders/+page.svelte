@@ -1,19 +1,18 @@
 <script lang="ts">
 	import type { PageData, ActionData } from './$types';
+	import FormatDiagram from '$lib/FormatDiagram.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
 	let showAddBrand = $state(false);
 
+	// Table sort
 	type SortCol = 'brandName' | 'model' | 'formatName' | 'notes';
 	let sortCol = $state<SortCol>('brandName');
 	let sortDir = $state<'asc' | 'desc'>('asc');
 
 	function toggleSort(col: SortCol) {
 		if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
-		else {
-			sortCol = col;
-			sortDir = 'asc';
-		}
+		else { sortCol = col; sortDir = 'asc'; }
 	}
 
 	let sorted = $derived(
@@ -27,6 +26,12 @@
 	function si(col: SortCol) {
 		return sortCol === col ? (sortDir === 'asc' ? ' ↑' : ' ↓') : '';
 	}
+
+	// Inline brand/format creator state
+	let newBrand = $state(false);
+	let newFormat = $state(false);
+	let selectedFormatId = $state('');
+	const selectedFormat = $derived(data.formats.find(f => String(f.id) === selectedFormatId) ?? null);
 </script>
 
 <svelte:head><title>Decoders — Admin</title></svelte:head>
@@ -109,40 +114,73 @@
 		class="jr-card-flat border border-[var(--color-border)] rounded p-5 mb-6 space-y-3"
 	>
 		<h2 class="font-semibold text-[var(--color-text)]">Add Decoder</h2>
-		<div class="grid grid-cols-3 gap-4">
-			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand *</label>
-				<select
-					name="brandId"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
-				>
+		<!-- Brand -->
+		<div>
+			<div class="flex items-center justify-between mb-1">
+				<label class="block text-xs font-medium text-[var(--color-muted)]">Brand *</label>
+				<button type="button" onclick={() => newBrand = !newBrand}
+					class="text-xs hover:underline" style="color: var(--color-green);">
+					{newBrand ? '← Pick existing' : '+ New brand'}
+				</button>
+			</div>
+			{#if newBrand}
+				<div class="grid grid-cols-2 gap-3 p-3 rounded" style="background: var(--color-raised); border: 1px solid var(--color-border);">
+					<input name="newBrandName" type="text" placeholder="Brand name *" required
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none" />
+					<input name="newBrandWebsite" type="url" placeholder="https://… (optional)"
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none" />
+				</div>
+			{:else}
+				<select name="brandId" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
 					<option value="">Select…</option>
 					{#each data.brands as b}
 						<option value={b.id}>{b.name}</option>
 					{/each}
 				</select>
+			{/if}
+		</div>
+
+		<!-- Format -->
+		<div>
+			<div class="flex items-center justify-between mb-1">
+				<label class="block text-xs font-medium text-[var(--color-muted)]">Format *</label>
+				<button type="button" onclick={() => newFormat = !newFormat}
+					class="text-xs hover:underline" style="color: var(--color-green);">
+					{newFormat ? '← Pick existing' : '+ New format'}
+				</button>
 			</div>
-			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Format *</label>
-				<select
-					name="formatId"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
-				>
-					<option value="">Select…</option>
-					{#each data.formats as f}
-						<option value={f.id}>{f.name}</option>
-					{/each}
-				</select>
-			</div>
-			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model *</label>
-				<input
-					name="model"
-					type="text"
-					placeholder="DN163K0"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
-				/>
-			</div>
+			{#if newFormat}
+				<div class="grid grid-cols-3 gap-3 p-3 rounded" style="background: var(--color-raised); border: 1px solid var(--color-border);">
+					<input name="newFormatName" type="text" placeholder="Format name *" required
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none" />
+					<input name="newFormatPinCount" type="number" placeholder="Pin count"
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none" />
+					<input name="newFormatDescription" type="text" placeholder="Description"
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none" />
+				</div>
+			{:else}
+				<div class="flex gap-3 items-start">
+					<select name="formatId" bind:value={selectedFormatId}
+						class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
+						<option value="">Select…</option>
+						{#each data.formats as f}
+							<option value={String(f.id)}>{f.name}</option>
+						{/each}
+					</select>
+					{#if selectedFormat}
+						<div style="color: var(--color-green);">
+							<FormatDiagram name={selectedFormat.name} size={56}/>
+						</div>
+					{/if}
+				</div>
+			{/if}
+		</div>
+
+		<!-- Model -->
+		<div>
+			<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model *</label>
+			<input name="model" type="text" placeholder="DN163K0a"
+				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" />
 		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
