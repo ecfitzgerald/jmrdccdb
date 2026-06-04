@@ -83,13 +83,22 @@
 				{/if}
 			</div>
 		</div>
-		<a
-			href="/suggest?trainId={data.train.id}"
-			class="text-xs transition-colors hover:underline"
-			style="color: var(--color-dim);"
-		>
-			Suggest correction
-		</a>
+		<div class="flex items-center gap-3">
+			<a
+				href="/admin/trains?edit={data.train.id}"
+				class="text-xs transition-colors hover:underline"
+				style="color: var(--color-dim);"
+			>
+				Edit
+			</a>
+			<a
+				href="/suggest?trainId={data.train.id}"
+				class="text-xs transition-colors hover:underline"
+				style="color: var(--color-dim);"
+			>
+				Suggest correction
+			</a>
+		</div>
 	</div>
 	{#if data.train.notes}
 		<p
