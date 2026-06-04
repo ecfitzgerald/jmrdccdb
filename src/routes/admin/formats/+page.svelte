@@ -69,7 +69,7 @@
 					name="name"
 					type="text"
 					placeholder="Next18"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
@@ -79,7 +79,7 @@
 					name="pinCount"
 					type="number"
 					placeholder="18"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 				name="description"
 				type="text"
 				placeholder="Brief description of the format"
-				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+				class="w-full rounded px-3 py-2 text-sm"
 			/>
 		</div>
 		<div class="w-32">
@@ -100,7 +100,7 @@
 				name="sortOrder"
 				type="number"
 				placeholder="0"
-				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+				class="w-full rounded px-3 py-2 text-sm"
 			/>
 		</div>
 		<button
