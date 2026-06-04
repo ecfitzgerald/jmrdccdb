@@ -1,8 +1,8 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { suggestions, trains, dccFormats, decoders, decoderBrands } from '$lib/db/schema';
+import { suggestions, trains, dccFormats } from '$lib/db/schema';
 import { fail } from '@sveltejs/kit';
-import { eq } from 'drizzle-orm';
+import { decodersWithBrands } from '$lib/db/queries';
 
 const VALID_TYPES = ['add_train', 'add_compat', 'correction'];
 
@@ -17,21 +17,7 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
 
-	const allDecoders = d
-		.select({
-			id: decoders.id,
-			brandName: decoderBrands.name,
-			model: decoders.model,
-			formatId: decoders.formatId,
-			motor: decoders.motor,
-			lights: decoders.lights,
-			soundDecoder: decoders.soundDecoder,
-			notes: decoders.notes
-		})
-		.from(decoders)
-		.innerJoin(decoderBrands, eq(decoders.brandId, decoderBrands.id))
-		.orderBy(decoderBrands.name, decoders.model)
-		.all();
+	const allDecoders = decodersWithBrands(d);
 
 	const preselectedTrain = trainId ? allTrains.find(t => t.id === Number(trainId)) ?? null : null;
 

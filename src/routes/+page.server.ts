@@ -2,25 +2,15 @@ import type { PageServerLoad } from './$types';
 import { db } from '$lib/db';
 import { trains, trainFormatCompat, dccFormats, decoders } from '$lib/db/schema';
 import { eq, sql } from 'drizzle-orm';
+import { distinctManufacturers, distinctScales } from '$lib/db/queries';
 
 export const load: PageServerLoad = async () => {
 	const d = db();
 
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
 
-	const manufacturers = d
-		.selectDistinct({ manufacturer: trains.manufacturer })
-		.from(trains)
-		.orderBy(trains.manufacturer)
-		.all()
-		.map((r) => r.manufacturer);
-
-	const scales = d
-		.selectDistinct({ scale: trains.scale })
-		.from(trains)
-		.orderBy(trains.scale)
-		.all()
-		.map((r) => r.scale);
+	const manufacturers = distinctManufacturers(d);
+	const scales = distinctScales(d);
 
 	const allTrains = d
 		.select({

@@ -6,6 +6,7 @@ import {
 } from '$lib/db/schema';
 import { eq } from 'drizzle-orm';
 import { error, redirect, fail } from '@sveltejs/kit';
+import { distinctManufacturers, distinctScales, distinctOperators, decodersWithBrands } from '$lib/db/queries';
 
 export const load: PageServerLoad = async ({ params }) => {
 	const id = Number(params.id);
@@ -21,21 +22,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
 	const brands  = d.select().from(decoderBrands).orderBy(decoderBrands.name).all();
 
-	const allDecoders = d
-		.select({
-			id: decoders.id,
-			brandName: decoderBrands.name,
-			model: decoders.model,
-			formatId: decoders.formatId,
-			motor: decoders.motor,
-			lights: decoders.lights,
-			soundDecoder: decoders.soundDecoder,
-			notes: decoders.notes
-		})
-		.from(decoders)
-		.innerJoin(decoderBrands, eq(decoders.brandId, decoderBrands.id))
-		.orderBy(decoderBrands.name, decoders.model)
-		.all();
+	const allDecoders = decodersWithBrands(d);
 
 	const allTrains = d
 		.select({ id: trains.id, manufacturer: trains.manufacturer, name: trains.name, modelNumber: trains.modelNumber })
@@ -43,9 +30,9 @@ export const load: PageServerLoad = async ({ params }) => {
 		.orderBy(trains.manufacturer, trains.name)
 		.all();
 
-	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
-	const operators     = d.selectDistinct({ v: trains.roadName }).from(trains).orderBy(trains.roadName).all().map(r => r.v).filter(Boolean) as string[];
-	const scales        = d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v);
+	const manufacturers = distinctManufacturers(d);
+	const operators     = distinctOperators(d);
+	const scales        = distinctScales(d);
 
 	return { suggestion, payload, formats, brands, allDecoders, allTrains, manufacturers, operators, scales };
 };
