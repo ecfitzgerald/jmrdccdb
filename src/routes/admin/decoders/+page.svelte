@@ -85,10 +85,20 @@
 					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" />
 			</div>
 		</div>
-		<label class="flex items-center gap-2 cursor-pointer">
-			<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
-			<span class="text-sm">Sound decoder</span>
-		</label>
+		<div class="flex items-center gap-5">
+			<label class="flex items-center gap-2 cursor-pointer">
+				<input type="checkbox" name="motor" class="accent-slate-700" checked />
+				<span class="text-sm">Motor</span>
+			</label>
+			<label class="flex items-center gap-2 cursor-pointer">
+				<input type="checkbox" name="lights" class="accent-slate-700" checked />
+				<span class="text-sm">Lights</span>
+			</label>
+			<label class="flex items-center gap-2 cursor-pointer">
+				<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
+				<span class="text-sm">Sound</span>
+			</label>
+		</div>
 		<button type="submit" class="bg-[var(--color-green)] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-dark)] transition-colors">
 			Save Decoder
 		</button>

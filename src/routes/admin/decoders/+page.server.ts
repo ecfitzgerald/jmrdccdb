@@ -45,6 +45,8 @@ export const actions: Actions = {
 			brandId, formatId, model,
 			notes: form.get('notes')?.toString() || null,
 			buyUrl: form.get('buyUrl')?.toString() || null,
+			motor: form.get('motor') === 'on',
+			lights: form.get('lights') === 'on',
 			soundDecoder: form.get('soundDecoder') === 'on'
 		}).run();
 
