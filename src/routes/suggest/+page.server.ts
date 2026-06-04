@@ -23,7 +23,11 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const preselectedTrain = trainId ? (allTrains.find((t) => t.id === Number(trainId)) ?? null) : null;
 
-	return { allTrains, formats, allDecoders, preselectedTrain, typeParam };
+	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
+	const operators = d.selectDistinct({ v: trains.roadName }).from(trains).orderBy(trains.roadName).all().map(r => r.v).filter(Boolean) as string[];
+	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
+
+	return { allTrains, formats, allDecoders, preselectedTrain, typeParam, manufacturers, operators, scales };
 };
 
 export const actions: Actions = {

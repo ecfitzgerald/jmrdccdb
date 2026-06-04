@@ -62,113 +62,41 @@ const formats = await db
 	])
 	.returning();
 
-// Brands
+// Brands — sourced from Kato DCC Database spreadsheet Decoder(s) column
 const brands = await db
 	.insert(schema.decoderBrands)
 	.values([
-		{ name: 'Digitrax', website: 'https://www.digitrax.com' },
+		{ name: 'Digitrax',                    website: 'https://www.digitrax.com' },
 		{ name: 'TCS (Train Control Systems)', website: 'https://www.tcsdcc.com' },
-		{ name: 'ESU LokSound', website: 'https://www.esu.eu' },
-		{ name: 'NCE', website: 'https://www.ncedcc.com' },
-		{ name: 'Zimo', website: 'https://www.zimo.at' },
-		{ name: 'Kato', website: 'https://www.katomodels.com' }
+		{ name: 'D&H (Doehler & Haass)',       website: 'https://www.doehler-haass.de' },
+		{ name: 'MRC',                         website: 'https://www.modelrectifier.com' },
+		{ name: 'Kato',                        website: 'https://www.katomodels.com' }
 	])
 	.returning();
 
-const fmt = Object.fromEntries(formats.map((f) => [f.name, f.id]));
+const fmt   = Object.fromEntries(formats.map((f) => [f.name, f.id]));
 const brand = Object.fromEntries(brands.map((b) => [b.name, b.id]));
 
-// Decoders
+// Decoders — extracted from Kato DCC Database spreadsheet Decoder(s) column
 await db.insert(schema.decoders).values([
-	// K0 — Kato type 0
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['K0'],
-		model: 'DN163K0a',
-		notes: 'Drop-in for Kato N scale (type 0 board)'
-	},
-	{
-		brandId: brand['TCS (Train Control Systems)'],
-		formatId: fmt['K0'],
-		model: 'K0D8',
-		notes: 'Drop-in for Kato, 8-function'
-	},
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['K0'],
-		model: 'SDN163K0',
-		notes: 'Sound drop-in for Kato type 0',
-		soundDecoder: true
-	},
-
-	// K1 — Kato type 1
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['K1'],
-		model: 'DN163K1D',
-		notes: 'Drop-in for Kato N scale (type 1 board)'
-	},
-	{
-		brandId: brand['TCS (Train Control Systems)'],
-		formatId: fmt['K1'],
-		model: 'K1D8',
-		notes: 'Drop-in for Kato, 8-function'
-	},
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['K1'],
-		model: 'SDN163K1',
-		notes: 'Sound drop-in for Kato type 1',
-		soundDecoder: true
-	},
-
-	// K2 — Kato type 2
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['K2'],
-		model: 'DN163K2',
-		notes: 'Drop-in for Kato N scale (type 2 board)'
-	},
-	{
-		brandId: brand['TCS (Train Control Systems)'],
-		formatId: fmt['K2'],
-		model: 'K2D8',
-		notes: 'Drop-in for Kato, 8-function'
-	},
-
-	// EM13 — Kato (motor only; lights field false per domain knowledge)
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['EM13'],
-		model: 'DN163K0a',
-		notes: 'Drop-in for Kato EM13 socket',
-		lights: false
-	},
-	{
-		brandId: brand['TCS (Train Control Systems)'],
-		formatId: fmt['EM13'],
-		model: 'K0D8',
-		notes: 'Drop-in for Kato EM13, 8-function',
-		lights: false
-	},
-	{
-		brandId: brand['ESU LokSound'],
-		formatId: fmt['EM13'],
-		model: 'LokSound micro EM13',
-		notes: 'Sound decoder for Kato EM13',
-		lights: false,
-		soundDecoder: true
-	},
-
-	// NEM651 — Kato (select models with 6-pin socket)
-	{
-		brandId: brand['Digitrax'],
-		formatId: fmt['NEM651 (6-pin)'],
-		model: 'DN163I0',
-		notes: 'For Kato models with 6-pin socket'
-	},
-	{ brandId: brand['NCE'], formatId: fmt['NEM651 (6-pin)'], model: 'D13SRJ', notes: '1.3A stall, 6-pin' },
-	{ brandId: brand['Zimo'], formatId: fmt['NEM651 (6-pin)'], model: 'MX616', notes: 'Tiny 6-pin' }
+	// K0
+	{ brandId: brand['Digitrax'],                    formatId: fmt['K0'],            model: 'DN163K0a',  notes: 'Drop-in for Kato K0 board' },
+	{ brandId: brand['Digitrax'],                    formatId: fmt['K0'],            model: 'SDN144K0A', notes: 'Sound drop-in for Kato K0 board', soundDecoder: true },
+	// K4
+	{ brandId: brand['Digitrax'],                    formatId: fmt['K4'],            model: 'DN163K4a',  notes: 'Drop-in for Kato K4 board' },
+	{ brandId: brand['TCS (Train Control Systems)'], formatId: fmt['K4'],            model: 'TCSK4DI',   notes: 'TCS drop-in for Kato K4 board' },
+	{ brandId: brand['TCS (Train Control Systems)'], formatId: fmt['K4'],            model: 'K7D4',      notes: 'TCS drop-in for Kato K4 board' },
+	// NEM651 — D&H
+	{ brandId: brand['D&H (Doehler & Haass)'],       formatId: fmt['NEM651 (6-pin)'],model: 'PD05A',     notes: 'Tiny N scale 6-pin decoder' },
+	{ brandId: brand['D&H (Doehler & Haass)'],       formatId: fmt['NEM651 (6-pin)'],model: 'PD05a-3',   notes: 'Tiny N scale 6-pin decoder, 3-function' },
+	// Wired
+	{ brandId: brand['Digitrax'],                    formatId: fmt['Wired (direct)'],model: 'DZ123',     notes: 'Small wired decoder' },
+	{ brandId: brand['Digitrax'],                    formatId: fmt['Wired (direct)'],model: 'DZ125',     notes: 'Small wired decoder' },
+	{ brandId: brand['MRC'],                         formatId: fmt['Wired (direct)'],model: '1952',      notes: 'Sound decoder, requires modification to fit', soundDecoder: true },
+	// Kato proprietary boards — EM13 (motor), FL12/FL13 (lights)
+	{ brandId: brand['Kato'],                        formatId: fmt['EM13'],          model: 'EM13',      notes: 'Kato motor decoder board',             motor: true,  lights: false },
+	{ brandId: brand['Kato'],                        formatId: fmt['FL12'],          model: 'FL12',      notes: 'Kato lighting function board',          motor: false, lights: true  },
+	{ brandId: brand['Kato'],                        formatId: fmt['FL13'],          model: 'FL13',      notes: 'Kato lighting function board variant',  motor: false, lights: true  }
 ]);
 
 // No sample trains — train data is imported from the Kato XLSX spreadsheet.

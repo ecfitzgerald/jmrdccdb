@@ -73,9 +73,13 @@
 						id="manufacturer"
 						name="manufacturer"
 						type="text"
+						list="suggest-mfr-list"
 						placeholder="Kato, Tomix, Micro Ace…"
 						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
 					/>
+					<datalist id="suggest-mfr-list">
+						{#each data.manufacturers as m}<option value={m}/>{/each}
+					</datalist>
 				</div>
 				<div>
 					<label
@@ -83,16 +87,17 @@
 						style="color: var(--color-muted);"
 						for="scale">Scale *</label
 					>
-					<select
+					<input
 						id="scale"
 						name="scale"
-						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
-					>
-						<option value="N">N</option>
-						<option value="HO">HO</option>
-						<option value="Z">Z</option>
-						<option value="O">O</option>
-					</select>
+						type="text"
+						list="suggest-scale-list"
+						placeholder="N"
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none"
+					/>
+					<datalist id="suggest-scale-list">
+						{#each data.scales as s}<option value={s}/>{/each}
+					</datalist>
 				</div>
 			</div>
 			<div>
@@ -134,9 +139,13 @@
 						id="roadName"
 						name="roadName"
 						type="text"
+						list="suggest-operator-list"
 						placeholder="JR East"
-						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+						class="w-full rounded px-3 py-2 text-sm focus:outline-none"
 					/>
+					<datalist id="suggest-operator-list">
+						{#each data.operators as o}<option value={o}/>{/each}
+					</datalist>
 				</div>
 			</div>
 			<div>

@@ -1,8 +1,22 @@
 <script lang="ts">
 	import type { PageData, ActionData } from './$types';
 	import FormatDiagram from '$lib/FormatDiagram.svelte';
+	import MotorIcon from '$lib/icons/MotorIcon.svelte';
+	import LightsIcon from '$lib/icons/LightsIcon.svelte';
+	import SoundIcon from '$lib/icons/SoundIcon.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
+
+	// Track which format checkboxes are checked to show decoder lists
+	let checkedFormats = $state(new Set<number>());
+	function toggleFormat(id: number, checked: boolean) {
+		const next = new Set(checkedFormats);
+		checked ? next.add(id) : next.delete(id);
+		checkedFormats = next;
+	}
+	function decodersFor(formatId: number) {
+		return data.allDecoders.filter(d => d.formatId === formatId);
+	}
 
 	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'formats';
 	let sortCol = $state<SortCol>('manufacturer');
@@ -65,25 +79,32 @@
 		<h2 class="font-semibold text-[var(--color-text)]">Add New Train</h2>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Manufacturer *</label>
+				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1" for="mfr">Manufacturer *</label>
 				<input
+					id="mfr"
 					name="manufacturer"
 					type="text"
+					list="mfr-list"
 					placeholder="Kato"
 					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
 				/>
+				<datalist id="mfr-list">
+					{#each data.manufacturers as m}<option value={m}/>{/each}
+				</datalist>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Scale *</label>
-				<select
+				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1" for="scale">Scale *</label>
+				<input
+					id="scale"
 					name="scale"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
-				>
-					<option value="N">N</option>
-					<option value="HO">HO</option>
-					<option value="Z">Z</option>
-					<option value="O">O</option>
-				</select>
+					type="text"
+					list="scale-list"
+					placeholder="N"
+					class="w-full rounded px-3 py-2 text-sm focus:outline-none"
+				/>
+				<datalist id="scale-list">
+					{#each data.scales as s}<option value={s}/>{/each}
+				</datalist>
 			</div>
 		</div>
 		<div>
@@ -106,13 +127,18 @@
 				/>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Road / Operator</label>
+				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1" for="roadName">Road / Operator</label>
 				<input
+					id="roadName"
 					name="roadName"
 					type="text"
+					list="operator-list"
 					placeholder="JR East"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm focus:outline-none"
 				/>
+				<datalist id="operator-list">
+					{#each data.operators as o}<option value={o}/>{/each}
+				</datalist>
 			</div>
 		</div>
 		<div class="grid grid-cols-2 gap-4">
@@ -130,36 +156,67 @@
 			<label class="block text-xs font-medium text-[var(--color-muted)] mb-2">Compatible Formats</label>
 			<div class="flex flex-col gap-3">
 				{#each data.formats as fmt}
-					<div class="flex items-center gap-3 p-2 rounded" style="border: 1px solid var(--color-border);">
-						<input
-							type="checkbox"
-							name="formatIds"
-							value={fmt.id}
-							id="fmt-{fmt.id}"
-							class="accent-slate-700 shrink-0"
-						/>
-						<div style="color: var(--color-green);">
-							<FormatDiagram name={fmt.name} size={72} />
+					<div class="rounded" style="border: 1px solid var(--color-border);">
+						<!-- Format header row -->
+						<div class="flex items-center gap-3 p-2">
+							<input
+								type="checkbox"
+								name="formatIds"
+								value={fmt.id}
+								id="fmt-{fmt.id}"
+								class="accent-slate-700 shrink-0"
+								onchange={(e) => toggleFormat(fmt.id, (e.target as HTMLInputElement).checked)}
+							/>
+							<div style="color: var(--color-green);">
+								<FormatDiagram name={fmt.name} size={72} />
+							</div>
+							<div class="flex-1">
+								<label for="fmt-{fmt.id}" class="text-sm font-medium cursor-pointer block" style="color: var(--color-text);">{fmt.name}</label>
+								{#if fmt.description}
+									<p class="text-xs mt-0.5" style="color: var(--color-dim);">{fmt.description}</p>
+								{/if}
+							</div>
+							<select name="formatPurposes"
+								style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text);"
+								class="rounded px-2 py-1 text-xs focus:outline-none shrink-0">
+								<option>Motor & Lights</option>
+								<option>Motor Only</option>
+								<option>Lights Only</option>
+							</select>
 						</div>
-						<div class="flex-1">
-							<label
-								for="fmt-{fmt.id}"
-								class="text-sm font-medium cursor-pointer block"
-								style="color: var(--color-text);">{fmt.name}</label
-							>
-							{#if fmt.description}
-								<p class="text-xs mt-0.5" style="color: var(--color-dim);">{fmt.description}</p>
-							{/if}
-						</div>
-						<select
-							name="formatPurposes"
-							style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text);"
-							class="rounded px-2 py-1 text-xs focus:outline-none shrink-0"
-						>
-							<option>Motor & Lights</option>
-							<option>Motor Only</option>
-							<option>Lights Only</option>
-						</select>
+
+						<!-- Decoder checklist — shown when format is checked -->
+						{#if checkedFormats.has(fmt.id)}
+							{@const fmtDecoders = decodersFor(fmt.id)}
+							<div class="border-t px-3 py-2" style="border-color: var(--color-border); background: var(--color-raised);">
+								{#if fmtDecoders.length === 0}
+									<p class="text-xs italic" style="color: var(--color-dim);">
+										No decoders listed for this format.
+										<a href="/admin/decoders" target="_blank" class="underline" style="color: var(--color-green);">Add one first →</a>
+									</p>
+								{:else}
+									<p class="text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);">Confirmed decoders</p>
+									<div class="flex flex-col gap-1">
+										{#each fmtDecoders as dec}
+											<label class="flex items-center gap-2 cursor-pointer text-xs">
+												<input type="checkbox" name="decoderIds" value={dec.id} class="accent-slate-700 w-3.5 h-3.5" />
+												<span class="font-medium" style="color: var(--color-text);">{dec.brandName}</span>
+												<span class="font-mono" style="color: var(--color-muted);">{dec.model}</span>
+												<span class="flex items-center gap-0.5" style="color: var(--color-green);">
+													{#if dec.motor}<MotorIcon class="w-3 h-3"/>{/if}
+													{#if dec.lights}<LightsIcon class="w-3 h-3"/>{/if}
+													{#if dec.soundDecoder}<SoundIcon class="w-3 h-3" style="color: #7c3aed;"/>{/if}
+												</span>
+											</label>
+										{/each}
+									</div>
+									<p class="text-xs mt-2" style="color: var(--color-dim);">
+										Decoder not listed?
+										<a href="/admin/decoders" target="_blank" class="underline" style="color: var(--color-green);">Add it to the decoders database first →</a>
+									</p>
+								{/if}
+							</div>
+						{/if}
 					</div>
 				{/each}
 			</div>
