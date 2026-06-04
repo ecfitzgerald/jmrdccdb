@@ -2,6 +2,28 @@
 	import type { PageData, ActionData } from './$types';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
+
+	type SortCol = 'name' | 'pinCount' | 'description' | 'trainCount';
+	let sortCol = $state<SortCol>('name');
+	let sortDir = $state<'asc' | 'desc'>('asc');
+
+	function toggleSort(col: SortCol) {
+		if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+		else { sortCol = col; sortDir = 'asc'; }
+	}
+
+	const numericCols = new Set<SortCol>(['pinCount', 'trainCount']);
+
+	let sorted = $derived([...data.formats].sort((a, b) => {
+		const av = a[sortCol] ?? (numericCols.has(sortCol) ? -Infinity : '');
+		const bv = b[sortCol] ?? (numericCols.has(sortCol) ? -Infinity : '');
+		const cmp = numericCols.has(sortCol)
+			? (av as number) - (bv as number)
+			: String(av).localeCompare(String(bv));
+		return cmp * (sortDir === 'asc' ? 1 : -1);
+	}));
+
+	function si(col: SortCol) { return sortCol === col ? (sortDir === 'asc' ? ' ↑' : ' ↓') : ''; }
 </script>
 
 <svelte:head><title>Formats — Admin</title></svelte:head>
@@ -53,15 +75,15 @@
 	<table class="w-full text-sm">
 		<thead class="bg-[var(--color-raised)] border-b border-[var(--color-border)]">
 			<tr>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Name</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Pins</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Description</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Trains using</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('name')}>Name{si('name')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('pinCount')}>Pins{si('pinCount')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('description')}>Description{si('description')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('trainCount')}>Trains using{si('trainCount')}</th>
 				<th class="px-4 py-3"></th>
 			</tr>
 		</thead>
 		<tbody class="divide-y divide-[var(--color-border)]">
-			{#each data.formats as fmt (fmt.id)}
+			{#each sorted as fmt (fmt.id)}
 				<tr class="hover:bg-[var(--color-raised)]">
 					<td class="px-4 py-2 font-medium">{fmt.name}</td>
 					<td class="px-4 py-2 text-[var(--color-dim)]">{fmt.pinCount ?? '—'}</td>

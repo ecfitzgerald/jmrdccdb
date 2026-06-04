@@ -3,6 +3,23 @@
 	import FormatDiagram from '$lib/FormatDiagram.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
+
+	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'formats';
+	let sortCol = $state<SortCol>('manufacturer');
+	let sortDir = $state<'asc' | 'desc'>('asc');
+
+	function toggleSort(col: SortCol) {
+		if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+		else { sortCol = col; sortDir = 'asc'; }
+	}
+
+	let sorted = $derived([...data.trains].sort((a, b) => {
+		const av = sortCol === 'formats' ? a.formats.join(', ') : String(a[sortCol] ?? '');
+		const bv = sortCol === 'formats' ? b.formats.join(', ') : String(b[sortCol] ?? '');
+		return av.localeCompare(bv) * (sortDir === 'asc' ? 1 : -1);
+	}));
+
+	function si(col: SortCol) { return sortCol === col ? (sortDir === 'asc' ? ' ↑' : ' ↓') : ''; }
 </script>
 
 <svelte:head><title>Trains — Admin</title></svelte:head>
@@ -108,16 +125,16 @@
 	<table class="w-full text-sm">
 		<thead class="bg-[var(--color-raised)] border-b border-[var(--color-border)]">
 			<tr>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Manufacturer</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Scale</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Name</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Model #</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Formats</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('manufacturer')}>Manufacturer{si('manufacturer')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('scale')}>Scale{si('scale')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('name')}>Name{si('name')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('modelNumber')}>Model #{si('modelNumber')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('formats')}>Formats{si('formats')}</th>
 				<th class="px-4 py-3"></th>
 			</tr>
 		</thead>
 		<tbody class="divide-y divide-[var(--color-border)]">
-			{#each data.trains as t (t.id)}
+			{#each sorted as t (t.id)}
 				<tr class="hover:bg-[var(--color-raised)]">
 					<td class="px-4 py-2 font-medium">{t.manufacturer}</td>
 					<td class="px-4 py-2"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">{t.scale}</span></td>

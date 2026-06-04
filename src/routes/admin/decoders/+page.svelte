@@ -3,6 +3,23 @@
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
 	let showAddBrand = $state(false);
+
+	type SortCol = 'brandName' | 'model' | 'formatName' | 'notes';
+	let sortCol = $state<SortCol>('brandName');
+	let sortDir = $state<'asc' | 'desc'>('asc');
+
+	function toggleSort(col: SortCol) {
+		if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
+		else { sortCol = col; sortDir = 'asc'; }
+	}
+
+	let sorted = $derived([...data.decoders].sort((a, b) => {
+		const av = String(a[sortCol] ?? '');
+		const bv = String(b[sortCol] ?? '');
+		return av.localeCompare(bv) * (sortDir === 'asc' ? 1 : -1);
+	}));
+
+	function si(col: SortCol) { return sortCol === col ? (sortDir === 'asc' ? ' ↑' : ' ↓') : ''; }
 </script>
 
 <svelte:head><title>Decoders — Admin</title></svelte:head>
@@ -109,15 +126,15 @@
 	<table class="w-full text-sm">
 		<thead class="bg-[var(--color-raised)] border-b border-[var(--color-border)]">
 			<tr>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Brand</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Model</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Format</th>
-				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)]">Notes</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('brandName')}>Brand{si('brandName')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('model')}>Model{si('model')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('formatName')}>Format{si('formatName')}</th>
+				<th class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]" onclick={() => toggleSort('notes')}>Notes{si('notes')}</th>
 				<th class="px-4 py-3"></th>
 			</tr>
 		</thead>
 		<tbody class="divide-y divide-[var(--color-border)]">
-			{#each data.decoders as dec (dec.id)}
+			{#each sorted as dec (dec.id)}
 				<tr class="hover:bg-[var(--color-raised)]">
 					<td class="px-4 py-2 font-medium">{dec.brandName}</td>
 					<td class="px-4 py-2 font-mono text-xs">{dec.model}
