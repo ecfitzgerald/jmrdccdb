@@ -73,13 +73,9 @@
 						id="manufacturer"
 						name="manufacturer"
 						type="text"
-						list="suggest-mfr-list"
 						placeholder="Kato, Tomix, Micro Ace…"
-						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+						class="w-full rounded px-3 py-2 text-sm"
 					/>
-					<datalist id="suggest-mfr-list">
-						{#each data.manufacturers as m}<option value={m}/>{/each}
-					</datalist>
 				</div>
 				<div>
 					<label
@@ -87,17 +83,16 @@
 						style="color: var(--color-muted);"
 						for="scale">Scale *</label
 					>
-					<input
+					<select
 						id="scale"
 						name="scale"
-						type="text"
-						list="suggest-scale-list"
-						placeholder="N"
-						class="w-full rounded px-3 py-2 text-sm focus:outline-none"
-					/>
-					<datalist id="suggest-scale-list">
-						{#each data.scales as s}<option value={s}/>{/each}
-					</datalist>
+						class="w-full rounded px-3 py-2 text-sm"
+					>
+						<option value="N">N</option>
+						<option value="HO">HO</option>
+						<option value="Z">Z</option>
+						<option value="O">O</option>
+					</select>
 				</div>
 			</div>
 			<div>
@@ -111,7 +106,7 @@
 					name="name"
 					type="text"
 					placeholder="E235 Series Yamanote Line (11-car set)"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div class="grid grid-cols-2 gap-4">
@@ -126,7 +121,7 @@
 						name="modelNumber"
 						type="text"
 						placeholder="10-1785"
-						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+						class="w-full rounded px-3 py-2 text-sm"
 					/>
 				</div>
 				<div>
@@ -139,13 +134,9 @@
 						id="roadName"
 						name="roadName"
 						type="text"
-						list="suggest-operator-list"
 						placeholder="JR East"
-						class="w-full rounded px-3 py-2 text-sm focus:outline-none"
+						class="w-full rounded px-3 py-2 text-sm"
 					/>
-					<datalist id="suggest-operator-list">
-						{#each data.operators as o}<option value={o}/>{/each}
-					</datalist>
 				</div>
 			</div>
 			<div>
@@ -159,7 +150,7 @@
 					name="era"
 					type="text"
 					placeholder="2015–present"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
@@ -187,7 +178,7 @@
 				<select
 					id="compatTrainId"
 					name="trainId"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select a train…</option>
 					{#each data.allTrains as t}
@@ -208,7 +199,7 @@
 					id="compatFormatId"
 					name="formatId"
 					bind:value={compatFormatId}
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select a format…</option>
 					{#each data.formats as fmt}
@@ -308,7 +299,7 @@
 					name="notes"
 					type="text"
 					placeholder="e.g. requires trimming, fits motor car only"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 
@@ -323,7 +314,7 @@
 				<select
 					id="trainId"
 					name="trainId"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select a train (or leave blank for general correction)…</option>
 					{#each data.allTrains as t}
@@ -344,7 +335,7 @@
 					name="field"
 					type="text"
 					placeholder="e.g. model number, compatible format, decoder notes"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div class="grid grid-cols-2 gap-4">
@@ -358,7 +349,7 @@
 						id="currentValue"
 						name="currentValue"
 						type="text"
-						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+						class="w-full rounded px-3 py-2 text-sm"
 					/>
 				</div>
 				<div>
@@ -371,7 +362,7 @@
 						id="suggestedValue"
 						name="suggestedValue"
 						type="text"
-						class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+						class="w-full rounded px-3 py-2 text-sm"
 					/>
 				</div>
 			</div>
@@ -389,7 +380,7 @@
 				name="submitterNote"
 				rows="3"
 				placeholder="Any extra context, sources, or links…"
-				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+				class="w-full rounded px-3 py-2 text-sm"
 			></textarea>
 		</div>
 		<div>
@@ -404,7 +395,7 @@
 				id="submitterEmail"
 				name="submitterEmail"
 				type="email"
-				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+				class="w-full rounded px-3 py-2 text-sm"
 			/>
 		</div>
 
