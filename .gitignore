@@ -24,3 +24,7 @@ vite.config.ts.timestamp-*
 
 # SQLite database (managed as Docker volume in production)
 /data/
+.beads/
+.claude/
+.runtime/
+CLAUDE.md
