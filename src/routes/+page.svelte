@@ -2,6 +2,9 @@
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
 	import { shortFormat } from '$lib/format-utils';
+	import MotorIcon from '$lib/icons/MotorIcon.svelte';
+	import LightsIcon from '$lib/icons/LightsIcon.svelte';
+	import SoundIcon from '$lib/icons/SoundIcon.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -174,17 +177,17 @@
 								<span class="opacity-75">Formats</span>
 								<span class="flex items-center gap-2 font-normal normal-case tracking-normal opacity-60 text-xs">
 									<span class="flex items-center gap-0.5">
-										<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+										<MotorIcon class="w-3 h-3"/>
 										motor
 									</span>
 									·
 									<span class="flex items-center gap-0.5">
-										<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+										<LightsIcon class="w-3 h-3"/>
 										lights
 									</span>
 									·
 									<span class="flex items-center gap-0.5">
-										<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+										<SoundIcon class="w-3 h-3"/>
 										sound
 									</span>
 								</span>
@@ -230,13 +233,13 @@
 											{shortFormat(fmt.formatName)}
 											<span class="inline-flex items-center gap-0.5 ml-1 opacity-70">
 												{#if fmt.purpose === 'Motor Only' || fmt.purpose === 'Motor & Lights'}
-													<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="Motor"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+													<MotorIcon class="w-3 h-3" title="Motor"/>
 												{/if}
 												{#if fmt.purpose === 'Motor & Lights'}
 													<span class="text-xs leading-none">+</span>
 												{/if}
 												{#if fmt.purpose === 'Lights Only' || fmt.purpose === 'Motor & Lights'}
-													<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="Lights"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+													<LightsIcon class="w-3 h-3" title="Lights"/>
 												{/if}
 											</span>
 											{#if fmt.decoderCount > 0}
@@ -256,10 +259,7 @@
 									{/if}
 									{#if train.formats.some(f => f.soundDecoderCount > 0)}
 										<span title="Sound decoders available" style="color: var(--color-muted);">
-											<svg class="inline w-3.5 h-3.5 mb-0.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-												<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-												<path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-											</svg>
+											<SoundIcon class="inline w-3.5 h-3.5 mb-0.5 ml-1"/>
 										</span>
 									{/if}
 								</div>

@@ -1,6 +1,9 @@
 <script lang="ts">
 	import type { PageData, ActionData } from './$types';
 	import FormatDiagram from '$lib/FormatDiagram.svelte';
+	import MotorIcon from '$lib/icons/MotorIcon.svelte';
+	import LightsIcon from '$lib/icons/LightsIcon.svelte';
+	import SoundIcon from '$lib/icons/SoundIcon.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
 	let type = $state(data.typeParam === 'add_compat' ? 'add_compat' : 'add_train');
@@ -175,13 +178,13 @@
 										<span class="font-mono text-xs" style="color: var(--color-muted);">{dec.model}</span>
 										<span class="flex items-center gap-0.5" style="color: var(--color-green);">
 											{#if dec.motor}
-												<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="Motor"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+												<MotorIcon class="w-3 h-3" title="Motor"/>
 											{/if}
 											{#if dec.lights}
-												<svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="Lights"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+												<LightsIcon class="w-3 h-3" title="Lights"/>
 											{/if}
 											{#if dec.soundDecoder}
-												<svg class="w-3 h-3" style="color: #7c3aed;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" title="Sound"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+												<SoundIcon class="w-3 h-3" style="color: #7c3aed;" title="Sound"/>
 											{/if}
 										</span>
 									</div>
