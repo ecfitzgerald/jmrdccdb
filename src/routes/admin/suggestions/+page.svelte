@@ -20,8 +20,12 @@
 	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">Suggestions</h1>
 	<div class="flex gap-1 bg-[var(--color-raised)] rounded p-1 text-sm">
 		{#each ['pending', 'approved', 'rejected'] as s}
-			<a href="?status={s}"
-				class="px-3 py-1 rounded-md transition-colors {data.status === s ? 'jr-card-flat shadow text-[var(--color-text)] font-bold font-medium' : 'text-[var(--color-dim)] hover:text-gray-700'}">
+			<a
+				href="?status={s}"
+				class="px-3 py-1 rounded-md transition-colors {data.status === s
+					? 'jr-card-flat shadow text-[var(--color-text)] font-bold font-medium'
+					: 'text-[var(--color-dim)] hover:text-gray-700'}"
+			>
 				{s.charAt(0).toUpperCase() + s.slice(1)}
 			</a>
 		{/each}
@@ -36,9 +40,12 @@
 {:else}
 	<div class="space-y-4">
 		{#each data.suggestions as s (s.id)}
-			<div class="jr-card-flat border border-[var(--color-border)] rounded  p-5">
+			<div class="jr-card-flat border border-[var(--color-border)] rounded p-5">
 				<div class="flex items-start gap-3 mb-3">
-					<span class="text-xs font-medium px-2 py-0.5 rounded {typeBadge[s.type] ?? 'bg-[var(--color-raised)] text-[var(--color-muted)]'}">
+					<span
+						class="text-xs font-medium px-2 py-0.5 rounded {typeBadge[s.type] ??
+							'bg-[var(--color-raised)] text-[var(--color-muted)]'}"
+					>
 						{typeLabel[s.type] ?? s.type}
 					</span>
 					<span class="text-xs text-[var(--color-dim)] mt-0.5">{s.createdAt}</span>
@@ -62,9 +69,11 @@
 				{/if}
 
 				{#if data.status === 'pending'}
-					<a href="/admin/suggestions/{s.id}"
+					<a
+						href="/admin/suggestions/{s.id}"
 						class="inline-block px-4 py-1.5 rounded text-xs font-semibold transition-opacity hover:opacity-80"
-						style="background: var(--color-green); color: #fff;">
+						style="background: var(--color-green); color: #fff;"
+					>
 						Review & Edit →
 					</a>
 				{/if}

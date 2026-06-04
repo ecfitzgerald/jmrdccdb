@@ -13,13 +13,15 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const allTrains = d
 		.select({ id: trains.id, name: trains.name, manufacturer: trains.manufacturer, modelNumber: trains.modelNumber })
-		.from(trains).orderBy(trains.manufacturer, trains.name).all();
+		.from(trains)
+		.orderBy(trains.manufacturer, trains.name)
+		.all();
 
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
 
 	const allDecoders = decodersWithBrands(d);
 
-	const preselectedTrain = trainId ? allTrains.find(t => t.id === Number(trainId)) ?? null : null;
+	const preselectedTrain = trainId ? (allTrains.find((t) => t.id === Number(trainId)) ?? null) : null;
 
 	return { allTrains, formats, allDecoders, preselectedTrain, typeParam };
 };
@@ -42,24 +44,23 @@ export const actions: Actions = {
 
 		if (type === 'add_train') {
 			const manufacturer = form.get('manufacturer')?.toString() ?? '';
-			const scale        = form.get('scale')?.toString() ?? '';
-			const name         = form.get('name')?.toString() ?? '';
-			const modelNumber  = form.get('modelNumber')?.toString() ?? '';
-			const roadName     = form.get('roadName')?.toString() ?? '';
-			const era          = form.get('era')?.toString() ?? '';
+			const scale = form.get('scale')?.toString() ?? '';
+			const name = form.get('name')?.toString() ?? '';
+			const modelNumber = form.get('modelNumber')?.toString() ?? '';
+			const roadName = form.get('roadName')?.toString() ?? '';
+			const era = form.get('era')?.toString() ?? '';
 
 			if (!manufacturer || !scale || !name || !modelNumber) {
 				return fail(400, { error: 'Manufacturer, scale, name, and model number are required.' });
 			}
 			if (manufacturer.length > 200) return fail(400, { error: 'Manufacturer too long (max 200).' });
-			if (scale.length > 50)         return fail(400, { error: 'Scale too long (max 50).' });
-			if (name.length > 200)         return fail(400, { error: 'Name too long (max 200).' });
-			if (modelNumber.length > 100)  return fail(400, { error: 'Model number too long (max 100).' });
-			if (roadName.length > 200)     return fail(400, { error: 'Road name too long (max 200).' });
-			if (era.length > 100)          return fail(400, { error: 'Era too long (max 100).' });
+			if (scale.length > 50) return fail(400, { error: 'Scale too long (max 50).' });
+			if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
+			if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
+			if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
+			if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 
 			payload = { manufacturer, scale, name, modelNumber, roadName, era, formatIds: form.getAll('formatIds') };
-
 		} else if (type === 'add_compat') {
 			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
 			const notes = form.get('notes')?.toString() ?? '';
@@ -79,14 +80,13 @@ export const actions: Actions = {
 			if (decoderIds.length === 0) {
 				return fail(400, { error: 'Please select at least one confirmed decoder.' });
 			}
-
 		} else if (type === 'correction') {
-			const currentValue  = form.get('currentValue')?.toString() ?? '';
+			const currentValue = form.get('currentValue')?.toString() ?? '';
 			const suggestedValue = form.get('suggestedValue')?.toString() ?? '';
-			const field         = form.get('field')?.toString() ?? '';
+			const field = form.get('field')?.toString() ?? '';
 
-			if (field.length > 100)          return fail(400, { error: 'Field name too long (max 100).' });
-			if (currentValue.length > 1000)  return fail(400, { error: 'Current value too long (max 1000).' });
+			if (field.length > 100) return fail(400, { error: 'Field name too long (max 100).' });
+			if (currentValue.length > 1000) return fail(400, { error: 'Current value too long (max 1000).' });
 			if (suggestedValue.length > 1000) return fail(400, { error: 'Suggested value too long (max 1000).' });
 
 			payload = { trainId: form.get('trainId'), field, currentValue, suggestedValue };
@@ -95,12 +95,15 @@ export const actions: Actions = {
 			}
 		}
 
-		db().insert(suggestions).values({
-			type,
-			payload: JSON.stringify(payload),
-			submitterNote,
-			submitterEmail: submitterEmail || null
-		}).run();
+		db()
+			.insert(suggestions)
+			.values({
+				type,
+				payload: JSON.stringify(payload),
+				submitterNote,
+				submitterEmail: submitterEmail || null
+			})
+			.run();
 
 		return { success: true };
 	}

@@ -17,8 +17,12 @@ export const decoderBrands = sqliteTable('decoder_brands', {
 
 export const decoders = sqliteTable('decoders', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
-	brandId: integer('brand_id').notNull().references(() => decoderBrands.id),
-	formatId: integer('format_id').notNull().references(() => dccFormats.id),
+	brandId: integer('brand_id')
+		.notNull()
+		.references(() => decoderBrands.id),
+	formatId: integer('format_id')
+		.notNull()
+		.references(() => dccFormats.id),
 	model: text('model').notNull(),
 	notes: text('notes'),
 	buyUrl: text('buy_url'),
@@ -41,16 +45,24 @@ export const trains = sqliteTable('trains', {
 
 export const trainFormatCompat = sqliteTable('train_format_compat', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
-	trainId: integer('train_id').notNull().references(() => trains.id, { onDelete: 'cascade' }),
-	formatId: integer('format_id').notNull().references(() => dccFormats.id),
+	trainId: integer('train_id')
+		.notNull()
+		.references(() => trains.id, { onDelete: 'cascade' }),
+	formatId: integer('format_id')
+		.notNull()
+		.references(() => dccFormats.id),
 	purpose: text('purpose').notNull().default('Motor & Lights'), // 'Motor Only' | 'Lights Only' | 'Motor & Lights'
 	notes: text('notes')
 });
 
 export const trainDecoderCompat = sqliteTable('train_decoder_compat', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
-	trainId: integer('train_id').notNull().references(() => trains.id, { onDelete: 'cascade' }),
-	decoderId: integer('decoder_id').notNull().references(() => decoders.id, { onDelete: 'cascade' }),
+	trainId: integer('train_id')
+		.notNull()
+		.references(() => trains.id, { onDelete: 'cascade' }),
+	decoderId: integer('decoder_id')
+		.notNull()
+		.references(() => decoders.id, { onDelete: 'cascade' }),
 	confirmed: integer('confirmed', { mode: 'boolean' }).notNull().default(true),
 	notes: text('notes')
 });

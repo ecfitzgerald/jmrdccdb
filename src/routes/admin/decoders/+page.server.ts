@@ -33,44 +33,52 @@ export const load: PageServerLoad = async () => {
 export const actions: Actions = {
 	add: async ({ request }) => {
 		const form = await request.formData();
-		const brandId  = Number(form.get('brandId'));
+		const brandId = Number(form.get('brandId'));
 		const formatId = Number(form.get('formatId'));
-		const model    = form.get('model')?.toString() ?? '';
-		const notes    = form.get('notes')?.toString() ?? '';
-		const buyUrl   = form.get('buyUrl')?.toString() ?? '';
+		const model = form.get('model')?.toString() ?? '';
+		const notes = form.get('notes')?.toString() ?? '';
+		const buyUrl = form.get('buyUrl')?.toString() ?? '';
 
 		if (!brandId || !formatId || !model) {
 			return fail(400, { error: 'Brand, format, and model are required.' });
 		}
-		if (model.length > 200)   return fail(400, { error: 'Model too long (max 200).' });
-		if (notes.length > 1000)  return fail(400, { error: 'Notes too long (max 1000).' });
-		if (buyUrl.length > 500)  return fail(400, { error: 'URL too long (max 500).' });
+		if (model.length > 200) return fail(400, { error: 'Model too long (max 200).' });
+		if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
+		if (buyUrl.length > 500) return fail(400, { error: 'URL too long (max 500).' });
 
-		db().insert(decoders).values({
-			brandId, formatId, model,
-			notes: notes || null,
-			buyUrl: buyUrl || null,
-			motor: form.get('motor') === 'on',
-			lights: form.get('lights') === 'on',
-			soundDecoder: form.get('soundDecoder') === 'on'
-		}).run();
+		db()
+			.insert(decoders)
+			.values({
+				brandId,
+				formatId,
+				model,
+				notes: notes || null,
+				buyUrl: buyUrl || null,
+				motor: form.get('motor') === 'on',
+				lights: form.get('lights') === 'on',
+				soundDecoder: form.get('soundDecoder') === 'on'
+			})
+			.run();
 
 		return { success: true };
 	},
 
 	addBrand: async ({ request }) => {
-		const form    = await request.formData();
-		const name    = form.get('name')?.toString() ?? '';
+		const form = await request.formData();
+		const name = form.get('name')?.toString() ?? '';
 		const website = form.get('website')?.toString() ?? '';
 
 		if (!name) return fail(400, { error: 'Brand name is required.' });
-		if (name.length > 200)    return fail(400, { error: 'Brand name too long (max 200).' });
+		if (name.length > 200) return fail(400, { error: 'Brand name too long (max 200).' });
 		if (website.length > 500) return fail(400, { error: 'Website URL too long (max 500).' });
 
-		db().insert(decoderBrands).values({
-			name,
-			website: website || null
-		}).run();
+		db()
+			.insert(decoderBrands)
+			.values({
+				name,
+				website: website || null
+			})
+			.run();
 		return { success: true };
 	},
 

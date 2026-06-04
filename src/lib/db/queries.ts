@@ -6,11 +6,21 @@ import type { db } from './index';
 type DB = ReturnType<typeof db>;
 
 export function distinctManufacturers(d: DB): string[] {
-	return d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map((r) => r.v);
+	return d
+		.selectDistinct({ v: trains.manufacturer })
+		.from(trains)
+		.orderBy(trains.manufacturer)
+		.all()
+		.map((r) => r.v);
 }
 
 export function distinctScales(d: DB): string[] {
-	return d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map((r) => r.v);
+	return d
+		.selectDistinct({ v: trains.scale })
+		.from(trains)
+		.orderBy(trains.scale)
+		.all()
+		.map((r) => r.v);
 }
 
 export function distinctOperators(d: DB): string[] {
@@ -42,9 +52,22 @@ export function decodersWithBrands(d: DB) {
 }
 
 export function adminCounts(d: DB): { pendingCount: number; trainCount: number; decoderCount: number } {
-	const pendingCount = d.select({ count: sql<number>`count(*)` }).from(suggestions).where(eq(suggestions.status, 'pending')).get()?.count ?? 0;
-	const trainCount = d.select({ count: sql<number>`count(*)` }).from(trains).get()?.count ?? 0;
-	const decoderCount = d.select({ count: sql<number>`count(*)` }).from(decoders).get()?.count ?? 0;
+	const pendingCount =
+		d
+			.select({ count: sql<number>`count(*)` })
+			.from(suggestions)
+			.where(eq(suggestions.status, 'pending'))
+			.get()?.count ?? 0;
+	const trainCount =
+		d
+			.select({ count: sql<number>`count(*)` })
+			.from(trains)
+			.get()?.count ?? 0;
+	const decoderCount =
+		d
+			.select({ count: sql<number>`count(*)` })
+			.from(decoders)
+			.get()?.count ?? 0;
 	return { pendingCount, trainCount, decoderCount };
 }
 
@@ -70,31 +93,40 @@ if (import.meta.vitest) {
 	});
 
 	it('distinctManufacturers returns sorted unique manufacturers', () => {
-		testDb.insert(trains).values([
-			{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A1', name: 'Test' },
-			{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'Test' },
-			{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'Test2' }
-		]).run();
+		testDb
+			.insert(trains)
+			.values([
+				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A1', name: 'Test' },
+				{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'Test' },
+				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'Test2' }
+			])
+			.run();
 		const result = distinctManufacturers(testDb);
 		expect(result).toEqual(['Kato', 'Tomix']);
 	});
 
 	it('distinctScales returns sorted unique scales', () => {
-		testDb.insert(trains).values([
-			{ manufacturer: 'Kato', scale: 'HO', modelNumber: 'A1', name: 'Test' },
-			{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'Test2' },
-			{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'Test3' }
-		]).run();
+		testDb
+			.insert(trains)
+			.values([
+				{ manufacturer: 'Kato', scale: 'HO', modelNumber: 'A1', name: 'Test' },
+				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'Test2' },
+				{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'Test3' }
+			])
+			.run();
 		const result = distinctScales(testDb);
 		expect(result).toEqual(['HO', 'N']);
 	});
 
 	it('distinctOperators filters out nulls', () => {
-		testDb.insert(trains).values([
-			{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A1', name: 'T1', roadName: 'JR East' },
-			{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'T2', roadName: null },
-			{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'T3', roadName: 'JR West' }
-		]).run();
+		testDb
+			.insert(trains)
+			.values([
+				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A1', name: 'T1', roadName: 'JR East' },
+				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'T2', roadName: null },
+				{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'T3', roadName: 'JR West' }
+			])
+			.run();
 		const result = distinctOperators(testDb);
 		expect(result).toEqual(['JR East', 'JR West']);
 		expect(result).not.toContain(null);
@@ -103,10 +135,19 @@ if (import.meta.vitest) {
 	it('decodersWithBrands returns joined shape', () => {
 		testDb.insert(schema.dccFormats).values({ name: 'NMRA DCC', sortOrder: 1 }).run();
 		testDb.insert(decoderBrands).values({ name: 'Digitrax' }).run();
-		testDb.insert(decoders).values({ brandId: 1, formatId: 1, model: 'DZ126', motor: true, lights: true, soundDecoder: false }).run();
+		testDb
+			.insert(decoders)
+			.values({ brandId: 1, formatId: 1, model: 'DZ126', motor: true, lights: true, soundDecoder: false })
+			.run();
 		const result = decodersWithBrands(testDb);
 		expect(result).toHaveLength(1);
-		expect(result[0]).toMatchObject({ brandName: 'Digitrax', model: 'DZ126', motor: true, lights: true, soundDecoder: false });
+		expect(result[0]).toMatchObject({
+			brandName: 'Digitrax',
+			model: 'DZ126',
+			motor: true,
+			lights: true,
+			soundDecoder: false
+		});
 	});
 
 	it('decodersWithBrands returns empty array when no decoders', () => {
@@ -118,11 +159,14 @@ if (import.meta.vitest) {
 	});
 
 	it('adminCounts only counts pending suggestions', () => {
-		testDb.insert(schema.suggestions).values([
-			{ type: 'add_train', payload: '{}', status: 'pending' },
-			{ type: 'add_train', payload: '{}', status: 'approved' },
-			{ type: 'add_train', payload: '{}', status: 'pending' }
-		]).run();
+		testDb
+			.insert(schema.suggestions)
+			.values([
+				{ type: 'add_train', payload: '{}', status: 'pending' },
+				{ type: 'add_train', payload: '{}', status: 'approved' },
+				{ type: 'add_train', payload: '{}', status: 'pending' }
+			])
+			.run();
 		const { pendingCount } = adminCounts(testDb);
 		expect(pendingCount).toBe(2);
 	});
