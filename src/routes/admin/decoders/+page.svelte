@@ -80,7 +80,7 @@
 					name="name"
 					type="text"
 					placeholder="TCS"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
@@ -89,7 +89,7 @@
 					name="website"
 					type="url"
 					placeholder="https://…"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 		</div>
@@ -114,7 +114,7 @@
 				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand *</label>
 				<select
 					name="brandId"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select…</option>
 					{#each data.brands as b}
@@ -126,7 +126,7 @@
 				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Format *</label>
 				<select
 					name="formatId"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select…</option>
 					{#each data.formats as f}
@@ -140,7 +140,7 @@
 					name="model"
 					type="text"
 					placeholder="DN163K0"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 		</div>
@@ -150,7 +150,7 @@
 				<input
 					name="notes"
 					type="text"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
@@ -159,7 +159,7 @@
 					name="buyUrl"
 					type="url"
 					placeholder="https://…"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 		</div>

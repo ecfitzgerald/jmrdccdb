@@ -70,14 +70,14 @@
 					name="manufacturer"
 					type="text"
 					placeholder="Kato"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
 				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Scale *</label>
 				<select
 					name="scale"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="N">N</option>
 					<option value="HO">HO</option>
@@ -92,7 +92,7 @@
 				name="name"
 				type="text"
 				placeholder="E235 Series Yamanote Line (11-car set)"
-				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+				class="w-full rounded px-3 py-2 text-sm"
 			/>
 		</div>
 		<div class="grid grid-cols-2 gap-4">
@@ -102,7 +102,7 @@
 					name="modelNumber"
 					type="text"
 					placeholder="10-1785"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
@@ -111,7 +111,7 @@
 					name="roadName"
 					type="text"
 					placeholder="JR East"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 		</div>
@@ -122,7 +122,7 @@
 					name="era"
 					type="text"
 					placeholder="2015–present"
-					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 		</div>
@@ -169,7 +169,7 @@
 			<textarea
 				name="notes"
 				rows="2"
-				class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
+				class="w-full rounded px-3 py-2 text-sm"
 			></textarea>
 		</div>
 		<button
