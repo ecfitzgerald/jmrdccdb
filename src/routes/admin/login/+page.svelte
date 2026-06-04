@@ -16,7 +16,7 @@
 				{form.error}
 			</div>
 		{/if}
-		<form method="POST" class="space-y-4">
+		<form method="POST" action="?/login" class="space-y-4">
 			<div>
 				<label class="block text-xs font-medium mb-1" style="color: var(--color-muted);" for="password">Password</label>
 				<input
