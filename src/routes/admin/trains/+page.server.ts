@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { trains, trainFormatCompat, dccFormats } from '$lib/db/schema';
+import { trains, trainFormatCompat, trainDecoderCompat, dccFormats, decoders, decoderBrands } from '$lib/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import { fail } from '@sveltejs/kit';
 
@@ -8,6 +8,15 @@ export const load: PageServerLoad = async () => {
 	const d = db();
 	const allTrains = d.select().from(trains).orderBy(trains.manufacturer, trains.name).all();
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
+	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
+	const operators = d.selectDistinct({ v: trains.roadName }).from(trains).orderBy(trains.roadName).all().map(r => r.v).filter(Boolean) as string[];
+	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
+	const allDecoders = d
+		.select({ id: decoders.id, brandName: decoderBrands.name, model: decoders.model, formatId: decoders.formatId, motor: decoders.motor, lights: decoders.lights, soundDecoder: decoders.soundDecoder, notes: decoders.notes })
+		.from(decoders)
+		.innerJoin(decoderBrands, eq(decoders.brandId, decoderBrands.id))
+		.orderBy(decoderBrands.name, decoders.model)
+		.all();
 	const compat = d
 		.select({
 			trainId: trainFormatCompat.trainId,
@@ -26,7 +35,11 @@ export const load: PageServerLoad = async () => {
 
 	return {
 		trains: allTrains.map((t) => ({ ...t, formats: compatByTrain.get(t.id) ?? [] })),
-		formats
+		formats,
+		manufacturers,
+		operators,
+		scales,
+		allDecoders
 	};
 };
 
@@ -77,6 +90,11 @@ export const actions: Actions = {
 					purpose: (formatPurposes[i] as string) || 'Motor & Lights'
 				})
 				.run();
+		}
+
+		const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
+		for (const did of decoderIds) {
+			d.insert(trainDecoderCompat).values({ trainId: train.id, decoderId: did, confirmed: true }).run();
 		}
 
 		return { success: true };
