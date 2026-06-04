@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+	--font-sans: 'Noto Sans JP', sans-serif;
+	--font-mono: 'Noto Sans Mono', monospace;
+
+	/* JR East palette */
+	--color-bg:          #ffffff;
+	--color-surface:     #ffffff;
+	--color-raised:      #f4f7f5;
+	--color-border:      #d0dbd4;
+	--color-border-mid:  #a8bfb0;
+
+	--color-text:        #111111;
+	--color-muted:       #555555;
+	--color-dim:         #999999;
+
+	/* JR Central orange */
+	--color-jrc-orange:  #f26722;
+
+	/* JR East forest green */
+	--color-green:       #1a6b3a;
+	--color-green-dark:  #124d2a;
+	--color-green-light: #e6f2eb;
+	--color-green-mid:   #c0dbc8;
+
+	/* Status */
+	--color-warn:        #b45309;
+	--color-warn-bg:     #fef3c7;
+	--color-danger:      #b91c1c;
+	--color-danger-bg:   #fee2e2;
+	--color-ok:          #166534;
+	--color-ok-bg:       #dcfce7;
+}
+
+*, *::before, *::after {
+	font-family: var(--font-sans);
+}
+
+code, pre, .font-mono {
+	font-family: var(--font-mono);
+}
+
+body {
+	font-variant-numeric: tabular-nums;
+	font-weight: 500;
+	background-color: var(--color-bg);
+	color: var(--color-text);
+}
+
+input, select, textarea {
+	background: var(--color-bg) !important;
+	border: 1px solid var(--color-border) !important;
+	color: var(--color-text) !important;
+}
+input::placeholder, textarea::placeholder {
+	color: var(--color-dim) !important;
+}
+input:focus, select:focus, textarea:focus {
+	outline: none;
+	border-color: var(--color-green) !important;
+	box-shadow: 0 0 0 2px var(--color-green-mid);
+}
+option {
+	background: var(--color-bg);
+}
+
+.jr-card {
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-top: 3px solid var(--color-green);
+}
+
+.jr-card-flat {
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+}

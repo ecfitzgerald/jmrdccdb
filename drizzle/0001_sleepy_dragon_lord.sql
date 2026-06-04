@@ -1,0 +1,1 @@
+ALTER TABLE `train_format_compat` ADD `purpose` text DEFAULT 'Motor & Lights' NOT NULL;

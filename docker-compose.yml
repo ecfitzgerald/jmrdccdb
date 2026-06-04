@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - dcc_data:/data
+    environment:
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-changeme}
+      - DB_PATH=/data/dcc.db
+      - ORIGIN=${ORIGIN:-http://localhost:3000}
+    restart: unless-stopped
+
+volumes:
+  dcc_data:
