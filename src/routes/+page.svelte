@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { goto } from '$app/navigation';
+	import { shortFormat } from '$lib/format-utils';
 
 	let { data }: { data: PageData } = $props();
 
@@ -20,10 +21,6 @@
 	function sortIcon(col: string) {
 		if (sortCol !== col) return '↕';
 		return sortDir === 'asc' ? '↑' : '↓';
-	}
-
-	function shortFormat(name: string) {
-		return name.replace(/\s*\(.*?\)$/, '').trim();
 	}
 
 	const iconClass = 'inline w-3 h-3 opacity-70';
