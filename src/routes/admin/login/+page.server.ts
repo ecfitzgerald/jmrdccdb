@@ -1,9 +1,10 @@
 import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
 import { ADMIN_PASSWORD } from '$env/static/private';
+import { checkPassword, createSession, deleteSession, validateSession } from '$lib/server/session';
 
 export const load: PageServerLoad = async ({ cookies }) => {
-	if (cookies.get('admin_auth') === ADMIN_PASSWORD) {
+	if (validateSession(cookies.get('admin_auth'))) {
 		redirect(303, '/admin');
 	}
 	return {};
@@ -13,10 +14,11 @@ export const actions: Actions = {
 	login: async ({ request, cookies }) => {
 		const form = await request.formData();
 		const password = form.get('password')?.toString() ?? '';
-		if (password !== ADMIN_PASSWORD) {
+		if (!checkPassword(password, ADMIN_PASSWORD)) {
 			return fail(401, { error: 'Incorrect password.' });
 		}
-		cookies.set('admin_auth', ADMIN_PASSWORD, {
+		const token = createSession();
+		cookies.set('admin_auth', token, {
 			path: '/',
 			httpOnly: true,
 			sameSite: 'strict',
@@ -25,6 +27,7 @@ export const actions: Actions = {
 		redirect(303, '/admin');
 	},
 	logout: async ({ cookies }) => {
+		deleteSession(cookies.get('admin_auth'));
 		cookies.delete('admin_auth', { path: '/' });
 		redirect(303, '/admin/login');
 	}
