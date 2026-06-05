@@ -63,7 +63,6 @@
 		id="train-select"
 		onchange={onSelectTrain}
 		class="w-full rounded px-3 py-2 text-sm"
-		style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text);"
 	>
 		<option value="" selected={!data.selectedTrain}>— Choose a train —</option>
 		{#each data.trains as t}
