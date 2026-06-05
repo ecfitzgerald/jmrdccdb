@@ -4,7 +4,7 @@ import { suggestions, trains, dccFormats, decoderBrands } from '$lib/db/schema';
 import { fail } from '@sveltejs/kit';
 import { decodersWithBrands } from '$lib/db/queries';
 
-const VALID_TYPES = ['add_train', 'add_decoder', 'add_compat', 'correction'];
+const VALID_TYPES = ['add_train', 'add_decoder', 'add_compat', 'correction', 'update_decoder'];
 
 export const load: PageServerLoad = async ({ url }) => {
 	const d = db();
@@ -125,6 +125,31 @@ export const actions: Actions = {
 			if (!payload.trainId || !suggestedValue) {
 				return fail(400, { error: 'Please specify what to correct.' });
 			}
+		} else if (type === 'update_decoder') {
+			const decoderId = form.get('decoderId')?.toString() ?? '';
+			const updateField = form.get('updateField')?.toString() ?? '';
+			const VALID_FIELDS = ['model', 'capabilities', 'format', 'notes'];
+
+			if (!decoderId) return fail(400, { error: 'Please select a decoder.' });
+			if (!updateField || !VALID_FIELDS.includes(updateField)) {
+				return fail(400, { error: 'Please select a valid field to correct.' });
+			}
+
+			let correctedValue: unknown;
+			if (updateField === 'capabilities') {
+				correctedValue = {
+					motor: form.get('motor') === 'on',
+					lights: form.get('lights') === 'on',
+					soundDecoder: form.get('soundDecoder') === 'on'
+				};
+			} else {
+				const raw = form.get('correctedValue')?.toString() ?? '';
+				if (!raw) return fail(400, { error: 'Please provide the corrected value.' });
+				if (raw.length > 500) return fail(400, { error: 'Value too long (max 500).' });
+				correctedValue = raw;
+			}
+
+			payload = { decoderId, field: updateField, correctedValue };
 		}
 
 		db()
