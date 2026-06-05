@@ -81,6 +81,7 @@ export const actions: Actions = {
 			const formatId = form.get('formatId')?.toString() ?? '';
 			const model = form.get('model')?.toString() ?? '';
 			const notes = form.get('notes')?.toString() ?? '';
+			const buyUrl = form.get('buyUrl')?.toString() ?? '';
 			const motor = form.get('motor') === 'on';
 			const lights = form.get('lights') === 'on';
 			const soundDecoder = form.get('soundDecoder') === 'on';
@@ -91,8 +92,10 @@ export const actions: Actions = {
 			if (brandName.length > 200) return fail(400, { error: 'Brand name too long (max 200).' });
 			if (model.length > 200) return fail(400, { error: 'Model number too long (max 200).' });
 			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
+			if (buyUrl.length > 500) return fail(400, { error: 'Buy URL too long (max 500).' });
+			if (buyUrl && !/^https?:\/\/.+/.test(buyUrl)) return fail(400, { error: 'Buy URL must start with http:// or https://.' });
 
-			payload = { brandName, formatId, model, motor, lights, soundDecoder, notes };
+			payload = { brandName, formatId, model, motor, lights, soundDecoder, notes, buyUrl: buyUrl || null };
 		} else if (type === 'add_compat') {
 			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
 			const notes = form.get('notes')?.toString() ?? '';
