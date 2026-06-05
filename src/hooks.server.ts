@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import type { Handle } from '@sveltejs/kit';
+import { validateSession } from '$lib/server/session';
 
 // Importing the env module executes the ADMIN_PASSWORD boot-time guard at
 // server startup. Route modules load lazily, so hooks.server.ts is the earliest
@@ -32,6 +33,18 @@ function buildCsp(nonce: string): string {
 }
 
 export const handle: Handle = async ({ event, resolve }) => {
+	// Guard every /admin request except the login page itself. This runs before
+	// resolve so it protects form actions (POST), not just load() functions.
+	const { pathname } = event.url;
+	if (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) {
+		if (!validateSession(event.cookies.get('admin_auth'))) {
+			if (event.request.method === 'GET') {
+				return new Response(null, { status: 303, headers: { Location: '/admin/login' } });
+			}
+			return new Response('Forbidden', { status: 403 });
+		}
+	}
+
 	const nonce = crypto.randomBytes(16).toString('base64');
 
 	const response = await resolve(event, {
