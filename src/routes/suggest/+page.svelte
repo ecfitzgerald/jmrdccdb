@@ -274,48 +274,36 @@
 					<label
 						class="block text-xs font-medium mb-1 tracking-widest uppercase"
 						style="color: var(--color-muted);"
-						for="decoderFormat">DCC Format *</label
-					>
-					<select
-						id="decoderFormat"
-						name="formatId"
-						bind:value={addDecoderFormatId}
-						class="w-full rounded px-3 py-2 text-sm"
-					>
-						<option value="">Select a format…</option>
-						{#each data.formats as fmt}
-							<option value={String(fmt.id)}>{fmt.name}</option>
-						{/each}
-					</select>
-				</div>
-				<div>
-					<label
-						class="block text-xs font-medium mb-1 tracking-widest uppercase"
-						style="color: var(--color-muted);"
 						for="brandName">Brand *</label
 					>
 					<input
 						id="brandName"
 						name="brandName"
 						type="text"
+						list="brand-list"
 						placeholder="Digitrax, TCS, SoundTraxx…"
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
+					<datalist id="brand-list">
+						{#each data.allBrands as b}
+							<option value={b.name}></option>
+						{/each}
+					</datalist>
 				</div>
-			</div>
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="decoderModel">Model Number *</label
-				>
-				<input
-					id="decoderModel"
-					name="model"
-					type="text"
-					placeholder="DN163K0"
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="decoderModel">Model Number *</label
+					>
+					<input
+						id="decoderModel"
+						name="model"
+						type="text"
+						placeholder="DN163K0"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
 			</div>
 			<div>
 				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
@@ -349,6 +337,43 @@
 				<label
 					class="block text-xs font-medium mb-1 tracking-widest uppercase"
 					style="color: var(--color-muted);"
+					for="decoderFormat">DCC Format *</label
+				>
+				<select
+					id="decoderFormat"
+					name="formatId"
+					bind:value={addDecoderFormatId}
+					class="w-full rounded px-3 py-2 text-sm"
+				>
+					<option value="">Select a format…</option>
+					{#each data.formats as fmt}
+						<option value={String(fmt.id)}>{fmt.name}</option>
+					{/each}
+				</select>
+				{#if addDecoderFormatId}
+					{@const selectedFmt = data.formats.find((f) => String(f.id) === addDecoderFormatId)}
+					{#if selectedFmt}
+						<div
+							class="mt-2 flex items-center gap-3 p-3 rounded"
+							style="background: var(--color-raised); border: 1px solid var(--color-border);"
+						>
+							<div style="color: var(--color-green);">
+								<FormatDiagram name={selectedFmt.name} size={96} />
+							</div>
+							<div>
+								<p class="text-xs font-semibold" style="color: var(--color-text);">{selectedFmt.name}</p>
+								{#if selectedFmt.description}
+									<p class="text-xs mt-0.5" style="color: var(--color-muted);">{selectedFmt.description}</p>
+								{/if}
+							</div>
+						</div>
+					{/if}
+				{/if}
+			</div>
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
 					for="decoderNotes">Notes</label
 				>
 				<input
@@ -356,6 +381,20 @@
 					name="notes"
 					type="text"
 					placeholder="e.g. requires capacitor removal, N-scale only"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+			</div>
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="buyUrl">Buy / Product URL</label
+				>
+				<input
+					id="buyUrl"
+					name="buyUrl"
+					type="url"
+					placeholder="https://www.jmri.org/…"
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
