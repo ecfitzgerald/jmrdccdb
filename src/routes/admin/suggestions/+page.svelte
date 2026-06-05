@@ -2,6 +2,10 @@
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 
+	function safeParse(json: string): unknown {
+		try { return JSON.parse(json); } catch { return null; }
+	}
+
 	const typeLabel: Record<string, string> = {
 		add_train: 'New Train',
 		add_compat: 'Compatibility',
@@ -40,6 +44,7 @@
 {:else}
 	<div class="space-y-4">
 		{#each data.suggestions as s (s.id)}
+			{@const parsed = safeParse(s.payload)}
 			<div class="jr-card-flat border border-[var(--color-border)] rounded p-5">
 				<div class="flex items-start gap-3 mb-3">
 					<span
@@ -55,7 +60,7 @@
 				</div>
 
 				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-gray-700 overflow-x-auto">
-					<pre>{JSON.stringify(JSON.parse(s.payload), null, 2)}</pre>
+					<pre>{parsed !== null ? JSON.stringify(parsed, null, 2) : '(invalid payload)'}</pre>
 				</div>
 
 				{#if s.submitterNote}

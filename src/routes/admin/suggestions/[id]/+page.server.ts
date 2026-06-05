@@ -21,7 +21,12 @@ export const load: PageServerLoad = async ({ params }) => {
 	const [suggestion] = d.select().from(suggestions).where(eq(suggestions.id, id)).all();
 	if (!suggestion) error(404, 'Suggestion not found');
 
-	const payload = JSON.parse(suggestion.payload);
+	let payload: unknown;
+	try {
+		payload = JSON.parse(suggestion.payload);
+	} catch {
+		error(500, 'Suggestion payload is corrupt.');
+	}
 
 	// Load reference data based on type
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();

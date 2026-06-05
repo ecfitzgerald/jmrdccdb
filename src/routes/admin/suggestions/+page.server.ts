@@ -26,9 +26,26 @@ export const actions: Actions = {
 		const [suggestion] = d.select().from(suggestions).where(eq(suggestions.id, id)).all();
 		if (!suggestion) return fail(404);
 
-		const payload = JSON.parse(suggestion.payload);
+		let payload: Record<string, unknown>;
+		try {
+			const raw = JSON.parse(suggestion.payload);
+			if (typeof raw !== 'object' || raw === null || Array.isArray(raw)) {
+				return fail(500, { error: 'Suggestion payload is corrupt.' });
+			}
+			payload = raw as Record<string, unknown>;
+		} catch {
+			return fail(500, { error: 'Suggestion payload is corrupt.' });
+		}
 
 		if (suggestion.type === 'add_train') {
+			if (
+				typeof payload.manufacturer !== 'string' ||
+				typeof payload.scale !== 'string' ||
+				typeof payload.name !== 'string' ||
+				typeof payload.modelNumber !== 'string'
+			) {
+				return fail(500, { error: 'Suggestion payload missing required train fields.' });
+			}
 			const [train] = d
 				.insert(trains)
 				.values({
@@ -36,13 +53,13 @@ export const actions: Actions = {
 					scale: payload.scale,
 					name: payload.name,
 					modelNumber: payload.modelNumber,
-					roadName: payload.roadName || null,
-					era: payload.era || null
+					roadName: typeof payload.roadName === 'string' ? payload.roadName || null : null,
+					era: typeof payload.era === 'string' ? payload.era || null : null
 				})
 				.returning()
 				.all();
 
-			if (payload.formatIds?.length) {
+			if (Array.isArray(payload.formatIds) && payload.formatIds.length) {
 				for (const fid of payload.formatIds) {
 					d.insert(trainFormatCompat)
 						.values({ trainId: train.id, formatId: Number(fid) })
@@ -50,9 +67,13 @@ export const actions: Actions = {
 				}
 			}
 		} else if (suggestion.type === 'add_compat') {
+			if (!payload.trainId || !payload.formatId) {
+				return fail(500, { error: 'Suggestion payload missing required compat fields.' });
+			}
+			const notes = typeof payload.notes === 'string' ? payload.notes || null : null;
 			// Derive purpose from the confirmed decoders' capabilities
 			let purpose = 'Motor & Lights';
-			if (payload.decoderIds?.length) {
+			if (Array.isArray(payload.decoderIds) && payload.decoderIds.length) {
 				const decoderIds = (payload.decoderIds as unknown[]).map(Number).filter(Boolean);
 				const decoderRows = d
 					.select({ motor: decoders.motor, lights: decoders.lights })
@@ -67,24 +88,14 @@ export const actions: Actions = {
 			}
 
 			d.insert(trainFormatCompat)
-				.values({
-					trainId: Number(payload.trainId),
-					formatId: Number(payload.formatId),
-					purpose,
-					notes: payload.notes || null
-				})
+				.values({ trainId: Number(payload.trainId), formatId: Number(payload.formatId), purpose, notes })
 				.run();
 
 			// Write confirmed decoder links
-			if (payload.decoderIds?.length) {
+			if (Array.isArray(payload.decoderIds) && payload.decoderIds.length) {
 				for (const did of payload.decoderIds) {
 					d.insert(trainDecoderCompat)
-						.values({
-							trainId: Number(payload.trainId),
-							decoderId: Number(did),
-							confirmed: true,
-							notes: payload.notes || null
-						})
+						.values({ trainId: Number(payload.trainId), decoderId: Number(did), confirmed: true, notes })
 						.run();
 				}
 			}
