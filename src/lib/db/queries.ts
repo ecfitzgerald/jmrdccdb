@@ -1,4 +1,12 @@
-import { trains, decoders, decoderBrands, suggestions } from './schema';
+import {
+	trains,
+	decoders,
+	decoderBrands,
+	suggestions,
+	dccFormats,
+	trainFormatCompat,
+	trainDecoderCompat
+} from './schema';
 import { eq, sql } from 'drizzle-orm';
 import * as schema from './schema';
 import type { db } from './index';
@@ -69,6 +77,70 @@ export function adminCounts(d: DB): { pendingCount: number; trainCount: number; 
 			.from(decoders)
 			.get()?.count ?? 0;
 	return { pendingCount, trainCount, decoderCount };
+}
+
+export type DecoderLinkStatus = {
+	id: number;
+	brandName: string;
+	model: string;
+	formatId: number;
+	formatName: string;
+	motor: boolean;
+	lights: boolean;
+	soundDecoder: boolean | null;
+	linked: boolean;
+	confirmed: boolean;
+	formatCompatible: boolean;
+};
+
+/**
+ * For a given train, list every decoder with its link status:
+ *  - `linked`: an explicit train_decoder_compat row exists
+ *  - `confirmed`: that row's confirmed flag (false when not linked)
+ *  - `formatCompatible`: the decoder's format is one of the train's compatible formats
+ * Sorted by brand then model. Powers the admin decoder-link manager.
+ */
+export function decoderLinkStatusForTrain(d: DB, trainId: number): DecoderLinkStatus[] {
+	const compatFormatIds = new Set(
+		d
+			.select({ formatId: trainFormatCompat.formatId })
+			.from(trainFormatCompat)
+			.where(eq(trainFormatCompat.trainId, trainId))
+			.all()
+			.map((r) => r.formatId)
+	);
+
+	const links = new Map(
+		d
+			.select({ decoderId: trainDecoderCompat.decoderId, confirmed: trainDecoderCompat.confirmed })
+			.from(trainDecoderCompat)
+			.where(eq(trainDecoderCompat.trainId, trainId))
+			.all()
+			.map((l) => [l.decoderId, l.confirmed])
+	);
+
+	return d
+		.select({
+			id: decoders.id,
+			brandName: decoderBrands.name,
+			model: decoders.model,
+			formatId: decoders.formatId,
+			formatName: dccFormats.name,
+			motor: decoders.motor,
+			lights: decoders.lights,
+			soundDecoder: decoders.soundDecoder
+		})
+		.from(decoders)
+		.innerJoin(decoderBrands, eq(decoders.brandId, decoderBrands.id))
+		.innerJoin(dccFormats, eq(decoders.formatId, dccFormats.id))
+		.orderBy(decoderBrands.name, decoders.model)
+		.all()
+		.map((dec) => ({
+			...dec,
+			linked: links.has(dec.id),
+			confirmed: links.get(dec.id) ?? false,
+			formatCompatible: compatFormatIds.has(dec.formatId)
+		}));
 }
 
 if (import.meta.vitest) {
@@ -169,5 +241,47 @@ if (import.meta.vitest) {
 			.run();
 		const { pendingCount } = adminCounts(testDb);
 		expect(pendingCount).toBe(2);
+	});
+
+	it('decoderLinkStatusForTrain flags confirmed, unconfirmed, and format-compatible decoders', () => {
+		testDb
+			.insert(schema.dccFormats)
+			.values([
+				{ name: 'NEM651', sortOrder: 1 },
+				{ name: 'NEXT18', sortOrder: 2 }
+			])
+			.run();
+		testDb.insert(decoderBrands).values({ name: 'Digitrax' }).run();
+		// decoder 1 + 2 are NEM651 (format-compatible with the train), decoder 3 is NEXT18 (not)
+		testDb
+			.insert(decoders)
+			.values([
+				{ brandId: 1, formatId: 1, model: 'A-confirmed', motor: true, lights: true },
+				{ brandId: 1, formatId: 1, model: 'B-compatible', motor: true, lights: true },
+				{ brandId: 1, formatId: 2, model: 'C-linked-other-format', motor: true, lights: true }
+			])
+			.run();
+		testDb
+			.insert(trains)
+			.values({ manufacturer: 'Kato', scale: 'N', modelNumber: '10-1', name: 'E235' })
+			.run();
+		// train is compatible with NEM651 only
+		testDb.insert(trainFormatCompat).values({ trainId: 1, formatId: 1 }).run();
+		// decoder 1 explicitly confirmed; decoder 3 linked but unconfirmed (and off-format)
+		testDb.insert(trainDecoderCompat).values([
+			{ trainId: 1, decoderId: 1, confirmed: true },
+			{ trainId: 1, decoderId: 3, confirmed: false }
+		]).run();
+
+		const rows = decoderLinkStatusForTrain(testDb, 1);
+		const byModel = Object.fromEntries(rows.map((r) => [r.model, r]));
+
+		expect(byModel['A-confirmed']).toMatchObject({ linked: true, confirmed: true, formatCompatible: true });
+		expect(byModel['B-compatible']).toMatchObject({ linked: false, confirmed: false, formatCompatible: true });
+		expect(byModel['C-linked-other-format']).toMatchObject({
+			linked: true,
+			confirmed: false,
+			formatCompatible: false
+		});
 	});
 }

@@ -35,6 +35,8 @@
 		<span class="text-gray-300">·</span>
 		<a href="/admin/decoders" class="text-sm text-[var(--color-green)] hover:underline">Add a decoder →</a>
 		<span class="text-gray-300">·</span>
+		<a href="/admin/links" class="text-sm text-[var(--color-green)] hover:underline">Manage decoder links →</a>
+		<span class="text-gray-300">·</span>
 		<a href="/" class="text-sm text-[var(--color-green)] hover:underline">View public site →</a>
 	</div>
 </div>
