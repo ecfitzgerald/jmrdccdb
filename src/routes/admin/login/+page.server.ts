@@ -22,7 +22,7 @@ export const actions: Actions = {
 			path: '/',
 			httpOnly: true,
 			sameSite: 'strict',
-			maxAge: 60 * 60 * 24 * 30 // 30 days
+			maxAge: 60 * 60 * 8 // 8 hours
 		});
 		redirect(303, '/admin');
 	},
