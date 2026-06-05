@@ -153,8 +153,7 @@
 						</div>
 						<select
 							name="formatPurposes"
-							style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text);"
-							class="rounded px-2 py-1 text-xs focus:outline-none shrink-0"
+							class="rounded px-2 py-1 text-xs shrink-0"
 						>
 							<option>Motor & Lights</option>
 							<option>Motor Only</option>

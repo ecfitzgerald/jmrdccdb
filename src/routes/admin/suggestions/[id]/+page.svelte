@@ -181,8 +181,7 @@
 							<label for="fmt-{fmt.id}" class="font-medium text-sm cursor-pointer">{fmt.name}</label>
 							<select
 								name="formatPurposes"
-								class="ml-auto rounded px-2 py-1 text-xs focus:outline-none"
-								style="border: 1px solid var(--color-border);"
+								class="ml-auto rounded px-2 py-1 text-xs"
 							>
 								<option>Motor & Lights</option><option>Motor Only</option><option>Lights Only</option>
 							</select>

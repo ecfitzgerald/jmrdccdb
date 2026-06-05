@@ -23,7 +23,7 @@
 					id="password"
 					name="password"
 					type="password"
-					class="w-full rounded px-3 py-2 text-sm focus:outline-none"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<button
