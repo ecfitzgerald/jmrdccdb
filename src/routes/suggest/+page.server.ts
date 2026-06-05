@@ -1,10 +1,10 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { suggestions, trains, dccFormats } from '$lib/db/schema';
+import { suggestions, trains, dccFormats, decoderBrands } from '$lib/db/schema';
 import { fail } from '@sveltejs/kit';
 import { decodersWithBrands } from '$lib/db/queries';
 
-const VALID_TYPES = ['add_train', 'add_compat', 'add_decoder', 'correction'];
+const VALID_TYPES = ['add_train', 'add_decoder', 'add_compat', 'correction'];
 
 export const load: PageServerLoad = async ({ url }) => {
 	const d = db();
@@ -21,13 +21,15 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const allDecoders = decodersWithBrands(d);
 
+	const allBrands = d.select({ id: decoderBrands.id, name: decoderBrands.name }).from(decoderBrands).orderBy(decoderBrands.name).all();
+
 	const preselectedTrain = trainId ? (allTrains.find((t) => t.id === Number(trainId)) ?? null) : null;
 
 	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
 	const operators = d.selectDistinct({ v: trains.roadName }).from(trains).orderBy(trains.roadName).all().map(r => r.v).filter(Boolean) as string[];
 	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
 
-	return { allTrains, formats, allDecoders, preselectedTrain, typeParam, manufacturers, operators, scales };
+	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, typeParam, manufacturers, operators, scales };
 };
 
 export const actions: Actions = {
@@ -64,7 +66,33 @@ export const actions: Actions = {
 			if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
 			if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 
-			payload = { manufacturer, scale, name, modelNumber, roadName, era, formatIds: form.getAll('formatIds') };
+			payload = {
+				manufacturer,
+				scale,
+				name,
+				modelNumber,
+				roadName,
+				era,
+				formatIds: form.getAll('formatIds'),
+				decoderIds: form.getAll('decoderIds').map(Number).filter(Boolean)
+			};
+		} else if (type === 'add_decoder') {
+			const brandName = form.get('brandName')?.toString() ?? '';
+			const formatId = form.get('formatId')?.toString() ?? '';
+			const model = form.get('model')?.toString() ?? '';
+			const notes = form.get('notes')?.toString() ?? '';
+			const motor = form.get('motor') === 'on';
+			const lights = form.get('lights') === 'on';
+			const soundDecoder = form.get('soundDecoder') === 'on';
+
+			if (!brandName) return fail(400, { error: 'Brand name is required.' });
+			if (!formatId) return fail(400, { error: 'DCC format is required.' });
+			if (!model) return fail(400, { error: 'Model number is required.' });
+			if (brandName.length > 200) return fail(400, { error: 'Brand name too long (max 200).' });
+			if (model.length > 200) return fail(400, { error: 'Model number too long (max 200).' });
+			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
+
+			payload = { brandName, formatId, model, motor, lights, soundDecoder, notes };
 		} else if (type === 'add_compat') {
 			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
 			const notes = form.get('notes')?.toString() ?? '';
@@ -84,31 +112,6 @@ export const actions: Actions = {
 			if (decoderIds.length === 0) {
 				return fail(400, { error: 'Please select at least one confirmed decoder.' });
 			}
-		} else if (type === 'add_decoder') {
-			const brandName = form.get('brandName')?.toString() ?? '';
-			const model = form.get('model')?.toString() ?? '';
-			const formatId = form.get('formatId')?.toString() ?? '';
-			const notes = form.get('notes')?.toString() ?? '';
-			const buyUrl = form.get('buyUrl')?.toString() ?? '';
-
-			if (!brandName || !model || !formatId) {
-				return fail(400, { error: 'Brand, model, and format are required.' });
-			}
-			if (brandName.length > 200) return fail(400, { error: 'Brand name too long (max 200).' });
-			if (model.length > 200) return fail(400, { error: 'Model too long (max 200).' });
-			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
-			if (buyUrl.length > 500) return fail(400, { error: 'Buy URL too long (max 500).' });
-
-			payload = {
-				brandName,
-				model,
-				formatId,
-				motor: form.get('motor') === 'on',
-				lights: form.get('lights') === 'on',
-				sound: form.get('sound') === 'on',
-				notes,
-				buyUrl
-			};
 		} else if (type === 'correction') {
 			const currentValue = form.get('currentValue')?.toString() ?? '';
 			const suggestedValue = form.get('suggestedValue')?.toString() ?? '';
