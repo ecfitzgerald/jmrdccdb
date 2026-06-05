@@ -475,28 +475,19 @@
 		<input
 			name="adminNote"
 			type="text"
-			placeholder="Admin note (optional)"
+			placeholder="Admin note / rejection reason"
 			class="flex-1 rounded px-3 py-2 text-sm"
 			style="max-width: 280px;"
 		/>
 		<a href="/admin/suggestions" class="text-sm" style="color: var(--color-dim);">Cancel</a>
 
-		<!-- Reject form nested aside -->
-		<form method="POST" action="?/reject" class="flex items-center gap-2 ml-auto">
-			<input
-				name="adminNote"
-				type="text"
-				placeholder="Rejection reason"
-				class="rounded px-3 py-2 text-xs"
-				style="width: 200px;"
-			/>
-			<button
-				type="submit"
-				class="px-3 py-2 rounded text-xs font-medium transition-colors"
-				style="background: var(--color-danger-bg); color: var(--color-danger); border: 1px solid var(--color-danger);"
-			>
-				Reject
-			</button>
-		</form>
+		<button
+			type="submit"
+			formaction="?/reject"
+			class="px-3 py-2 rounded text-xs font-medium transition-colors ml-auto"
+			style="background: var(--color-danger-bg); color: var(--color-danger); border: 1px solid var(--color-danger);"
+		>
+			Reject
+		</button>
 	</div>
 {/snippet}
