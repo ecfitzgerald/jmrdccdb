@@ -39,7 +39,7 @@
 				showAddBrand = !showAddBrand;
 				showAdd = false;
 			}}
-			class="border border-slate-300 text-[var(--color-text)] px-3 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-light)] transition-colors"
+			class="border border-[var(--color-border)] text-[var(--color-text)] px-3 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-light)] transition-colors"
 		>
 			+ Brand
 		</button>

@@ -11,7 +11,7 @@
 	{#each [[data.pendingCount, 'Pending Suggestions', '/admin/suggestions', 'bg-[var(--color-warn-bg)] border-[var(--color-warn)] text-amber-800'], [data.trainCount, 'Trains', '/admin/trains', 'bg-blue-50 border-blue-200 text-blue-800'], [data.decoderCount, 'Decoders', '/admin/decoders', 'bg-[var(--color-ok-bg)] border-[var(--color-green-mid)] text-green-800']] as [count, label, href, cls]}
 		<a
 			{href}
-			class="block jr-card-flat border border-[var(--color-border)] rounded p-5 hover:border-slate-300 transition-colors"
+			class="block jr-card-flat border border-[var(--color-border)] rounded p-5 hover:border-[var(--color-border-mid)] transition-colors"
 		>
 			<div class="text-3xl font-bold text-[var(--color-text)]">{count}</div>
 			<div class="text-sm text-[var(--color-dim)] mt-1">{label}</div>
