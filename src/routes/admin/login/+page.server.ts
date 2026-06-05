@@ -14,7 +14,9 @@ export const actions: Actions = {
 	login: async ({ request, cookies }) => {
 		const form = await request.formData();
 		const password = form.get('password')?.toString() ?? '';
-		if (!checkPassword(password, ADMIN_PASSWORD)) {
+		// Cap input length to reject oversized payloads before hashing. Same
+		// generic response as a wrong password so length isn't an oracle.
+		if (password.length > 256 || !checkPassword(password, ADMIN_PASSWORD)) {
 			return fail(401, { error: 'Incorrect password.' });
 		}
 		const token = createSession();
