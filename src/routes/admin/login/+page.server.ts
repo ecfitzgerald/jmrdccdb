@@ -1,6 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
-import { ADMIN_PASSWORD } from '$env/static/private';
+import { ADMIN_PASSWORD } from '$lib/server/env';
 import { checkPassword, createSession, deleteSession, validateSession } from '$lib/server/session';
 
 export const load: PageServerLoad = async ({ cookies }) => {
