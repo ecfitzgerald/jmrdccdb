@@ -143,28 +143,6 @@
 			>FL12</text
 		>
 	</svg>
-{:else if name === 'FL13'}
-	<!-- FL13: similar to FL12, slightly different connector -->
-	<svg
-		width={size}
-		height={size * 0.5}
-		viewBox="0 0 120 60"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="1.5"
-		stroke-linecap="round"
-		stroke-linejoin="round"
-	>
-		<rect x="25" y="14" width="70" height="28" rx="1" />
-		<line x1="25" y1="14" x2="25" y2="42" stroke-width="3" />
-		<circle cx="25" cy="22" r="2.5" fill="currentColor" stroke="none" />
-		<circle cx="25" cy="28" r="2.5" fill="currentColor" stroke="none" />
-		<circle cx="25" cy="34" r="2.5" fill="currentColor" stroke="none" />
-		<circle cx="25" cy="40" r="2.5" fill="currentColor" stroke="none" />
-		<text x="65" y="32" text-anchor="middle" font-size="8" fill="currentColor" stroke="none" font-family="monospace"
-			>FL13</text
-		>
-	</svg>
 {:else if name === 'NEM651 (6-pin)'}
 	<!-- NEM651: 6-pin plug, 2 rows of 3 -->
 	<svg

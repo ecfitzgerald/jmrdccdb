@@ -18,6 +18,13 @@
 
 	let trainFormatIds = $state(new Set<number>());
 
+	const LIGHTING = new Set(['FL12', 'FL13']);
+
+	const showMultiFormatWarning = $derived(
+		trainFormatIds.size >= 2 &&
+			!data.formats.filter((f) => trainFormatIds.has(f.id)).some((f) => LIGHTING.has(f.name))
+	);
+
 	const trainFormatsSelected = $derived(
 		data.formats
 			.filter((f) => trainFormatIds.has(f.id))
@@ -176,9 +183,13 @@
 				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
 					>Compatible DCC Formats</label
 				>
-				<div class="flex flex-wrap gap-3">
-					{#each data.formats as fmt}
-						<label class="flex items-center gap-2 cursor-pointer">
+				<div class="rounded border overflow-hidden" style="border-color: var(--color-border);">
+					<p class="text-xs font-semibold px-3 pt-2.5 pb-1" style="color: var(--color-text);">Motor / board formats</p>
+					{#each data.formats.filter((f) => !LIGHTING.has(f.name)) as fmt}
+						<label
+							class="flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors hover:bg-[var(--color-raised)]"
+							style="border-top: 1px solid var(--color-border);"
+						>
 							<input
 								type="checkbox"
 								name="formatIds"
@@ -189,13 +200,49 @@
 									else s.delete(fmt.id);
 									trainFormatIds = s;
 								}}
-								class="accent-slate-700"
+								class="accent-[var(--color-green)] w-4 h-4 shrink-0"
 							/>
 							<span class="text-sm">{fmt.name}</span>
 						</label>
 					{/each}
+					{#if data.formats.some((f) => LIGHTING.has(f.name))}
+						<p
+							class="text-xs font-semibold px-3 pt-3 pb-1"
+							style="color: var(--color-text); border-top: 1px solid var(--color-border);"
+						>Lighting boards</p>
+						<p class="text-xs px-3 pb-2" style="color: var(--color-dim);">Lighting boards (FL12/FL13) are usually paired with a motor format on the same model.</p>
+						{#each data.formats.filter((f) => LIGHTING.has(f.name)) as fmt}
+							<label
+								class="flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors hover:bg-[var(--color-raised)]"
+								style="border-top: 1px solid var(--color-border);"
+							>
+								<input
+									type="checkbox"
+									name="formatIds"
+									value={fmt.id}
+									onchange={(e) => {
+										const s = new Set(trainFormatIds);
+										if (e.currentTarget.checked) s.add(fmt.id);
+										else s.delete(fmt.id);
+										trainFormatIds = s;
+									}}
+									class="accent-[var(--color-green)] w-4 h-4 shrink-0"
+								/>
+								<span class="text-sm">{fmt.name}</span>
+							</label>
+						{/each}
+					{/if}
 				</div>
 			</div>
+
+			{#if showMultiFormatWarning}
+				<div
+					class="text-sm rounded-sm p-4"
+					style="background: var(--color-warn-bg); color: var(--color-warn); border-left: 3px solid var(--color-warn);"
+				>
+					Most trains use a single decoder format — are you sure this model uses multiple?
+				</div>
+			{/if}
 
 			{#if trainFormatIds.size > 0}
 				<div>
