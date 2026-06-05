@@ -9,6 +9,8 @@
 	let type = $state(data.typeParam === 'add_compat' ? 'add_compat' : 'add_train');
 	let compatFormatId = $state('');
 	let addDecoderFormatId = $state('');
+	let updateDecoderSearch = $state('');
+	let updateDecoderField = $state('');
 
 	const decodersForFormat = $derived(
 		compatFormatId ? data.allDecoders.filter((d) => String(d.formatId) === compatFormatId) : []
@@ -68,7 +70,7 @@
 				>What would you like to do?</label
 			>
 			<div class="flex flex-wrap gap-2">
-				{#each [['add_train', 'Add a new train'], ['add_decoder', 'Add a decoder'], ['add_compat', 'Add compatibility info'], ['correction', 'Correct existing data']] as [val, label]}
+				{#each [['add_train', 'Add a new train'], ['add_decoder', 'Add a decoder'], ['add_compat', 'Add compatibility info'], ['correction', 'Correct existing data'], ['update_decoder', 'Update a decoder']] as [val, label]}
 					<label class="flex items-center gap-2 cursor-pointer">
 						<input type="radio" name="type" value={val} bind:group={type} class="accent-slate-700" />
 						<span class="text-sm">{label}</span>
@@ -494,7 +496,131 @@
 				/>
 			</div>
 
-			<!-- Correction form -->
+			<!-- Update Decoder form -->
+		{:else if type === 'update_decoder'}
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="updateDecoderInput">Decoder *</label
+				>
+				<input
+					id="updateDecoderInput"
+					type="text"
+					list="update-decoder-list"
+					bind:value={updateDecoderSearch}
+					placeholder="Type brand or model to search…"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+				<datalist id="update-decoder-list">
+					{#each data.allDecoders as dec}
+						<option value="{dec.brandName} {dec.model}"
+							>{dec.brandName} {dec.model} — {data.formats.find((f) => f.id === dec.formatId)?.name ?? ''}</option
+						>
+					{/each}
+				</datalist>
+				<input
+					type="hidden"
+					name="decoderId"
+					value={data.allDecoders.find((d) => `${d.brandName} ${d.model}` === updateDecoderSearch)?.id ?? ''}
+				/>
+			</div>
+
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="updateField">Field to correct *</label
+				>
+				<select
+					id="updateField"
+					name="updateField"
+					bind:value={updateDecoderField}
+					class="w-full rounded px-3 py-2 text-sm"
+				>
+					<option value="">Select a field…</option>
+					<option value="model">Model number</option>
+					<option value="capabilities">Capabilities (motor / lights / sound)</option>
+					<option value="format">DCC Format</option>
+					<option value="notes">Notes</option>
+				</select>
+			</div>
+
+			{#if updateDecoderField === 'model'}
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widests uppercase"
+						style="color: var(--color-muted);"
+						for="correctedModel">Correct model number *</label
+					>
+					<input
+						id="correctedModel"
+						name="correctedValue"
+						type="text"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+			{:else if updateDecoderField === 'capabilities'}
+				<div>
+					<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
+						>Correct capabilities *</label
+					>
+					<div class="flex flex-wrap gap-4">
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="motor" class="accent-slate-700" checked />
+							<span class="flex items-center gap-1 text-sm">
+								<MotorIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+								Motor
+							</span>
+						</label>
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="lights" class="accent-slate-700" checked />
+							<span class="flex items-center gap-1 text-sm">
+								<LightsIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+								Lights
+							</span>
+						</label>
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
+							<span class="flex items-center gap-1 text-sm">
+								<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
+								Sound
+							</span>
+						</label>
+					</div>
+				</div>
+			{:else if updateDecoderField === 'format'}
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="correctedFormat">Correct DCC format *</label
+					>
+					<select id="correctedFormat" name="correctedValue" class="w-full rounded px-3 py-2 text-sm">
+						<option value="">Select a format…</option>
+						{#each data.formats as fmt}
+							<option value={String(fmt.id)}>{fmt.name}</option>
+						{/each}
+					</select>
+				</div>
+			{:else if updateDecoderField === 'notes'}
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widests uppercase"
+						style="color: var(--color-muted);"
+						for="correctedNotes">Correct notes *</label
+					>
+					<input
+						id="correctedNotes"
+						name="correctedValue"
+						type="text"
+						placeholder="e.g. requires capacitor removal, N-scale only"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+			{/if}
+
+		<!-- Correction form -->
 		{:else if type === 'correction'}
 			<div>
 				<label

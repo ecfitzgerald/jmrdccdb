@@ -191,6 +191,8 @@ export const actions: Actions = {
 				.run();
 		} else if (suggestion.type === 'correction') {
 			// Correction: admin manually applies the change — just mark approved
+		} else if (suggestion.type === 'update_decoder') {
+			// Update decoder: admin manually applies the change in decoders admin page — just mark approved
 		}
 
 		d.update(suggestions).set({ status: 'approved', adminNote }).where(eq(suggestions.id, id)).run();

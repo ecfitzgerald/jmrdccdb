@@ -21,7 +21,8 @@
 		add_train: 'New Train',
 		add_compat: 'Compatibility',
 		add_decoder: 'New Decoder',
-		correction: 'Correction'
+		correction: 'Correction',
+		update_decoder: 'Update Decoder'
 	};
 </script>
 
@@ -459,6 +460,63 @@
 
 		{@render reviewActions()}
 	</form>
+	<!-- ── UPDATE DECODER ──────────────────────────── -->
+{:else if s.type === 'update_decoder'}
+	<div class="space-y-5">
+		<h2 class="text-lg font-bold" style="color: var(--color-text);">Review: Update Decoder</h2>
+
+		{#each data.allDecoders.filter((d) => d.id === Number(p.decoderId)) as decoder}
+			<div class="p-3 rounded" style="background: var(--color-raised); border: 1px solid var(--color-border);">
+				<p class="text-xs font-medium mb-1 tracking-widest uppercase" style="color: var(--color-muted);">Decoder</p>
+				<p class="text-sm">
+					<span class="font-medium">{decoder.brandName}</span>
+					<span class="font-mono ml-1" style="color: var(--color-muted);">{decoder.model}</span>
+				</p>
+				<p class="text-xs mt-0.5" style="color: var(--color-dim);">
+					{data.formats.find((f) => f.id === decoder.formatId)?.name ?? ''}
+				</p>
+			</div>
+		{:else}
+			<p class="text-sm italic" style="color: var(--color-danger);">Decoder ID {p.decoderId} not found</p>
+		{/each}
+
+		<div class="grid grid-cols-2 gap-4">
+			<div class="p-3 rounded" style="background: var(--color-raised); border: 1px solid var(--color-border);">
+				<p class="text-xs font-medium mb-1 tracking-widest uppercase" style="color: var(--color-muted);">Field</p>
+				<p class="text-sm font-mono">{p.field ?? '—'}</p>
+			</div>
+			<div class="p-3 rounded" style="background: var(--color-raised); border: 1px solid var(--color-border);">
+				<p class="text-xs font-medium mb-1 tracking-widest uppercase" style="color: var(--color-muted);">
+					Suggested value
+				</p>
+				{#if p.field === 'capabilities' && typeof p.correctedValue === 'object' && p.correctedValue}
+					<div class="flex gap-3 text-sm">
+						<span style="color: {p.correctedValue.motor ? 'var(--color-green)' : 'var(--color-dim)'};">
+							<MotorIcon class="w-3.5 h-3.5 inline" /> Motor
+						</span>
+						<span style="color: {p.correctedValue.lights ? 'var(--color-green)' : 'var(--color-dim)'};">
+							<LightsIcon class="w-3.5 h-3.5 inline" /> Lights
+						</span>
+						<span style="color: {p.correctedValue.soundDecoder ? '#7c3aed' : 'var(--color-dim)'};">
+							<SoundIcon class="w-3.5 h-3.5 inline" /> Sound
+						</span>
+					</div>
+				{:else if p.field === 'format'}
+					<p class="text-sm">{data.formats.find((f) => String(f.id) === String(p.correctedValue))?.name ?? p.correctedValue ?? '—'}</p>
+				{:else}
+					<p class="text-sm">{p.correctedValue ?? '—'}</p>
+				{/if}
+			</div>
+		</div>
+
+		<p class="text-xs p-3 rounded" style="background: var(--color-warn-bg); color: var(--color-warn);">
+			⚠ Decoder corrections are applied manually — approve to mark as reviewed, then make the change in the decoders admin page.
+		</p>
+
+		<form method="POST" action="?/approve">
+			{@render reviewActions()}
+		</form>
+	</div>
 {:else}
 	<p style="color: var(--color-muted);">Unknown suggestion type: {s.type}</p>
 {/if}
