@@ -8,10 +8,16 @@
 
 	let type = $state(data.typeParam === 'add_compat' ? 'add_compat' : 'add_train');
 	let compatFormatId = $state('');
+	let decoderFormatId = $state('');
 
 	const decodersForFormat = $derived(
 		compatFormatId ? data.allDecoders.filter((d) => String(d.formatId) === compatFormatId) : []
 	);
+
+	function switchToAddDecoder() {
+		decoderFormatId = compatFormatId;
+		type = 'add_decoder';
+	}
 </script>
 
 <svelte:head>
@@ -252,12 +258,22 @@
 						Select a format above to see available decoders
 					</p>
 				{:else if decodersForFormat.length === 0}
-					<p
-						class="text-sm italic py-3 px-3 rounded"
-						style="color: var(--color-dim); background: var(--color-raised); border: 1px solid var(--color-border);"
+					<div
+						class="py-3 px-3 rounded flex items-center justify-between gap-4"
+						style="background: var(--color-raised); border: 1px solid var(--color-border);"
 					>
-						No decoders in the database for this format yet
-					</p>
+						<p class="text-sm italic" style="color: var(--color-dim);">
+							No decoders in the database for this format yet
+						</p>
+						<button
+							type="button"
+							onclick={switchToAddDecoder}
+							class="text-xs font-medium px-3 py-1.5 rounded shrink-0 transition-opacity hover:opacity-80"
+							style="background: var(--color-green); color: #fff;"
+						>
+							Add a decoder
+						</button>
+					</div>
 				{:else}
 					<div class="rounded border overflow-hidden" style="border-color: var(--color-border);">
 						{#each decodersForFormat as dec, i}
@@ -310,6 +326,144 @@
 					placeholder="e.g. requires trimming, fits motor car only"
 					class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"
 				/>
+			</div>
+
+			<!-- Add Decoder form -->
+		{:else if type === 'add_decoder'}
+			<input type="hidden" name="type" value="add_decoder" />
+
+			<div
+				class="flex items-center gap-2 text-xs pb-1"
+				style="border-bottom: 1px solid var(--color-border); color: var(--color-muted);"
+			>
+				<button
+					type="button"
+					onclick={() => (type = 'add_compat')}
+					class="hover:underline"
+					style="color: var(--color-green);"
+				>
+					← Back to compatibility form
+				</button>
+				<span>/ Suggest a new decoder</span>
+			</div>
+
+			{#if decoderFormatId}
+				{@const fmt = data.formats.find((f) => String(f.id) === decoderFormatId)}
+				{#if fmt}
+					<div>
+						<label
+							class="block text-xs font-medium mb-2 tracking-widests uppercase"
+							style="color: var(--color-muted);"
+						>DCC Format</label>
+						<div
+							class="flex items-center gap-3 p-3 rounded"
+							style="background: var(--color-raised); border: 1px solid var(--color-border);"
+						>
+							<div style="color: var(--color-green);">
+								<FormatDiagram name={fmt.name} size={72} />
+							</div>
+							<div>
+								<p class="text-xs font-semibold" style="color: var(--color-text);">{fmt.name}</p>
+								{#if fmt.description}
+									<p class="text-xs mt-0.5" style="color: var(--color-muted);">{fmt.description}</p>
+								{/if}
+							</div>
+						</div>
+						<input type="hidden" name="formatId" value={decoderFormatId} />
+					</div>
+				{/if}
+			{:else}
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="decoderFormatId"
+					>DCC Format *</label>
+					<select id="decoderFormatId" name="formatId" class="w-full rounded px-3 py-2 text-sm">
+						<option value="">Select a format…</option>
+						{#each data.formats as fmt}
+							<option value={String(fmt.id)}>{fmt.name}</option>
+						{/each}
+					</select>
+				</div>
+			{/if}
+
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="decoderBrand"
+				>Brand *</label>
+				<input
+					id="decoderBrand"
+					name="brandName"
+					type="text"
+					placeholder="e.g. Digitrax, ESU, Zimo…"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+			</div>
+
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="decoderModel"
+				>Model *</label>
+				<input
+					id="decoderModel"
+					name="model"
+					type="text"
+					placeholder="e.g. SDN144K0"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+			</div>
+
+			<div>
+				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
+					>Capabilities</label
+				>
+				<div class="flex gap-4">
+					<label class="flex items-center gap-2 cursor-pointer text-sm">
+						<input type="checkbox" name="motor" checked class="accent-slate-700" /> Motor
+					</label>
+					<label class="flex items-center gap-2 cursor-pointer text-sm">
+						<input type="checkbox" name="lights" checked class="accent-slate-700" /> Lights
+					</label>
+					<label class="flex items-center gap-2 cursor-pointer text-sm">
+						<input type="checkbox" name="sound" class="accent-slate-700" /> Sound
+					</label>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-2 gap-4">
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="decoderNotes"
+					>Notes</label>
+					<input
+						id="decoderNotes"
+						name="notes"
+						type="text"
+						placeholder="e.g. fits motor car only"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="decoderBuyUrl"
+					>Buy URL</label>
+					<input
+						id="decoderBuyUrl"
+						name="buyUrl"
+						type="url"
+						placeholder="https://…"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
 			</div>
 
 			<!-- Correction form -->
