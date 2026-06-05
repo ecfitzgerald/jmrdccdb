@@ -1,4 +1,4 @@
-import { ADMIN_PASSWORD } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { building } from '$app/environment';
 
 /**
@@ -20,7 +20,7 @@ export function validateAdminPassword(value: string | undefined): string | null 
 // Skipped while `building` (vite build / prerender analysis imports server
 // modules with NODE_ENV=production but is not a real server boot).
 if (!building) {
-	const problem = validateAdminPassword(ADMIN_PASSWORD);
+	const problem = validateAdminPassword(env.ADMIN_PASSWORD);
 	if (problem) {
 		const guidance = `${problem} Set a strong value in your environment (e.g. .env) before deploying.`;
 		if (process.env.NODE_ENV === 'production') {
@@ -30,7 +30,7 @@ if (!building) {
 	}
 }
 
-export { ADMIN_PASSWORD };
+export const ADMIN_PASSWORD = env.ADMIN_PASSWORD;
 
 if (import.meta.vitest) {
 	const { it, expect } = import.meta.vitest;
