@@ -13,10 +13,20 @@
 	let manufacturerFilter = $state('');
 	let scaleFilter = $state('');
 
-	let sortCol = $state<'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'roadName'>('manufacturer');
+	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'roadName';
+
+	const sortColumns: [SortCol, string][] = [
+		['manufacturer', 'Manufacturer'],
+		['scale', 'Scale'],
+		['name', 'Model Name'],
+		['modelNumber', 'Model No.'],
+		['roadName', 'Operator']
+	];
+
+	let sortCol = $state<SortCol>('manufacturer');
 	let sortDir = $state<'asc' | 'desc'>('asc');
 
-	function toggleSort(col: typeof sortCol) {
+	function toggleSort(col: SortCol) {
 		if (sortCol === col) sortDir = sortDir === 'asc' ? 'desc' : 'asc';
 		else {
 			sortCol = col;
@@ -189,10 +199,10 @@
 			<table class="w-full text-sm">
 				<thead>
 					<tr style="background: var(--color-green); color: #fff;">
-						{#each [['manufacturer', 'Manufacturer'], ['scale', 'Scale'], ['name', 'Model Name'], ['modelNumber', 'Model No.'], ['roadName', 'Operator']] as [col, label]}
+						{#each sortColumns as [col, label]}
 							<th class="text-left px-4 py-3 whitespace-nowrap">
 								<button
-									onclick={() => toggleSort(col as any)}
+									onclick={() => toggleSort(col)}
 									class="flex items-center gap-1 text-xs font-semibold tracking-wide uppercase transition-opacity hover:opacity-75 text-white"
 									style="opacity: {sortCol === col ? '1' : '0.75'};"
 								>

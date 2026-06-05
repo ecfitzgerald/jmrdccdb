@@ -1,7 +1,7 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
 import { suggestions, trains, trainFormatCompat, trainDecoderCompat, dccFormats, decoders } from '$lib/db/schema';
-import { eq, desc } from 'drizzle-orm';
+import { eq, desc, inArray } from 'drizzle-orm';
 import { fail } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ url }) => {
@@ -53,11 +53,12 @@ export const actions: Actions = {
 			// Derive purpose from the confirmed decoders' capabilities
 			let purpose = 'Motor & Lights';
 			if (payload.decoderIds?.length) {
+				const decoderIds = (payload.decoderIds as unknown[]).map(Number).filter(Boolean);
 				const decoderRows = d
 					.select({ motor: decoders.motor, lights: decoders.lights })
 					.from(decoders)
-					.all()
-					.filter((dec) => (payload.decoderIds as number[]).includes((dec as any).id));
+					.where(inArray(decoders.id, decoderIds))
+					.all();
 				const anyMotor = decoderRows.some((dec) => dec.motor);
 				const anyLights = decoderRows.some((dec) => dec.lights);
 				if (anyMotor && anyLights) purpose = 'Motor & Lights';

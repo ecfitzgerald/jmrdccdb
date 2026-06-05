@@ -9,7 +9,7 @@ import {
 	decoders,
 	decoderBrands
 } from '$lib/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, inArray } from 'drizzle-orm';
 import { error, redirect, fail } from '@sveltejs/kit';
 import { distinctManufacturers, distinctScales, distinctOperators, decodersWithBrands } from '$lib/db/queries';
 
@@ -120,10 +120,10 @@ export const actions: Actions = {
 				const rows = d
 					.select({ motor: decoders.motor, lights: decoders.lights })
 					.from(decoders)
-					.all()
-					.filter((dec: any) => decoderIds.includes(dec.id));
-				const m = rows.some((r: any) => r.motor);
-				const l = rows.some((r: any) => r.lights);
+					.where(inArray(decoders.id, decoderIds))
+					.all();
+				const m = rows.some((r) => r.motor);
+				const l = rows.some((r) => r.lights);
 				purpose = m && l ? 'Motor & Lights' : m ? 'Motor Only' : 'Lights Only';
 			}
 

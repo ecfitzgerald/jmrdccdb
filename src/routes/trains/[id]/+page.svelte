@@ -5,6 +5,11 @@
 	import SoundIcon from '$lib/icons/SoundIcon.svelte';
 	let { data }: { data: PageData } = $props();
 
+	// decoderCard is rendered with both format-level decoders and confirmed
+	// decoders; the latter add compatNotes/confirmed, so model those as optional.
+	type DecoderCard = PageData['formatDecoders'][number] &
+		Partial<Pick<PageData['confirmedDecoders'][number], 'compatNotes' | 'confirmed'>>;
+
 	let decoderFilter = $state<'all' | 'basic' | 'sound'>('all');
 
 	// Confirmed decoders grouped by formatId
@@ -243,7 +248,7 @@
 	{/each}
 {/if}
 
-{#snippet decoderCard(dec: any, isConfirmed: boolean)}
+{#snippet decoderCard(dec: DecoderCard, isConfirmed: boolean)}
 	<div
 		class="jr-card-flat p-4 hover:border-[var(--color-green-mid)] transition-colors"
 		style="{dec.soundDecoder ? 'border-top: 3px solid #7c3aed;' : ''}{isConfirmed
