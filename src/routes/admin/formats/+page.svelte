@@ -34,7 +34,7 @@
 <svelte:head><title>Formats — Admin</title></svelte:head>
 
 <div class="flex items-center justify-between mb-6">
-	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">DCC Formats</h1>
+	<h1 class="text-2xl font-bold text-[var(--color-text)]">DCC Formats</h1>
 	<button
 		onclick={() => (showAdd = !showAdd)}
 		class="bg-[var(--color-green)] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-dark)] transition-colors"

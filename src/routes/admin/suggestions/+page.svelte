@@ -21,13 +21,13 @@
 <svelte:head><title>Suggestions — Admin</title></svelte:head>
 
 <div class="flex items-center justify-between mb-6">
-	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">Suggestions</h1>
+	<h1 class="text-2xl font-bold text-[var(--color-text)]">Suggestions</h1>
 	<div class="flex gap-1 bg-[var(--color-raised)] rounded p-1 text-sm">
 		{#each ['pending', 'approved', 'rejected'] as s}
 			<a
 				href="?status={s}"
 				class="px-3 py-1 rounded-md transition-colors {data.status === s
-					? 'jr-card-flat shadow text-[var(--color-text)] font-bold font-medium'
+					? 'jr-card-flat shadow text-[var(--color-text)] font-bold'
 					: 'text-[var(--color-dim)] hover:text-gray-700'}"
 			>
 				{s.charAt(0).toUpperCase() + s.slice(1)}

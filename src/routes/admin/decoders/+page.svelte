@@ -32,7 +32,7 @@
 <svelte:head><title>Decoders — Admin</title></svelte:head>
 
 <div class="flex items-center justify-between mb-6">
-	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">Decoders</h1>
+	<h1 class="text-2xl font-bold text-[var(--color-text)]">Decoders</h1>
 	<div class="flex gap-2">
 		<button
 			onclick={() => {
