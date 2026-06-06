@@ -151,8 +151,7 @@
 		{#each activeFilters() as pill}
 			<button
 				onclick={pill.clear}
-				class="inline-flex items-center gap-1 text-xs font-medium px-3 py-1 rounded-full border transition-colors hover:bg-green-700 hover:text-white hover:border-green-700"
-				style="background: var(--color-green-light); color: var(--color-green); border-color: var(--color-green-mid);"
+				class="filter-pill inline-flex items-center gap-1 text-xs font-medium px-3 py-1 rounded-full border transition-colors"
 			>
 				{pill.label} <span class="opacity-60 text-sm leading-none">×</span>
 			</button>
@@ -322,8 +321,7 @@
 									href="/trains/{train.id}"
 									tabindex="0"
 									aria-label="View {train.name} details"
-									style="color: var(--color-border-mid);"
-									class="group-hover:!text-green-700 transition-colors"
+									class="row-chevron transition-colors"
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -344,3 +342,23 @@
 		</div>
 	</div>
 {/if}
+
+
+<style>
+	.filter-pill {
+		background: var(--color-green-light);
+		color: var(--color-green);
+		border-color: var(--color-green-mid);
+	}
+	.filter-pill:hover {
+		background: var(--color-green-dark);
+		border-color: var(--color-green-dark);
+		color: white;
+	}
+	.row-chevron {
+		color: var(--color-border-mid);
+	}
+	:global(tr:hover) .row-chevron {
+		color: var(--color-green);
+	}
+</style>
