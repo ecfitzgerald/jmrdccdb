@@ -9,12 +9,16 @@
 	const typeLabel: Record<string, string> = {
 		add_train: 'New Train',
 		add_compat: 'Compatibility',
-		correction: 'Correction'
+		add_decoder: 'New Decoder',
+		correction: 'Correction',
+		update_decoder: 'Update Decoder'
 	};
 	const typeBadge: Record<string, string> = {
 		add_train: 'bg-blue-100 text-blue-800',
 		add_compat: 'bg-green-100 text-green-800',
-		correction: 'bg-[var(--color-warn-bg)] text-amber-800'
+		add_decoder: 'bg-purple-100 text-purple-800',
+		correction: 'bg-[var(--color-warn-bg)] text-amber-800',
+		update_decoder: 'bg-orange-100 text-orange-800'
 	};
 </script>
 
