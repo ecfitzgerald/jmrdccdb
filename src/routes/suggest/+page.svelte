@@ -38,8 +38,8 @@
 </svelte:head>
 
 <div class="max-w-2xl">
-	<h1 class="text-xl font-bold tracking-wide mb-1" style="color: var(--color-text);">
-		SUGGEST AN ADDITION OR CORRECTION
+	<h1 class="text-2xl font-bold mb-1" style="color: var(--color-text);">
+		Suggest an Addition or Correction
 	</h1>
 	<p class="text-xs tracking-widest uppercase mb-6" style="color: var(--color-muted);">
 		All suggestions are reviewed before going live. Thank you for contributing.
