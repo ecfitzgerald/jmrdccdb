@@ -2,33 +2,33 @@
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 
-	function safeParse(json: string): unknown {
-		try { return JSON.parse(json); } catch { return null; }
-	}
-
 	const typeLabel: Record<string, string> = {
 		add_train: 'New Train',
 		add_compat: 'Compatibility',
-		correction: 'Correction'
+		add_decoder: 'New Decoder',
+		correction: 'Correction',
+		update_decoder: 'Update Decoder'
 	};
 	const typeBadge: Record<string, string> = {
-		add_train: 'bg-blue-100 text-blue-800',
-		add_compat: 'bg-green-100 text-green-800',
-		correction: 'bg-[var(--color-warn-bg)] text-amber-800'
+		add_train: 'bg-[var(--color-ok-bg)] text-[var(--color-ok)]',
+		add_compat: 'bg-[var(--color-green-light)] text-[var(--color-green)]',
+		add_decoder: 'bg-[var(--color-green-light)] text-[var(--color-green)]',
+		correction: 'bg-[var(--color-warn-bg)] text-[var(--color-warn)]',
+		update_decoder: 'bg-[var(--color-raised)] text-[var(--color-muted)]'
 	};
 </script>
 
 <svelte:head><title>Suggestions — Admin</title></svelte:head>
 
 <div class="flex items-center justify-between mb-6">
-	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">Suggestions</h1>
+	<h1 class="text-2xl font-bold text-[var(--color-text)]">Suggestions</h1>
 	<div class="flex gap-1 bg-[var(--color-raised)] rounded p-1 text-sm">
 		{#each ['pending', 'approved', 'rejected'] as s}
 			<a
 				href="?status={s}"
 				class="px-3 py-1 rounded-md transition-colors {data.status === s
-					? 'jr-card-flat shadow text-[var(--color-text)] font-bold font-medium'
-					: 'text-[var(--color-dim)] hover:text-gray-700'}"
+					? 'jr-card-flat shadow text-[var(--color-text)] font-bold'
+					: 'text-[var(--color-dim)] hover:text-[var(--color-muted)]'}"
 			>
 				{s.charAt(0).toUpperCase() + s.slice(1)}
 			</a>
@@ -44,7 +44,6 @@
 {:else}
 	<div class="space-y-4">
 		{#each data.suggestions as s (s.id)}
-			{@const parsed = safeParse(s.payload)}
 			<div class="jr-card-flat border border-[var(--color-border)] rounded p-5">
 				<div class="flex items-start gap-3 mb-3">
 					<span
@@ -59,8 +58,8 @@
 					{/if}
 				</div>
 
-				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-gray-700 overflow-x-auto">
-					<pre>{parsed !== null ? JSON.stringify(parsed, null, 2) : '(invalid payload)'}</pre>
+				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-[var(--color-muted)] overflow-x-auto">
+					<pre>{JSON.stringify(JSON.parse(s.payload), null, 2)}</pre>
 				</div>
 
 				{#if s.submitterNote}
@@ -68,7 +67,7 @@
 				{/if}
 
 				{#if s.adminNote}
-					<p class="text-sm text-[var(--color-dim)] mb-3 bg-yellow-50 border border-yellow-200 rounded p-2">
+					<p class="text-sm text-[var(--color-warn)] mb-3 bg-[var(--color-warn-bg)] border border-[var(--color-warn)] rounded p-2">
 						Admin note: {s.adminNote}
 					</p>
 				{/if}

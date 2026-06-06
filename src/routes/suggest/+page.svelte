@@ -8,14 +8,27 @@
 
 	let type = $state(data.typeParam === 'add_compat' ? 'add_compat' : 'add_train');
 	let compatFormatId = $state('');
-	let decoderFormatId = $state('');
+	let addDecoderFormatId = $state('');
+	let updateDecoderSearch = $state('');
+	let updateDecoderField = $state('');
 
 	const decodersForFormat = $derived(
 		compatFormatId ? data.allDecoders.filter((d) => String(d.formatId) === compatFormatId) : []
 	);
 
-	function switchToAddDecoder() {
-		decoderFormatId = compatFormatId;
+	let trainFormatIds = $state(new Set<number>());
+
+	const trainFormatsSelected = $derived(
+		data.formats
+			.filter((f) => trainFormatIds.has(f.id))
+			.map((fmt) => ({
+				format: fmt,
+				decoders: data.allDecoders.filter((d) => d.formatId === fmt.id)
+			}))
+	);
+
+	function switchToAddDecoder(formatId: number) {
+		addDecoderFormatId = String(formatId);
 		type = 'add_decoder';
 	}
 </script>
@@ -25,8 +38,8 @@
 </svelte:head>
 
 <div class="max-w-2xl">
-	<h1 class="text-xl font-bold tracking-wide mb-1" style="color: var(--color-text);">
-		SUGGEST AN ADDITION OR CORRECTION
+	<h1 class="text-2xl font-bold mb-1" style="color: var(--color-text);">
+		Suggest an Addition or Correction
 	</h1>
 	<p class="text-xs tracking-widest uppercase mb-6" style="color: var(--color-muted);">
 		All suggestions are reviewed before going live. Thank you for contributing.
@@ -57,9 +70,9 @@
 				>What would you like to do?</label
 			>
 			<div class="flex flex-wrap gap-2">
-				{#each [['add_train', 'Add a new train'], ['add_compat', 'Add compatibility info'], ['correction', 'Correct existing data']] as [val, label]}
+				{#each [['add_train', 'Add a new train'], ['add_decoder', 'Add a decoder'], ['add_compat', 'Add compatibility info'], ['correction', 'Correct existing data'], ['update_decoder', 'Update a decoder']] as [val, label]}
 					<label class="flex items-center gap-2 cursor-pointer">
-						<input type="radio" name="type" value={val} bind:group={type} class="accent-slate-700" />
+						<input type="radio" name="type" value={val} bind:group={type} class="accent-[var(--color-green)]" />
 						<span class="text-sm">{label}</span>
 					</label>
 				{/each}
@@ -166,14 +179,227 @@
 				<div class="flex flex-wrap gap-3">
 					{#each data.formats as fmt}
 						<label class="flex items-center gap-2 cursor-pointer">
-							<input type="checkbox" name="formatIds" value={fmt.id} class="accent-slate-700" />
+							<input
+								type="checkbox"
+								name="formatIds"
+								value={fmt.id}
+								onchange={(e) => {
+									const s = new Set(trainFormatIds);
+									if (e.currentTarget.checked) s.add(fmt.id);
+									else s.delete(fmt.id);
+									trainFormatIds = s;
+								}}
+								class="accent-[var(--color-green)]"
+							/>
 							<span class="text-sm">{fmt.name}</span>
 						</label>
 					{/each}
 				</div>
 			</div>
 
-			<!-- Add Compat form -->
+			{#if trainFormatIds.size > 0}
+				<div>
+					<label class="block text-xs font-medium mb-3 tracking-widest uppercase" style="color: var(--color-muted);">
+						Decoder Compatibility
+						<span class="normal-case font-normal ml-1" style="color: var(--color-dim);">Select decoders you have tested</span>
+					</label>
+					<div class="space-y-4">
+						{#each trainFormatsSelected as { format, decoders }}
+							<div>
+								<p class="text-xs font-semibold mb-2" style="color: var(--color-text);">{format.name}</p>
+								{#if decoders.length === 0}
+									<div
+										class="flex flex-wrap items-center gap-3 p-3 rounded text-sm"
+										style="background: var(--color-raised); border: 1px solid var(--color-border);"
+									>
+										<p class="flex-1" style="color: var(--color-dim);">
+											No decoders listed for this format yet — consider submitting an add-decoder suggestion first.
+										</p>
+										<button
+											type="button"
+											onclick={() => switchToAddDecoder(format.id)}
+											class="shrink-0 text-xs font-medium px-3 py-1.5 rounded-sm tracking-widest uppercase transition-opacity hover:opacity-80"
+											style="background: var(--color-green); color: #fff;"
+										>
+											Add a decoder
+										</button>
+									</div>
+								{:else}
+									<div class="rounded border overflow-hidden" style="border-color: var(--color-border);">
+										{#each decoders as dec, i}
+											<label
+												class="flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors hover:bg-[var(--color-raised)]"
+												style="border-top: {i > 0 ? '1px solid var(--color-border)' : 'none'};"
+											>
+												<input
+													type="checkbox"
+													name="decoderIds"
+													value={dec.id}
+													class="accent-[var(--color-green)] w-4 h-4 shrink-0"
+												/>
+												<div class="flex-1 min-w-0">
+													<div class="flex items-center gap-2">
+														<span class="font-medium text-sm" style="color: var(--color-text);">{dec.brandName}</span>
+														<span class="font-mono text-xs" style="color: var(--color-muted);">{dec.model}</span>
+														<span class="flex items-center gap-0.5" style="color: var(--color-green);">
+															{#if dec.motor}
+																<MotorIcon class="w-3 h-3" title="Motor" />
+															{/if}
+															{#if dec.lights}
+																<LightsIcon class="w-3 h-3" title="Lights" />
+															{/if}
+															{#if dec.soundDecoder}
+																<SoundIcon class="w-3 h-3" style="color: #7c3aed;" title="Sound" />
+															{/if}
+														</span>
+													</div>
+													{#if dec.notes}
+														<p class="text-xs mt-0.5" style="color: var(--color-dim);">{dec.notes}</p>
+													{/if}
+												</div>
+											</label>
+										{/each}
+									</div>
+								{/if}
+							</div>
+						{/each}
+					</div>
+				</div>
+			{/if}
+
+			<!-- Add Decoder form -->
+		{:else if type === 'add_decoder'}
+			<div class="grid grid-cols-2 gap-4">
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="brandName">Brand *</label
+					>
+					<input
+						id="brandName"
+						name="brandName"
+						type="text"
+						list="brand-list"
+						placeholder="Digitrax, TCS, SoundTraxx…"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+					<datalist id="brand-list">
+						{#each data.allBrands as b}
+							<option value={b.name}></option>
+						{/each}
+					</datalist>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="decoderModel">Model Number *</label
+					>
+					<input
+						id="decoderModel"
+						name="model"
+						type="text"
+						placeholder="DN163K0"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+			</div>
+			<div>
+				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
+					>Features</label
+				>
+				<div class="flex flex-wrap gap-4">
+					<label class="flex items-center gap-2 cursor-pointer">
+						<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked />
+						<span class="flex items-center gap-1 text-sm">
+							<MotorIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+							Motor
+						</span>
+					</label>
+					<label class="flex items-center gap-2 cursor-pointer">
+						<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked />
+						<span class="flex items-center gap-1 text-sm">
+							<LightsIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+							Lights
+						</span>
+					</label>
+					<label class="flex items-center gap-2 cursor-pointer">
+						<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
+						<span class="flex items-center gap-1 text-sm">
+							<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
+							Sound
+						</span>
+					</label>
+				</div>
+			</div>
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="decoderFormat">DCC Format *</label
+				>
+				<select
+					id="decoderFormat"
+					name="formatId"
+					bind:value={addDecoderFormatId}
+					class="w-full rounded px-3 py-2 text-sm"
+				>
+					<option value="">Select a format…</option>
+					{#each data.formats as fmt}
+						<option value={String(fmt.id)}>{fmt.name}</option>
+					{/each}
+				</select>
+				{#if addDecoderFormatId}
+					{@const selectedFmt = data.formats.find((f) => String(f.id) === addDecoderFormatId)}
+					{#if selectedFmt}
+						<div
+							class="mt-2 flex items-center gap-3 p-3 rounded"
+							style="background: var(--color-raised); border: 1px solid var(--color-border);"
+						>
+							<div style="color: var(--color-green);">
+								<FormatDiagram name={selectedFmt.name} size={96} />
+							</div>
+							<div>
+								<p class="text-xs font-semibold" style="color: var(--color-text);">{selectedFmt.name}</p>
+								{#if selectedFmt.description}
+									<p class="text-xs mt-0.5" style="color: var(--color-muted);">{selectedFmt.description}</p>
+								{/if}
+							</div>
+						</div>
+					{/if}
+				{/if}
+			</div>
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="decoderNotes">Notes</label
+				>
+				<input
+					id="decoderNotes"
+					name="notes"
+					type="text"
+					placeholder="e.g. requires capacitor removal, N-scale only"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+			</div>
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="buyUrl">Buy / Product URL</label
+				>
+				<input
+					id="buyUrl"
+					name="buyUrl"
+					type="url"
+					placeholder="https://www.jmri.org/…"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+			</div>
+
+		<!-- Add Compat form -->
 		{:else if type === 'add_compat'}
 			<div>
 				<label
@@ -249,22 +475,12 @@
 						Select a format above to see available decoders
 					</p>
 				{:else if decodersForFormat.length === 0}
-					<div
-						class="py-3 px-3 rounded flex items-center justify-between gap-4"
-						style="background: var(--color-raised); border: 1px solid var(--color-border);"
+					<p
+						class="text-sm italic py-3 px-3 rounded"
+						style="color: var(--color-dim); background: var(--color-raised); border: 1px solid var(--color-border);"
 					>
-						<p class="text-sm italic" style="color: var(--color-dim);">
-							No decoders in the database for this format yet
-						</p>
-						<button
-							type="button"
-							onclick={switchToAddDecoder}
-							class="text-xs font-medium px-3 py-1.5 rounded shrink-0 transition-opacity hover:opacity-80"
-							style="background: var(--color-green); color: #fff;"
-						>
-							Add a decoder
-						</button>
-					</div>
+						No decoders in the database for this format yet
+					</p>
 				{:else}
 					<div class="rounded border overflow-hidden" style="border-color: var(--color-border);">
 						{#each decodersForFormat as dec, i}
@@ -319,145 +535,131 @@
 				/>
 			</div>
 
-			<!-- Add Decoder form -->
-		{:else if type === 'add_decoder'}
-			<input type="hidden" name="type" value="add_decoder" />
-
-			<div
-				class="flex items-center gap-2 text-xs pb-1"
-				style="border-bottom: 1px solid var(--color-border); color: var(--color-muted);"
-			>
-				<button
-					type="button"
-					onclick={() => (type = 'add_compat')}
-					class="hover:underline"
-					style="color: var(--color-green);"
+			<!-- Update Decoder form -->
+		{:else if type === 'update_decoder'}
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="updateDecoderInput">Decoder *</label
 				>
-					← Back to compatibility form
-				</button>
-				<span>/ Suggest a new decoder</span>
+				<input
+					id="updateDecoderInput"
+					type="text"
+					list="update-decoder-list"
+					bind:value={updateDecoderSearch}
+					placeholder="Type brand or model to search…"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+				<datalist id="update-decoder-list">
+					{#each data.allDecoders as dec}
+						<option value="{dec.brandName} {dec.model}"
+							>{dec.brandName} {dec.model} — {data.formats.find((f) => f.id === dec.formatId)?.name ?? ''}</option
+						>
+					{/each}
+				</datalist>
+				<input
+					type="hidden"
+					name="decoderId"
+					value={data.allDecoders.find((d) => `${d.brandName} ${d.model}` === updateDecoderSearch)?.id ?? ''}
+				/>
 			</div>
 
-			{#if decoderFormatId}
-				{@const fmt = data.formats.find((f) => String(f.id) === decoderFormatId)}
-				{#if fmt}
-					<div>
-						<label
-							class="block text-xs font-medium mb-2 tracking-widests uppercase"
-							style="color: var(--color-muted);"
-						>DCC Format</label>
-						<div
-							class="flex items-center gap-3 p-3 rounded"
-							style="background: var(--color-raised); border: 1px solid var(--color-border);"
-						>
-							<div style="color: var(--color-green);">
-								<FormatDiagram name={fmt.name} size={72} />
-							</div>
-							<div>
-								<p class="text-xs font-semibold" style="color: var(--color-text);">{fmt.name}</p>
-								{#if fmt.description}
-									<p class="text-xs mt-0.5" style="color: var(--color-muted);">{fmt.description}</p>
-								{/if}
-							</div>
-						</div>
-						<input type="hidden" name="formatId" value={decoderFormatId} />
+			<div>
+				<label
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
+					style="color: var(--color-muted);"
+					for="updateField">Field to correct *</label
+				>
+				<select
+					id="updateField"
+					name="updateField"
+					bind:value={updateDecoderField}
+					class="w-full rounded px-3 py-2 text-sm"
+				>
+					<option value="">Select a field…</option>
+					<option value="model">Model number</option>
+					<option value="capabilities">Capabilities (motor / lights / sound)</option>
+					<option value="format">DCC Format</option>
+					<option value="notes">Notes</option>
+				</select>
+			</div>
+
+			{#if updateDecoderField === 'model'}
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widests uppercase"
+						style="color: var(--color-muted);"
+						for="correctedModel">Correct model number *</label
+					>
+					<input
+						id="correctedModel"
+						name="correctedValue"
+						type="text"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+			{:else if updateDecoderField === 'capabilities'}
+				<div>
+					<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
+						>Correct capabilities *</label
+					>
+					<div class="flex flex-wrap gap-4">
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked />
+							<span class="flex items-center gap-1 text-sm">
+								<MotorIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+								Motor
+							</span>
+						</label>
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked />
+							<span class="flex items-center gap-1 text-sm">
+								<LightsIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+								Lights
+							</span>
+						</label>
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
+							<span class="flex items-center gap-1 text-sm">
+								<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
+								Sound
+							</span>
+						</label>
 					</div>
-				{/if}
-			{:else}
+				</div>
+			{:else if updateDecoderField === 'format'}
 				<div>
 					<label
 						class="block text-xs font-medium mb-1 tracking-widest uppercase"
 						style="color: var(--color-muted);"
-						for="decoderFormatId"
-					>DCC Format *</label>
-					<select id="decoderFormatId" name="formatId" class="w-full rounded px-3 py-2 text-sm">
+						for="correctedFormat">Correct DCC format *</label
+					>
+					<select id="correctedFormat" name="correctedValue" class="w-full rounded px-3 py-2 text-sm">
 						<option value="">Select a format…</option>
 						{#each data.formats as fmt}
 							<option value={String(fmt.id)}>{fmt.name}</option>
 						{/each}
 					</select>
 				</div>
+			{:else if updateDecoderField === 'notes'}
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widests uppercase"
+						style="color: var(--color-muted);"
+						for="correctedNotes">Correct notes *</label
+					>
+					<input
+						id="correctedNotes"
+						name="correctedValue"
+						type="text"
+						placeholder="e.g. requires capacitor removal, N-scale only"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
 			{/if}
 
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="decoderBrand"
-				>Brand *</label>
-				<input
-					id="decoderBrand"
-					name="brandName"
-					type="text"
-					placeholder="e.g. Digitrax, ESU, Zimo…"
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
-			</div>
-
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="decoderModel"
-				>Model *</label>
-				<input
-					id="decoderModel"
-					name="model"
-					type="text"
-					placeholder="e.g. SDN144K0"
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
-			</div>
-
-			<div>
-				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
-					>Capabilities</label
-				>
-				<div class="flex gap-4">
-					<label class="flex items-center gap-2 cursor-pointer text-sm">
-						<input type="checkbox" name="motor" checked class="accent-slate-700" /> Motor
-					</label>
-					<label class="flex items-center gap-2 cursor-pointer text-sm">
-						<input type="checkbox" name="lights" checked class="accent-slate-700" /> Lights
-					</label>
-					<label class="flex items-center gap-2 cursor-pointer text-sm">
-						<input type="checkbox" name="sound" class="accent-slate-700" /> Sound
-					</label>
-				</div>
-			</div>
-
-			<div class="grid grid-cols-2 gap-4">
-				<div>
-					<label
-						class="block text-xs font-medium mb-1 tracking-widest uppercase"
-						style="color: var(--color-muted);"
-						for="decoderNotes"
-					>Notes</label>
-					<input
-						id="decoderNotes"
-						name="notes"
-						type="text"
-						placeholder="e.g. fits motor car only"
-						class="w-full rounded px-3 py-2 text-sm"
-					/>
-				</div>
-				<div>
-					<label
-						class="block text-xs font-medium mb-1 tracking-widest uppercase"
-						style="color: var(--color-muted);"
-						for="decoderBuyUrl"
-					>Buy URL</label>
-					<input
-						id="decoderBuyUrl"
-						name="buyUrl"
-						type="url"
-						placeholder="https://…"
-						class="w-full rounded px-3 py-2 text-sm"
-					/>
-				</div>
-			</div>
-
-			<!-- Correction form -->
+		<!-- Correction form -->
 		{:else if type === 'correction'}
 			<div>
 				<label

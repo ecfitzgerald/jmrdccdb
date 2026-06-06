@@ -16,14 +16,14 @@
 				{form.error}
 			</div>
 		{/if}
-		<form method="POST" class="space-y-4">
+		<form method="POST" action="?/login" class="space-y-4">
 			<div>
 				<label class="block text-xs font-medium mb-1" style="color: var(--color-muted);" for="password">Password</label>
 				<input
 					id="password"
 					name="password"
 					type="password"
-					class="w-full rounded px-3 py-2 text-sm focus:outline-none"
+					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<button

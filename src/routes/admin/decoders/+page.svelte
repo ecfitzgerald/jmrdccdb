@@ -32,14 +32,14 @@
 <svelte:head><title>Decoders — Admin</title></svelte:head>
 
 <div class="flex items-center justify-between mb-6">
-	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">Decoders</h1>
+	<h1 class="text-2xl font-bold text-[var(--color-text)]">Decoders</h1>
 	<div class="flex gap-2">
 		<button
 			onclick={() => {
 				showAddBrand = !showAddBrand;
 				showAdd = false;
 			}}
-			class="border border-slate-300 text-[var(--color-text)] px-3 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-light)] transition-colors"
+			class="border border-[var(--color-border)] text-[var(--color-text)] px-3 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-light)] transition-colors"
 		>
 			+ Brand
 		</button>
@@ -165,15 +165,15 @@
 		</div>
 		<div class="flex items-center gap-5">
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" name="motor" class="accent-slate-700" checked />
+				<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked />
 				<span class="text-sm">Motor</span>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" name="lights" class="accent-slate-700" checked />
+				<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked />
 				<span class="text-sm">Lights</span>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
+				<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
 				<span class="text-sm">Sound</span>
 			</label>
 		</div>
@@ -229,7 +229,7 @@
 							}}
 						>
 							<input type="hidden" name="id" value={dec.id} />
-							<button type="submit" class="text-red-500 hover:text-[var(--color-danger)] text-xs">Delete</button>
+							<button type="submit" class="text-[var(--color-danger)] hover:text-[var(--color-danger)] text-xs">Delete</button>
 						</form>
 					</td>
 				</tr>

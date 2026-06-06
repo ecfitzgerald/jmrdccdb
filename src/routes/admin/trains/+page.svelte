@@ -32,7 +32,7 @@
 <svelte:head><title>Trains — Admin</title></svelte:head>
 
 <div class="flex items-center justify-between mb-6">
-	<h1 class="text-2xl font-bold text-[var(--color-text)] font-bold">Trains</h1>
+	<h1 class="text-2xl font-bold text-[var(--color-text)]">Trains</h1>
 	<button
 		onclick={() => (showAdd = !showAdd)}
 		class="bg-[var(--color-green)] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-dark)] transition-colors"
@@ -136,7 +136,7 @@
 							name="formatIds"
 							value={fmt.id}
 							id="fmt-{fmt.id}"
-							class="accent-slate-700 shrink-0"
+							class="accent-[var(--color-green)] shrink-0"
 						/>
 						<div style="color: var(--color-green);">
 							<FormatDiagram name={fmt.name} size={72} />
@@ -153,8 +153,7 @@
 						</div>
 						<select
 							name="formatPurposes"
-							style="background: var(--color-bg); border: 1px solid var(--color-border); color: var(--color-text);"
-							class="rounded px-2 py-1 text-xs focus:outline-none shrink-0"
+							class="rounded px-2 py-1 text-xs shrink-0"
 						>
 							<option>Motor & Lights</option>
 							<option>Motor Only</option>
@@ -226,7 +225,7 @@
 							}}
 						>
 							<input type="hidden" name="id" value={t.id} />
-							<button type="submit" class="text-red-500 hover:text-[var(--color-danger)] text-xs">Delete</button>
+							<button type="submit" class="text-[var(--color-danger)] hover:text-[var(--color-danger)] text-xs">Delete</button>
 						</form>
 					</td>
 				</tr>
