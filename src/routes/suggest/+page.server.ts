@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { suggestions, trains, dccFormats, decoderBrands } from '$lib/db/schema';
+import { suggestions, trains, dccFormats, decoderBrands, operators } from '$lib/db/schema';
 import { fail } from '@sveltejs/kit';
 import { decodersWithBrands } from '$lib/db/queries';
 
@@ -26,10 +26,10 @@ export const load: PageServerLoad = async ({ url }) => {
 	const preselectedTrain = trainId ? (allTrains.find((t) => t.id === Number(trainId)) ?? null) : null;
 
 	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
-	const operators = d.selectDistinct({ v: trains.roadName }).from(trains).orderBy(trains.roadName).all().map(r => r.v).filter(Boolean) as string[];
+	const allOperators = d.select({ id: operators.id, name: operators.name }).from(operators).orderBy(operators.name).all();
 	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
 
-	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, typeParam, manufacturers, operators, scales };
+	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, typeParam, manufacturers, operators: allOperators, scales };
 };
 
 export const actions: Actions = {
@@ -53,7 +53,7 @@ export const actions: Actions = {
 			const scale = form.get('scale')?.toString() ?? '';
 			const name = form.get('name')?.toString() ?? '';
 			const modelNumber = form.get('modelNumber')?.toString() ?? '';
-			const roadName = form.get('roadName')?.toString() ?? '';
+			const operatorId = Number(form.get('operatorId'));
 			const era = form.get('era')?.toString() ?? '';
 
 			if (!manufacturer || !scale || !name || !modelNumber) {
@@ -63,7 +63,6 @@ export const actions: Actions = {
 			if (scale.length > 50) return fail(400, { error: 'Scale too long (max 50).' });
 			if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
 			if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
-			if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
 			if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 
 			payload = {
@@ -71,7 +70,7 @@ export const actions: Actions = {
 				scale,
 				name,
 				modelNumber,
-				roadName,
+				operatorId,
 				era,
 				formatIds: form.getAll('formatIds'),
 				decoderIds: form.getAll('decoderIds').map(Number).filter(Boolean)

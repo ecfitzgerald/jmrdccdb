@@ -53,7 +53,7 @@ export const actions: Actions = {
 					scale: payload.scale,
 					name: payload.name,
 					modelNumber: payload.modelNumber,
-					roadName: typeof payload.roadName === 'string' ? payload.roadName || null : null,
+					operatorId: typeof payload.operatorId === 'number' ? payload.operatorId || null : null,
 					era: typeof payload.era === 'string' ? payload.era || null : null
 				})
 				.returning()

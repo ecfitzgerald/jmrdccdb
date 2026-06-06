@@ -4,7 +4,7 @@
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
 
-	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'formats';
+	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'line' | 'formats';
 	let sortCol = $state<SortCol>('manufacturer');
 	let sortDir = $state<'asc' | 'desc'>('asc');
 
@@ -106,13 +106,13 @@
 				/>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Road / Operator</label>
-				<input
-					name="roadName"
-					type="text"
-					placeholder="JR East"
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
+				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Operator</label>
+				<select name="operatorId" class="w-full rounded px-3 py-2 text-sm">
+					<option value="">— None —</option>
+					{#each data.operators as op}
+						<option value={op.id}>{op.name}</option>
+					{/each}
+				</select>
 			</div>
 		</div>
 		<div class="grid grid-cols-2 gap-4">
@@ -122,6 +122,15 @@
 					name="era"
 					type="text"
 					placeholder="2015–present"
+					class="w-full rounded px-3 py-2 text-sm"
+				/>
+			</div>
+			<div>
+				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Line</label>
+				<input
+					name="line"
+					type="text"
+					placeholder="Yamanote Line"
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
@@ -202,6 +211,10 @@
 				>
 				<th
 					class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]"
+					onclick={() => toggleSort('line')}>Line{si('line')}</th
+				>
+				<th
+					class="text-left px-4 py-3 font-medium text-[var(--color-muted)] cursor-pointer select-none hover:text-[var(--color-text)]"
 					onclick={() => toggleSort('formats')}>Formats{si('formats')}</th
 				>
 				<th class="px-4 py-3"></th>
@@ -215,6 +228,7 @@
 					>
 					<td class="px-4 py-2">{t.name}</td>
 					<td class="px-4 py-2 font-mono text-xs text-[var(--color-muted)]">{t.modelNumber}</td>
+					<td class="px-4 py-2 text-sm text-[var(--color-text)]">{t.line || '—'}</td>
 					<td class="px-4 py-2 text-xs text-[var(--color-dim)]">{t.formats.join(', ') || '—'}</td>
 					<td class="px-4 py-2 text-right">
 						<form

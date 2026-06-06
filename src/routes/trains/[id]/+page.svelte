@@ -22,12 +22,14 @@
 		return map;
 	});
 
-	// Format-level decoders grouped by formatId (excluding confirmed ones)
+	// Format-level decoders grouped by formatId — only shown for formats with no confirmed decoders
 	const formatByFormat = $derived(() => {
 		const confirmedIds = new Set(data.confirmedDecoders.map((d) => d.id));
+		const confirmedFormatIds = new Set(data.confirmedDecoders.map((d) => d.formatId));
 		const map = new Map<number, typeof data.formatDecoders>();
 		for (const dec of data.formatDecoders) {
 			if (confirmedIds.has(dec.id)) continue;
+			if (confirmedFormatIds.has(dec.formatId)) continue;
 			if (!map.has(dec.formatId)) map.set(dec.formatId, []);
 			map.get(dec.formatId)!.push(dec);
 		}
@@ -77,9 +79,13 @@
 			<h1 class="text-2xl font-bold mb-1" style="color: var(--color-text);">{data.train.name}</h1>
 			<div class="text-sm" style="color: var(--color-muted);">
 				<span class="font-semibold" style="color: var(--color-green);">{data.train.manufacturer}</span>
-				{#if data.train.roadName}
+				{#if data.train.operatorName}
 					<span class="mx-2" style="color: var(--color-border-mid);">·</span>
-					<span>{data.train.roadName}</span>
+					<span>{data.train.operatorName}</span>
+				{/if}
+				{#if data.train.line}
+					<span class="mx-2" style="color: var(--color-border-mid);">·</span>
+					<span>{data.train.line}</span>
 				{/if}
 			</div>
 		</div>

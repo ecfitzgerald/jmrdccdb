@@ -64,7 +64,7 @@ export const actions: Actions = {
 			const scale = form.get('scale')?.toString() ?? '';
 			const name = form.get('name')?.toString() ?? '';
 			const modelNumber = form.get('modelNumber')?.toString() ?? '';
-			const roadName = form.get('roadName')?.toString() ?? '';
+			const operatorId = Number(form.get('operatorId'));
 			const era = form.get('era')?.toString() ?? '';
 			const notes = form.get('notes')?.toString() ?? '';
 
@@ -75,7 +75,6 @@ export const actions: Actions = {
 			if (scale.length > 50) return fail(400, { error: 'Scale too long (max 50).' });
 			if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
 			if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
-			if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
 			if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
 
@@ -86,7 +85,7 @@ export const actions: Actions = {
 					scale,
 					name,
 					modelNumber,
-					roadName: roadName || null,
+					operatorId: operatorId || null,
 					era: era || null,
 					notes: notes || null
 				})
