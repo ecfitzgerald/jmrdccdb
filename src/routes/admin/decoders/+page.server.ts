@@ -106,5 +106,39 @@ export const actions: Actions = {
 		if (!id) return fail(400);
 		db().delete(decoders).where(eq(decoders.id, id)).run();
 		return { success: true };
+	},
+
+	update: async ({ request }) => {
+		const form = await request.formData();
+		const id = Number(form.get('id'));
+		const model = form.get('model')?.toString() ?? '';
+		const notes = form.get('notes')?.toString() ?? '';
+		const buyUrl = form.get('buyUrl')?.toString() ?? '';
+		const brandId = Number(form.get('brandId'));
+		const formatId = Number(form.get('formatId'));
+
+		if (!id || !brandId || !formatId || !model) {
+			return fail(400, { error: 'ID, brand, format, and model are required.' });
+		}
+		if (model.length > 200) return fail(400, { error: 'Model too long (max 200).' });
+		if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
+		if (buyUrl.length > 500) return fail(400, { error: 'URL too long (max 500).' });
+
+		db()
+			.update(decoders)
+			.set({
+				brandId,
+				formatId,
+				model,
+				notes: notes || null,
+				buyUrl: buyUrl || null,
+				motor: form.get('motor') === 'on',
+				lights: form.get('lights') === 'on',
+				soundDecoder: form.get('soundDecoder') === 'on'
+			})
+			.where(eq(decoders.id, id))
+			.run();
+
+		return { success: true };
 	}
 };
