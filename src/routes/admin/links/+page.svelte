@@ -180,7 +180,7 @@
 								type="checkbox"
 								name="decoderIds"
 								value={dec.id}
-								class="accent-slate-700 shrink-0"
+								class="accent-[var(--color-green)] shrink-0"
 							/>
 							<span class="flex-1 min-w-0">
 								<span class="font-medium text-[var(--color-text)]">{dec.brandName}</span>
@@ -233,7 +233,7 @@
 									type="checkbox"
 									name="decoderIds"
 									value={dec.id}
-									class="accent-slate-700 shrink-0"
+									class="accent-[var(--color-green)] shrink-0"
 								/>
 								<span class="flex-1 min-w-0">
 									<span class="font-medium text-[var(--color-text)]">{dec.brandName}</span>

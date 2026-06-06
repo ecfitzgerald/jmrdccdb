@@ -165,15 +165,15 @@
 		</div>
 		<div class="flex items-center gap-5">
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" name="motor" class="accent-slate-700" checked />
+				<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked />
 				<span class="text-sm">Motor</span>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" name="lights" class="accent-slate-700" checked />
+				<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked />
 				<span class="text-sm">Lights</span>
 			</label>
 			<label class="flex items-center gap-2 cursor-pointer">
-				<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
+				<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
 				<span class="text-sm">Sound</span>
 			</label>
 		</div>
