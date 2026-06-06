@@ -10,11 +10,11 @@
 		update_decoder: 'Update Decoder'
 	};
 	const typeBadge: Record<string, string> = {
-		add_train: 'bg-blue-100 text-blue-800',
-		add_compat: 'bg-green-100 text-green-800',
-		add_decoder: 'bg-purple-100 text-purple-800',
-		correction: 'bg-[var(--color-warn-bg)] text-amber-800',
-		update_decoder: 'bg-orange-100 text-orange-800'
+		add_train: 'bg-[var(--color-ok-bg)] text-[var(--color-ok)]',
+		add_compat: 'bg-[var(--color-green-light)] text-[var(--color-green)]',
+		add_decoder: 'bg-[var(--color-green-light)] text-[var(--color-green)]',
+		correction: 'bg-[var(--color-warn-bg)] text-[var(--color-warn)]',
+		update_decoder: 'bg-[var(--color-raised)] text-[var(--color-muted)]'
 	};
 </script>
 
@@ -67,7 +67,7 @@
 				{/if}
 
 				{#if s.adminNote}
-					<p class="text-sm text-[var(--color-dim)] mb-3 bg-yellow-50 border border-yellow-200 rounded p-2">
+					<p class="text-sm text-[var(--color-warn)] mb-3 bg-[var(--color-warn-bg)] border border-[var(--color-warn)] rounded p-2">
 						Admin note: {s.adminNote}
 					</p>
 				{/if}
