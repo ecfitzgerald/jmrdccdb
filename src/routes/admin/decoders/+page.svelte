@@ -229,7 +229,7 @@
 							}}
 						>
 							<input type="hidden" name="id" value={dec.id} />
-							<button type="submit" class="text-red-500 hover:text-[var(--color-danger)] text-xs">Delete</button>
+							<button type="submit" class="text-[var(--color-danger)] hover:text-[var(--color-danger)] text-xs">Delete</button>
 						</form>
 					</td>
 				</tr>

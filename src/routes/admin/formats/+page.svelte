@@ -152,10 +152,10 @@
 								}}
 							>
 								<input type="hidden" name="id" value={fmt.id} />
-								<button type="submit" class="text-red-500 hover:text-[var(--color-danger)] text-xs">Delete</button>
+								<button type="submit" class="text-[var(--color-danger)] hover:text-[var(--color-danger)] text-xs">Delete</button>
 							</form>
 						{:else}
-							<span class="text-xs text-gray-300">in use</span>
+							<span class="text-xs text-[var(--color-dim)]">in use</span>
 						{/if}
 					</td>
 				</tr>

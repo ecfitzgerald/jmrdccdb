@@ -30,13 +30,13 @@
 	<h2 class="font-semibold text-[var(--color-text)] mb-3">Quick links</h2>
 	<div class="flex flex-wrap gap-2">
 		<a href="/admin/suggestions" class="text-sm text-[var(--color-green)] hover:underline">Review suggestions →</a>
-		<span class="text-gray-300">·</span>
+		<span class="text-[var(--color-border-mid)]">·</span>
 		<a href="/admin/trains" class="text-sm text-[var(--color-green)] hover:underline">Add a train →</a>
-		<span class="text-gray-300">·</span>
+		<span class="text-[var(--color-border-mid)]">·</span>
 		<a href="/admin/decoders" class="text-sm text-[var(--color-green)] hover:underline">Add a decoder →</a>
-		<span class="text-gray-300">·</span>
+		<span class="text-[var(--color-border-mid)]">·</span>
 		<a href="/admin/links" class="text-sm text-[var(--color-green)] hover:underline">Manage decoder links →</a>
-		<span class="text-gray-300">·</span>
+		<span class="text-[var(--color-border-mid)]">·</span>
 		<a href="/" class="text-sm text-[var(--color-green)] hover:underline">View public site →</a>
 	</div>
 </div>

@@ -28,7 +28,7 @@
 				href="?status={s}"
 				class="px-3 py-1 rounded-md transition-colors {data.status === s
 					? 'jr-card-flat shadow text-[var(--color-text)] font-bold'
-					: 'text-[var(--color-dim)] hover:text-gray-700'}"
+					: 'text-[var(--color-dim)] hover:text-[var(--color-muted)]'}"
 			>
 				{s.charAt(0).toUpperCase() + s.slice(1)}
 			</a>
@@ -58,7 +58,7 @@
 					{/if}
 				</div>
 
-				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-gray-700 overflow-x-auto">
+				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-[var(--color-muted)] overflow-x-auto">
 					<pre>{JSON.stringify(JSON.parse(s.payload), null, 2)}</pre>
 				</div>
 
