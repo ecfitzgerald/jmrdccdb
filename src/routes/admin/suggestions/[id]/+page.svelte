@@ -7,12 +7,21 @@
 
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
-	const s = data.suggestion;
-	const p = data.payload;
+	type Payload = Record<string, unknown> & {
+		formatIds?: unknown[];
+		decoderIds?: unknown[];
+	};
+
+	const s = $derived(data.suggestion);
+	const p = $derived(data.payload as Payload);
 
 	// add_compat reactive format picker
-	let compatFormatId = $state(String(p.formatId ?? ''));
+	let compatFormatId = $state('');
 	const decodersForFormat = $derived(data.allDecoders.filter((d) => String(d.formatId) === compatFormatId));
+
+	$effect(() => {
+		compatFormatId = String(p.formatId ?? '');
+	});
 
 	// add_decoder: new brand toggle
 	let addingBrand = $state(false);
@@ -81,7 +90,7 @@
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 				<datalist id="mfr-list"
-					>{#each data.manufacturers as m}<option value={m} />{/each}</datalist
+					>{#each data.manufacturers as m}<option value={m}></option>{/each}</datalist
 				>
 			</div>
 			<div>
@@ -99,7 +108,7 @@
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 				<datalist id="scale-list"
-					>{#each data.scales as s}<option value={s} />{/each}</datalist
+					>{#each data.scales as s}<option value={s}></option>{/each}</datalist
 				>
 			</div>
 		</div>
@@ -143,7 +152,7 @@
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 				<datalist id="op-list"
-					>{#each data.operators as o}<option value={o} />{/each}</datalist
+					>{#each data.operators as o}<option value={o}></option>{/each}</datalist
 				>
 			</div>
 		</div>

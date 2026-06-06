@@ -21,7 +21,7 @@ export const actions: Actions = {
 		const password = form.get('password')?.toString() ?? '';
 		// Cap input length to reject oversized payloads before hashing. Same
 		// generic response as a wrong password so length isn't an oracle.
-		if (password.length > 256 || !checkPassword(password, ADMIN_PASSWORD)) {
+		if (password.length > 256 || !checkPassword(password, ADMIN_PASSWORD ?? '')) {
 			recordFailure(ip);
 			return fail(401, { error: 'Incorrect password.' });
 		}
