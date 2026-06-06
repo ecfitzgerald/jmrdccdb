@@ -109,7 +109,7 @@
 								{dec.formatName}
 								{#if !dec.formatCompatible}
 									<span
-										class="ml-1 bg-[var(--color-warn-bg)] text-amber-800 text-[10px] px-1.5 py-0.5 rounded"
+										class="ml-1 bg-[var(--color-warn-bg)] text-[var(--color-warn)] text-[10px] px-1.5 py-0.5 rounded"
 										title="This decoder's format is not listed among the train's compatible formats."
 									>
 										off-format
@@ -120,11 +120,11 @@
 							<td class="px-4 py-2">
 								{#if dec.confirmed}
 									<span
-										class="bg-[var(--color-ok-bg)] text-green-800 text-xs px-2 py-0.5 rounded font-medium"
+										class="bg-[var(--color-ok-bg)] text-[var(--color-ok)] text-xs px-2 py-0.5 rounded font-medium"
 										>Confirmed</span
 									>
 								{:else}
-									<span class="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded font-medium"
+									<span class="bg-[var(--color-raised)] text-[var(--color-muted)] text-xs px-2 py-0.5 rounded font-medium"
 										>Unconfirmed</span
 									>
 								{/if}
@@ -238,7 +238,7 @@
 								<span class="flex-1 min-w-0">
 									<span class="font-medium text-[var(--color-text)]">{dec.brandName}</span>
 									<span class="text-[var(--color-muted)]">{dec.model}</span>
-									<span class="text-xs text-amber-700 ml-2">{dec.formatName}</span>
+									<span class="text-xs text-[var(--color-warn)] ml-2">{dec.formatName}</span>
 								</span>
 								<span class="text-xs text-[var(--color-dim)] shrink-0">{caps(dec)}</span>
 							</label>
