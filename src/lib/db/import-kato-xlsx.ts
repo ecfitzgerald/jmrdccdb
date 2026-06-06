@@ -201,7 +201,6 @@ for (let rowNumber = 2; rowNumber <= sheet.rowCount; rowNumber++) {
 
 	const parts: string[] = [];
 	if (variant)    parts.push(variant);
-	if (line)       parts.push(`Line: ${line}`);
 	if (dccFriendly && dccFriendly.toLowerCase() !== 'yes') parts.push(`DCC: ${dccFriendly}`);
 	if (isNgdcc)    parts.push('Likely has an NGDCC decoder');
 	const notes = parts.length > 0 ? parts.join(' · ') : undefined;
@@ -222,6 +221,7 @@ for (let rowNumber = 2; rowNumber <= sheet.rowCount; rowNumber++) {
 			typeId,
 			modelNumber,
 			name,
+			line: line ?? null,
 			era: cell(row, COL.years),
 			notes
 		}).returning().all();
