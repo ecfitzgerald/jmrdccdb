@@ -175,7 +175,7 @@
 								value={fmt.id}
 								id="fmt-{fmt.id}"
 								{checked}
-								class="w-4 h-4 shrink-0"
+								class="w-4 h-4 shrink-0 accent-[var(--color-green)]"
 							/>
 							<div style="color: var(--color-green);"><FormatDiagram name={fmt.name} size={60} /></div>
 							<label for="fmt-{fmt.id}" class="font-medium text-sm cursor-pointer">{fmt.name}</label>
@@ -189,7 +189,7 @@
 						<div class="pl-7 space-y-1">
 							{#each data.allDecoders.filter((d) => d.formatId === fmt.id) as dec}
 								<label class="flex items-center gap-2 text-xs cursor-pointer">
-									<input type="checkbox" name="decoderIds" value={dec.id} class="w-3.5 h-3.5" />
+									<input type="checkbox" name="decoderIds" value={dec.id} class="w-3.5 h-3.5 accent-[var(--color-green)]" />
 									<span class="font-medium" style="color: var(--color-text);">{dec.brandName}</span>
 									<span class="font-mono" style="color: var(--color-muted);">{dec.model}</span>
 									<span class="flex items-center gap-0.5 ml-1" style="color: var(--color-green);">
@@ -276,7 +276,7 @@
 								name="decoderIds"
 								value={dec.id}
 								checked={(p.decoderIds ?? []).includes(dec.id)}
-								class="w-4 h-4"
+								class="w-4 h-4 accent-[var(--color-green)]"
 							/>
 							<span class="font-medium text-sm">{dec.brandName}</span>
 							<span class="font-mono text-xs" style="color: var(--color-muted);">{dec.model}</span>
@@ -372,13 +372,13 @@
 			>
 			<div class="flex gap-4">
 				<label class="flex items-center gap-2 cursor-pointer text-sm">
-					<input type="checkbox" name="motor" checked={p.motor !== false} class="w-4 h-4" /> Motor
+					<input type="checkbox" name="motor" checked={p.motor !== false} class="w-4 h-4 accent-[var(--color-green)]" /> Motor
 				</label>
 				<label class="flex items-center gap-2 cursor-pointer text-sm">
-					<input type="checkbox" name="lights" checked={p.lights !== false} class="w-4 h-4" /> Lights
+					<input type="checkbox" name="lights" checked={p.lights !== false} class="w-4 h-4 accent-[var(--color-green)]" /> Lights
 				</label>
 				<label class="flex items-center gap-2 cursor-pointer text-sm">
-					<input type="checkbox" name="sound" checked={!!p.sound} class="w-4 h-4" /> Sound
+					<input type="checkbox" name="sound" checked={!!p.sound} class="w-4 h-4 accent-[var(--color-green)]" /> Sound
 				</label>
 			</div>
 		</div>

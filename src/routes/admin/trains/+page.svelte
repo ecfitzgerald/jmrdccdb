@@ -136,7 +136,7 @@
 							name="formatIds"
 							value={fmt.id}
 							id="fmt-{fmt.id}"
-							class="accent-slate-700 shrink-0"
+							class="accent-[var(--color-green)] shrink-0"
 						/>
 						<div style="color: var(--color-green);">
 							<FormatDiagram name={fmt.name} size={72} />

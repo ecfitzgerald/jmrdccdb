@@ -72,7 +72,7 @@
 			<div class="flex flex-wrap gap-2">
 				{#each [['add_train', 'Add a new train'], ['add_decoder', 'Add a decoder'], ['add_compat', 'Add compatibility info'], ['correction', 'Correct existing data'], ['update_decoder', 'Update a decoder']] as [val, label]}
 					<label class="flex items-center gap-2 cursor-pointer">
-						<input type="radio" name="type" value={val} bind:group={type} class="accent-slate-700" />
+						<input type="radio" name="type" value={val} bind:group={type} class="accent-[var(--color-green)]" />
 						<span class="text-sm">{label}</span>
 					</label>
 				{/each}
@@ -189,7 +189,7 @@
 									else s.delete(fmt.id);
 									trainFormatIds = s;
 								}}
-								class="accent-slate-700"
+								class="accent-[var(--color-green)]"
 							/>
 							<span class="text-sm">{fmt.name}</span>
 						</label>
@@ -311,21 +311,21 @@
 				>
 				<div class="flex flex-wrap gap-4">
 					<label class="flex items-center gap-2 cursor-pointer">
-						<input type="checkbox" name="motor" class="accent-slate-700" checked />
+						<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked />
 						<span class="flex items-center gap-1 text-sm">
 							<MotorIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
 							Motor
 						</span>
 					</label>
 					<label class="flex items-center gap-2 cursor-pointer">
-						<input type="checkbox" name="lights" class="accent-slate-700" checked />
+						<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked />
 						<span class="flex items-center gap-1 text-sm">
 							<LightsIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
 							Lights
 						</span>
 					</label>
 					<label class="flex items-center gap-2 cursor-pointer">
-						<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
+						<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
 						<span class="flex items-center gap-1 text-sm">
 							<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
 							Sound
@@ -606,21 +606,21 @@
 					>
 					<div class="flex flex-wrap gap-4">
 						<label class="flex items-center gap-2 cursor-pointer">
-							<input type="checkbox" name="motor" class="accent-slate-700" checked />
+							<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked />
 							<span class="flex items-center gap-1 text-sm">
 								<MotorIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
 								Motor
 							</span>
 						</label>
 						<label class="flex items-center gap-2 cursor-pointer">
-							<input type="checkbox" name="lights" class="accent-slate-700" checked />
+							<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked />
 							<span class="flex items-center gap-1 text-sm">
 								<LightsIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
 								Lights
 							</span>
 						</label>
 						<label class="flex items-center gap-2 cursor-pointer">
-							<input type="checkbox" name="soundDecoder" class="accent-slate-700" />
+							<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
 							<span class="flex items-center gap-1 text-sm">
 								<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
 								Sound
