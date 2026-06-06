@@ -138,11 +138,11 @@
 										{dec.confirmed ? 'Mark unconfirmed' : 'Mark confirmed'}
 									</button>
 								</form>
-								<span class="text-gray-300 mx-1">·</span>
+								<span class="text-[var(--color-border-mid)] mx-1">·</span>
 								<form method="POST" action="?/unlink&train={trainId}" class="inline">
 									<input type="hidden" name="trainId" value={trainId} />
 									<input type="hidden" name="decoderId" value={dec.id} />
-									<button type="submit" class="text-xs text-red-500 hover:text-[var(--color-danger)]"
+									<button type="submit" class="text-xs text-[var(--color-danger)] hover:text-[var(--color-danger)]"
 										>Remove</button
 									>
 								</form>
