@@ -75,8 +75,9 @@
 		<h2 class="font-semibold text-[var(--color-text)]">Add Decoder Brand</h2>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand Name *</label>
+				<label for="name" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand Name *</label>
 				<input
+					id="name"
 					name="name"
 					type="text"
 					placeholder="TCS"
@@ -84,8 +85,9 @@
 				/>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Website</label>
+				<label for="website" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Website</label>
 				<input
+					id="website"
 					name="website"
 					type="url"
 					placeholder="https://…"
@@ -111,8 +113,9 @@
 		<h2 class="font-semibold text-[var(--color-text)]">Add Decoder</h2>
 		<div class="grid grid-cols-3 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand *</label>
+				<label for="brandId" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand *</label>
 				<select
+					id="brandId"
 					name="brandId"
 					class="w-full rounded px-3 py-2 text-sm"
 				>
@@ -123,8 +126,9 @@
 				</select>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Format *</label>
+				<label for="formatId" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Format *</label>
 				<select
+					id="formatId"
 					name="formatId"
 					class="w-full rounded px-3 py-2 text-sm"
 				>
@@ -135,8 +139,9 @@
 				</select>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model *</label>
+				<label for="model" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model *</label>
 				<input
+					id="model"
 					name="model"
 					type="text"
 					placeholder="DN163K0"
@@ -146,16 +151,18 @@
 		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Notes</label>
+				<label for="notes" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Notes</label>
 				<input
+					id="notes"
 					name="notes"
 					type="text"
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Buy URL</label>
+				<label for="buyUrl" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Buy URL</label>
 				<input
+					id="buyUrl"
 					name="buyUrl"
 					type="url"
 					placeholder="https://…"
