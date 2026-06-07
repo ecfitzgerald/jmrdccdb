@@ -5,6 +5,78 @@ SQLite database for the JMR DCC Compatibility app. Managed by Drizzle ORM — mi
 Seed reference data: `npm run db:seed`  
 Import Kato XLSX: `npx tsx src/lib/db/import-kato-xlsx.ts <path.xlsx>`
 
+## Backup & Recovery
+
+**The database is authoritative.** Backups protect against disk failure, accidental deletion, or botched migrations. The database **must not be version-controlled** — it's a runtime artifact.
+
+### Taking a Backup
+
+Create a WAL-safe snapshot using the SQLite backup API:
+
+```bash
+npx tsx scripts/backup-db.ts
+```
+
+This creates a timestamped backup in `./data/backups/dcc-YYYY-MM-DDTHH-MM-SS.db`. Backups include all current data and are portable across systems.
+
+**Set environment variables to customize:**
+- `DB_PATH` (default: `./data/dcc.db`) — path to live database
+- `BACKUP_DIR` (default: `./data/backups`) — where to store backups
+
+### Restoring from Backup
+
+To restore from a backup (destructive — overwrites the live database):
+
+```bash
+npx tsx scripts/restore-db.ts ./data/backups/dcc-2026-06-07T12-34-56.db
+```
+
+This will:
+1. Prompt for confirmation (Ctrl+C to cancel)
+2. Remove the live database and WAL files
+3. Restore from the backup using the SQLite backup API
+4. You can then `npm run dev` to verify the restore
+
+### WAL Safety
+
+The database uses SQLite Write-Ahead Logging (WAL) for crash safety. The backup scripts handle this correctly:
+- Backup script: Uses `better-sqlite3`'s `.backup()` method, which captures a consistent snapshot
+- Restore script: Cleans up WAL and shared-memory files before restoring
+
+Do **not** use `cp` or file copying tools directly — you will get incomplete snapshots if the database is open or under active writes.
+
+### Migration Testing
+
+Before running migrations on the live database, test them on a backup copy:
+
+```bash
+# Create a test copy
+cp ./data/backups/dcc-latest.db ./data/dcc-test.db
+
+# Run migrations on the test copy
+DB_PATH=./data/dcc-test.db npm run db:generate
+
+# Inspect the test database, then delete it
+rm ./data/dcc-test.db
+```
+
+### File Permissions
+
+The database file should have restricted permissions in production. Set:
+
+```bash
+chmod 600 ./data/dcc.db
+chmod 700 ./data/backups
+```
+
+Only the application runtime user should have read/write access. On shared systems, use:
+
+```bash
+chown appuser:appgroup ./data/dcc.db ./data/backups
+chmod 600 ./data/dcc.db
+chmod 700 ./data/backups
+```
+
 ## Schema
 
 ```
