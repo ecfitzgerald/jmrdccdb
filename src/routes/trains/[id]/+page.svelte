@@ -79,13 +79,15 @@
 			</div>
 		</div>
 		<div class="flex items-center gap-3">
-			<a
-				href="/admin/trains?edit={data.train.id}"
-				class="text-xs transition-colors hover:underline"
-				style="color: var(--color-dim);"
-			>
-				Edit
-			</a>
+			{#if data.isAdmin}
+				<a
+					href="/admin/trains?edit={data.train.id}"
+					class="text-xs transition-colors hover:underline"
+					style="color: var(--color-dim);"
+				>
+					Edit
+				</a>
+			{/if}
 			<a
 				href="/suggest?trainId={data.train.id}"
 				class="text-xs transition-colors hover:underline"

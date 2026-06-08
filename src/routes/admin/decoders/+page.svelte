@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData, ActionData } from './$types';
+	import FormatDiagram from '$lib/FormatDiagram.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
 	let showAddBrand = $state(false);
@@ -27,6 +28,17 @@
 	function si(col: SortCol) {
 		return sortCol === col ? (sortDir === 'asc' ? ' ↑' : ' ↓') : '';
 	}
+
+	// Inline brand/format creator state
+	let newBrand = $state(false);
+	let newFormat = $state(false);
+	let selectedFormatId = $state('');
+	const selectedFormat = $derived(data.formats.find(f => String(f.id) === selectedFormatId) ?? null);
+
+	// Edit state
+	let editingId = $state<number | null>(null);
+	let editingFormatId = $state('');
+	const editingFormat = $derived(data.formats.find(f => String(f.id) === editingFormatId) ?? null);
 </script>
 
 <svelte:head><title>Decoders — Admin</title></svelte:head>
@@ -211,28 +223,120 @@
 		</thead>
 		<tbody class="divide-y divide-[var(--color-border)]">
 			{#each sorted as dec (dec.id)}
-				<tr class="hover:bg-[var(--color-raised)]">
-					<td class="px-4 py-2 font-medium">{dec.brandName}</td>
-					<td class="px-4 py-2 font-mono text-xs"
-						>{dec.model}
-						{#if dec.soundDecoder}<span class="ml-1 text-xs bg-purple-100 text-purple-700 px-1.5 rounded">Sound</span
-							>{/if}
-					</td>
-					<td class="px-4 py-2 text-[var(--color-muted)] text-xs">{dec.formatName}</td>
-					<td class="px-4 py-2 text-[var(--color-dim)] text-xs">{dec.notes ?? '—'}</td>
-					<td class="px-4 py-2 text-right">
-						<form
-							method="POST"
-							action="?/delete"
-							onsubmit={(e) => {
-								if (!confirm('Delete this decoder?')) e.preventDefault();
-							}}
-						>
-							<input type="hidden" name="id" value={dec.id} />
-							<button type="submit" class="text-red-500 hover:text-[var(--color-danger)] text-xs">Delete</button>
-						</form>
-					</td>
-				</tr>
+				{#if editingId === dec.id}
+					<tr class="bg-[var(--color-raised)]">
+						<td colspan="5" class="px-4 py-4">
+							<form
+								method="POST"
+								action="?/update"
+								class="space-y-3"
+								onsubmit={() => editingId = null}
+							>
+								<h3 class="font-medium text-[var(--color-text)] mb-3">Edit Decoder</h3>
+								<input type="hidden" name="id" value={dec.id} />
+
+								<div class="grid grid-cols-3 gap-4">
+									<div>
+										<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Brand *</label>
+										<select name="brandId" class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
+											{#each data.brands as b}
+												<option value={b.id} selected={b.id === dec.brandId}>{b.name}</option>
+											{/each}
+										</select>
+									</div>
+									<div>
+										<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Format *</label>
+										<div class="flex gap-3 items-start">
+											<select name="formatId" bind:value={editingFormatId} class="flex-1 border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
+												{#each data.formats as f}
+													<option value={String(f.id)} selected={f.id === dec.formatId}>{f.name}</option>
+												{/each}
+											</select>
+											{#if editingFormat}
+												<div style="color: var(--color-green);">
+													<FormatDiagram name={editingFormat.name} size={32}/>
+												</div>
+											{/if}
+										</div>
+									</div>
+									<div>
+										<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model *</label>
+										<input name="model" type="text" value={dec.model} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" />
+									</div>
+								</div>
+
+								<div class="grid grid-cols-2 gap-4">
+									<div>
+										<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Notes</label>
+										<input name="notes" type="text" value={dec.notes ?? ''} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" />
+									</div>
+									<div>
+										<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Buy URL</label>
+										<input name="buyUrl" type="url" value={dec.buyUrl ?? ''} class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400" />
+									</div>
+								</div>
+
+								<div class="flex items-center gap-5">
+									<label class="flex items-center gap-2 cursor-pointer">
+										<input type="checkbox" name="motor" class="accent-slate-700" checked={dec.motor} />
+										<span class="text-sm">Motor</span>
+									</label>
+									<label class="flex items-center gap-2 cursor-pointer">
+										<input type="checkbox" name="lights" class="accent-slate-700" checked={dec.lights} />
+										<span class="text-sm">Lights</span>
+									</label>
+									<label class="flex items-center gap-2 cursor-pointer">
+										<input type="checkbox" name="soundDecoder" class="accent-slate-700" checked={dec.soundDecoder} />
+										<span class="text-sm">Sound</span>
+									</label>
+								</div>
+
+								<div class="flex gap-2">
+									<button type="submit" class="bg-[var(--color-green)] text-white px-4 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-dark)] transition-colors">
+										Save
+									</button>
+									<button type="button" onclick={() => editingId = null} class="border border-slate-300 text-[var(--color-text)] px-4 py-2 rounded text-sm font-medium hover:bg-[var(--color-raised)] transition-colors">
+										Cancel
+									</button>
+								</div>
+							</form>
+						</td>
+					</tr>
+				{:else}
+					<tr class="hover:bg-[var(--color-raised)]">
+						<td class="px-4 py-2 font-medium">{dec.brandName}</td>
+						<td class="px-4 py-2 font-mono text-xs"
+							>{dec.model}
+							{#if dec.soundDecoder}<span class="ml-1 text-xs bg-purple-100 text-purple-700 px-1.5 rounded">Sound</span
+								>{/if}
+						</td>
+						<td class="px-4 py-2 text-[var(--color-muted)] text-xs">{dec.formatName}</td>
+						<td class="px-4 py-2 text-[var(--color-dim)] text-xs">{dec.notes ?? '—'}</td>
+						<td class="px-4 py-2 text-right space-x-2">
+							<button
+								type="button"
+								onclick={() => {
+									editingId = dec.id;
+									editingFormatId = String(dec.formatId);
+								}}
+								class="text-blue-500 hover:text-blue-700 text-xs"
+							>
+								Edit
+							</button>
+							<form
+								method="POST"
+								action="?/delete"
+								class="inline"
+								onsubmit={(e) => {
+									if (!confirm('Delete this decoder?')) e.preventDefault();
+								}}
+							>
+								<input type="hidden" name="id" value={dec.id} />
+								<button type="submit" class="text-red-500 hover:text-[var(--color-danger)] text-xs">Delete</button>
+							</form>
+						</td>
+					</tr>
+				{/if}
 			{/each}
 		</tbody>
 	</table>

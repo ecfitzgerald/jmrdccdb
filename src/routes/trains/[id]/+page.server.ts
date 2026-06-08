@@ -3,8 +3,9 @@ import { db } from '$lib/db';
 import { trains, trainFormatCompat, dccFormats, decoders, decoderBrands, trainDecoderCompat } from '$lib/db/schema';
 import { eq, sql } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
+import { validateSession } from '$lib/server/session';
 
-export const load: PageServerLoad = async ({ params }) => {
+export const load: PageServerLoad = async ({ params, cookies }) => {
 	const id = Number(params.id);
 	if (!id) error(404, 'Not found');
 
@@ -72,5 +73,7 @@ export const load: PageServerLoad = async ({ params }) => {
 		.where(eq(trainDecoderCompat.trainId, id))
 		.all();
 
-	return { train, compatFormats, formatDecoders, confirmedDecoders };
+	const isAdmin = validateSession(cookies.get('admin_auth'));
+
+	return { train, compatFormats, formatDecoders, confirmedDecoders, isAdmin };
 };

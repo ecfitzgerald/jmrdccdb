@@ -56,7 +56,7 @@
 
 	const activeFilters = $derived(() => {
 		const pills: { label: string; clear: () => void }[] = [];
-		if (manufacturerFilter) pills.push({ label: manufacturerFilter, clear: () => (manufacturerFilter = '') });
+		if (manufacturerFilter) pills.push({ label: `Mfr: ${manufacturerFilter}`, clear: () => (manufacturerFilter = '') });
 		if (scaleFilter) pills.push({ label: `Scale: ${scaleFilter}`, clear: () => (scaleFilter = '') });
 		if (formatFilter) {
 			const fmt = data.formats.find((f) => String(f.id) === formatFilter);
@@ -95,7 +95,7 @@
 		<input
 			id="q"
 			type="search"
-			placeholder="Train name, model number, road name…"
+			placeholder="Train name, model number, road name, manufacturer…"
 			bind:value={q}
 			class="w-full rounded px-3 py-2 text-sm focus:outline-none"
 		/>
@@ -280,6 +280,9 @@
 												{#if fmt.purpose === 'Lights Only' || fmt.purpose === 'Motor & Lights'}
 													<LightsIcon class="w-3 h-3" title="Lights" />
 												{/if}
+												{#if fmt.soundDecoderCount > 0}
+													<SoundIcon class="w-3 h-3" title="Sound" />
+												{/if}
 											</span>
 											{#if fmt.decoderCount > 0}
 												<span class="ml-1 opacity-50">·{fmt.decoderCount}</span>
@@ -298,11 +301,6 @@
 									{/each}
 									{#if train.formats.length === 0}
 										<span class="text-xs italic" style="color: var(--color-dim);">no data</span>
-									{/if}
-									{#if train.formats.some((f) => f.soundDecoderCount > 0)}
-										<span title="Sound decoders available" style="color: var(--color-muted);">
-											<SoundIcon class="inline w-3.5 h-3.5 mb-0.5 ml-1" />
-										</span>
 									{/if}
 								</div>
 							</td>

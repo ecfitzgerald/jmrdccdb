@@ -76,23 +76,6 @@ export const actions: Actions = {
 				formatIds: form.getAll('formatIds'),
 				decoderIds: form.getAll('decoderIds').map(Number).filter(Boolean)
 			};
-		} else if (type === 'add_decoder') {
-			const brandName = form.get('brandName')?.toString() ?? '';
-			const formatId = form.get('formatId')?.toString() ?? '';
-			const model = form.get('model')?.toString() ?? '';
-			const notes = form.get('notes')?.toString() ?? '';
-			const motor = form.get('motor') === 'on';
-			const lights = form.get('lights') === 'on';
-			const soundDecoder = form.get('soundDecoder') === 'on';
-
-			if (!brandName) return fail(400, { error: 'Brand name is required.' });
-			if (!formatId) return fail(400, { error: 'DCC format is required.' });
-			if (!model) return fail(400, { error: 'Model number is required.' });
-			if (brandName.length > 200) return fail(400, { error: 'Brand name too long (max 200).' });
-			if (model.length > 200) return fail(400, { error: 'Model number too long (max 200).' });
-			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
-
-			payload = { brandName, formatId, model, motor, lights, soundDecoder, notes };
 		} else if (type === 'add_compat') {
 			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
 			const notes = form.get('notes')?.toString() ?? '';
@@ -112,6 +95,31 @@ export const actions: Actions = {
 			if (decoderIds.length === 0) {
 				return fail(400, { error: 'Please select at least one confirmed decoder.' });
 			}
+		} else if (type === 'add_decoder') {
+			const brandName = form.get('brandName')?.toString() ?? '';
+			const model = form.get('model')?.toString() ?? '';
+			const formatId = form.get('formatId')?.toString() ?? '';
+			const notes = form.get('notes')?.toString() ?? '';
+			const buyUrl = form.get('buyUrl')?.toString() ?? '';
+
+			if (!brandName || !model || !formatId) {
+				return fail(400, { error: 'Brand, model, and format are required.' });
+			}
+			if (brandName.length > 200) return fail(400, { error: 'Brand name too long (max 200).' });
+			if (model.length > 200) return fail(400, { error: 'Model too long (max 200).' });
+			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
+			if (buyUrl.length > 500) return fail(400, { error: 'Buy URL too long (max 500).' });
+
+			payload = {
+				brandName,
+				model,
+				formatId,
+				motor: form.get('motor') === 'on',
+				lights: form.get('lights') === 'on',
+				sound: form.get('sound') === 'on',
+				notes,
+				buyUrl
+			};
 		} else if (type === 'correction') {
 			const currentValue = form.get('currentValue')?.toString() ?? '';
 			const suggestedValue = form.get('suggestedValue')?.toString() ?? '';
