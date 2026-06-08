@@ -5,11 +5,13 @@
 	const typeLabel: Record<string, string> = {
 		add_train: 'New Train',
 		add_compat: 'Compatibility',
+		add_decoder: 'New Decoder',
 		correction: 'Correction'
 	};
 	const typeBadge: Record<string, string> = {
 		add_train: 'bg-blue-100 text-blue-800',
 		add_compat: 'bg-green-100 text-green-800',
+		add_decoder: 'bg-purple-100 text-purple-800',
 		correction: 'bg-[var(--color-warn-bg)] text-amber-800'
 	};
 </script>
@@ -54,9 +56,7 @@
 					{/if}
 				</div>
 
-				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-gray-700 overflow-x-auto">
-					<pre>{JSON.stringify(JSON.parse(s.payload), null, 2)}</pre>
-				</div>
+				<p class="text-sm text-[var(--color-muted)] mb-3">{s.summary}</p>
 
 				{#if s.submitterNote}
 					<p class="text-sm text-[var(--color-muted)] mb-3 italic">"{s.submitterNote}"</p>

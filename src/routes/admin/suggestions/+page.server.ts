@@ -1,18 +1,48 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { suggestions, trains, trainFormatCompat, trainDecoderCompat, dccFormats, decoders } from '$lib/db/schema';
+import { suggestions, trains, trainFormatCompat, trainDecoderCompat, dccFormats, decoders, decoderBrands } from '$lib/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import { fail } from '@sveltejs/kit';
 
 export const load: PageServerLoad = async ({ url }) => {
 	const status = url.searchParams.get('status') ?? 'pending';
-	const rows = db()
+	const d = db();
+	const rows = d
 		.select()
 		.from(suggestions)
 		.where(eq(suggestions.status, status))
 		.orderBy(desc(suggestions.createdAt))
 		.all();
-	return { suggestions: rows, status };
+
+	// Resolve IDs to human-readable summaries
+	const enriched = rows.map((s) => {
+		const payload = JSON.parse(s.payload);
+		let summary = '';
+
+		if (s.type === 'add_train') {
+			summary = `Add train: ${payload.manufacturer} — ${payload.name} (${payload.modelNumber})`;
+		} else if (s.type === 'add_compat') {
+			const train = d.select().from(trains).where(eq(trains.id, payload.trainId)).get();
+			const fmt = d.select().from(dccFormats).where(eq(dccFormats.id, payload.formatId)).get();
+			const decoderCount = payload.decoderIds?.length ?? 0;
+			const decoderStr = decoderCount === 1 ? '1 decoder' : `${decoderCount} decoders`;
+			summary = `Add compat: ${train?.name ?? `Train #${payload.trainId}`} → ${fmt?.name ?? `Format #${payload.formatId}`} (${decoderStr})`;
+		} else if (s.type === 'add_decoder') {
+			const brand = payload.brandId
+				? d.select().from(decoderBrands).where(eq(decoderBrands.id, payload.brandId)).get()
+				: null;
+			const fmt = d.select().from(dccFormats).where(eq(dccFormats.id, payload.formatId)).get();
+			const brandName = brand?.name ?? payload.newBrandName ?? `Brand #${payload.brandId}`;
+			summary = `Add decoder: ${brandName} ${payload.model} (${fmt?.name ?? `Format #${payload.formatId}`})`;
+		} else if (s.type === 'correction') {
+			const train = d.select().from(trains).where(eq(trains.id, payload.trainId)).get();
+			summary = `Correction: ${train?.name ?? `Train #${payload.trainId}`} — ${payload.field}`;
+		}
+
+		return { ...s, summary };
+	});
+
+	return { suggestions: enriched, status };
 };
 
 export const actions: Actions = {
