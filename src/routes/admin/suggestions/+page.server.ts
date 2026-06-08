@@ -51,7 +51,8 @@ function getSummary(type: string, payload: Record<string, any>): string {
 
 export const load: PageServerLoad = async ({ url }) => {
 	const status = url.searchParams.get('status') ?? 'pending';
-	const rows = db()
+	const d = db();
+	const rows = d
 		.select()
 		.from(suggestions)
 		.where(eq(suggestions.status, status))
