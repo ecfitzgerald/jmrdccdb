@@ -5,9 +5,24 @@ SQLite database for the JMR DCC Compatibility app. Managed by Drizzle ORM — mi
 Seed reference data: `npm run db:seed`  
 Import Kato XLSX: `npx tsx src/lib/db/import-kato-xlsx.ts <path.xlsx>`
 
+## First Setup — Canonical DB
+
+**Do not seed from scratch.** The mayor stewards the canonical dataset. Pull it instead:
+
+```bash
+npm run db:pull-canonical
+```
+
+This fetches the latest dated snapshot from `origin/db-backups` (a dedicated orphan branch) and restores it as your local `dcc.db`. You get the full dataset with operators, lines, and compatibility data — not fake seed data.
+
+- Safe to re-run any time to refresh from the latest canonical state.
+- Pass `--force` to skip the confirmation prompt.
+
+**Data changes go through the suggestion workflow**, not direct DB edits. Submit via `/suggest`; the mayor reviews and approves via `/admin/suggestions`.
+
 ## Backup & Recovery
 
-**The database is authoritative.** Backups protect against disk failure, accidental deletion, or botched migrations. The database **must not be version-controlled** — it's a runtime artifact.
+**The database is authoritative.** Backups protect against disk failure, accidental deletion, or botched migrations. The live `dcc.db` **must not be committed to the main app branches** — it's a runtime artifact. Dated snapshots are version-controlled separately on the `db-backups` orphan branch and pushed automatically by the mayor's daily backup job.
 
 ### Taking a Backup
 

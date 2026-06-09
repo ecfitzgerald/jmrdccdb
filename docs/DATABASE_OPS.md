@@ -5,10 +5,23 @@ This document covers backup, restore, migration safety, and access control for t
 ## Overview
 
 The authoritative database lives at `data/dcc.db` and contains all train, decoder, and compatibility data. It is:
-- **Not version-controlled** (gitignored as a runtime artifact)
+- **Not committed to main app branches** (gitignored as a runtime artifact — live DB only)
+- **Backed up automatically** to the `db-backups` orphan branch on `origin` daily via the mayor's backup job (retain last 14 snapshots)
 - **SQLite3** with Write-Ahead Logging (WAL) enabled
 - **Managed by Drizzle ORM**, with migrations in `drizzle/`
-- **Current size**: ~131 KB (database) + WAL overhead during active writes
+
+## DB Stewardship
+
+The **mayor** is the DB steward. All canonical data changes go through:
+1. User submits a suggestion via `/suggest`
+2. Mayor reviews and approves/rejects via `/admin/suggestions` (runs `start-admin.sh` at `mayor/admin/` in the rig)
+3. Approved changes are applied to the canonical DB (mayor's `dx_engineer` checkout)
+4. Daily backup job captures the updated state and pushes to `origin/db-backups`
+
+**New crew clones** should bootstrap from the canonical snapshot, not seed data:
+```bash
+npm run db:pull-canonical
+```
 
 ## Backup Strategy
 
