@@ -4,15 +4,67 @@ import { suggestions, trains, trainFormatCompat, trainDecoderCompat, dccFormats,
 import { eq, desc, inArray } from 'drizzle-orm';
 import { fail } from '@sveltejs/kit';
 
+function getSummary(type: string, payload: Record<string, any>): string {
+	const d = db();
+
+	if (type === 'add_train') {
+		return `Add train: ${payload.manufacturer} ${payload.name} (${payload.scale})`;
+	}
+
+	if (type === 'add_compat') {
+		const train = d
+			.select({ name: trains.name })
+			.from(trains)
+			.where(eq(trains.id, Number(payload.trainId)))
+			.get();
+		const format = d
+			.select({ name: dccFormats.name })
+			.from(dccFormats)
+			.where(eq(dccFormats.id, Number(payload.formatId)))
+			.get();
+		const trainName = train?.name || `train #${payload.trainId}`;
+		const formatName = format?.name || `format #${payload.formatId}`;
+		const decoderCount = payload.decoderIds?.length || 0;
+		return `Add compat: ${trainName} → ${formatName}${decoderCount > 0 ? ` (${decoderCount} decoder${decoderCount !== 1 ? 's' : ''})` : ''}`;
+	}
+
+	if (type === 'add_decoder') {
+		return `Add decoder: ${payload.model} (${payload.brand})`;
+	}
+
+	if (type === 'update_decoder') {
+		const decoder = d
+			.select({ model: decoders.model })
+			.from(decoders)
+			.where(eq(decoders.id, Number(payload.decoderId)))
+			.get();
+		const name = decoder?.model || `decoder #${payload.decoderId}`;
+		return `Update decoder: ${name}`;
+	}
+
+	if (type === 'correction') {
+		return `Correction: ${payload.description || 'See details'}`;
+	}
+
+	return `Unknown type: ${type}`;
+}
+
 export const load: PageServerLoad = async ({ url }) => {
 	const status = url.searchParams.get('status') ?? 'pending';
-	const rows = db()
+	const d = db();
+	const rows = d
 		.select()
 		.from(suggestions)
 		.where(eq(suggestions.status, status))
 		.orderBy(desc(suggestions.createdAt))
 		.all();
-	return { suggestions: rows, status };
+
+	const enriched = rows.map((row) => ({
+		...row,
+		summary: getSummary(row.type, JSON.parse(row.payload))
+	}));
+
+	return { suggestions: enriched, status };
 };
 
 export const actions: Actions = {

@@ -75,6 +75,25 @@ export const actions: Actions = {
 				formatIds: form.getAll('formatIds'),
 				decoderIds: form.getAll('decoderIds').map(Number).filter(Boolean)
 			};
+		} else if (type === 'add_compat') {
+			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
+			const notes = form.get('notes')?.toString() ?? '';
+
+			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
+
+			payload = {
+				trainId: form.get('trainId'),
+				formatId: form.get('formatId'),
+				purpose: form.get('purpose'),
+				decoderIds,
+				notes
+			};
+			if (!payload.trainId || !payload.formatId) {
+				return fail(400, { error: 'Train and format are required.' });
+			}
+			if (decoderIds.length === 0) {
+				return fail(400, { error: 'Please select at least one confirmed decoder.' });
+			}
 		} else if (type === 'add_decoder') {
 			const brandName = form.get('brandName')?.toString() ?? '';
 			const formatId = form.get('formatId')?.toString() ?? '';
@@ -95,25 +114,6 @@ export const actions: Actions = {
 			if (buyUrl && !/^https?:\/\/.+/.test(buyUrl)) return fail(400, { error: 'Buy URL must start with http:// or https://.' });
 
 			payload = { brandName, formatId, model, motor, lights, soundDecoder, notes, buyUrl: buyUrl || null };
-		} else if (type === 'add_compat') {
-			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
-			const notes = form.get('notes')?.toString() ?? '';
-
-			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
-
-			payload = {
-				trainId: form.get('trainId'),
-				formatId: form.get('formatId'),
-				purpose: form.get('purpose'),
-				decoderIds,
-				notes
-			};
-			if (!payload.trainId || !payload.formatId) {
-				return fail(400, { error: 'Train and format are required.' });
-			}
-			if (decoderIds.length === 0) {
-				return fail(400, { error: 'Please select at least one confirmed decoder.' });
-			}
 		} else if (type === 'correction') {
 			const currentValue = form.get('currentValue')?.toString() ?? '';
 			const suggestedValue = form.get('suggestedValue')?.toString() ?? '';

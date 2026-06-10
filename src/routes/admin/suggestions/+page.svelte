@@ -58,9 +58,7 @@
 					{/if}
 				</div>
 
-				<div class="bg-[var(--color-raised)] rounded p-3 mb-3 font-mono text-xs text-[var(--color-muted)] overflow-x-auto">
-					<pre>{JSON.stringify(JSON.parse(s.payload), null, 2)}</pre>
-				</div>
+				<p class="text-sm font-medium text-[var(--color-text)] mb-3">{s.summary}</p>
 
 				{#if s.submitterNote}
 					<p class="text-sm text-[var(--color-muted)] mb-3 italic">"{s.submitterNote}"</p>
