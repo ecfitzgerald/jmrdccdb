@@ -1,7 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/db';
-import { trains, trainFormatCompat, dccFormats, decoders } from '$lib/db/schema';
-import { eq, sql } from 'drizzle-orm';
+import { trains, trainFormatCompat, dccFormats, decoders, operators, trainDecoderCompat } from '$lib/db/schema';
+import { eq, sql, and } from 'drizzle-orm';
 import { distinctManufacturers, distinctScales } from '$lib/db/queries';
 
 export const load: PageServerLoad = async () => {
@@ -17,12 +17,13 @@ export const load: PageServerLoad = async () => {
 			id: trains.id,
 			manufacturer: trains.manufacturer,
 			scale: trains.scale,
-			roadName: trains.roadName,
+			operatorName: operators.name,
 			modelNumber: trains.modelNumber,
 			name: trains.name,
 			era: trains.era
 		})
 		.from(trains)
+		.leftJoin(operators, eq(trains.operatorId, operators.id))
 		.all();
 
 	const trainIds = allTrains.map((t) => t.id);
@@ -41,7 +42,11 @@ export const load: PageServerLoad = async () => {
 					})
 					.from(trainFormatCompat)
 					.innerJoin(dccFormats, eq(trainFormatCompat.formatId, dccFormats.id))
-					.leftJoin(decoders, eq(decoders.formatId, trainFormatCompat.formatId))
+					.leftJoin(trainDecoderCompat, eq(trainDecoderCompat.trainId, trainFormatCompat.trainId))
+					.leftJoin(decoders, and(
+						eq(decoders.id, trainDecoderCompat.decoderId),
+						eq(decoders.formatId, trainFormatCompat.formatId)
+					))
 					.where(
 						sql`${trainFormatCompat.trainId} in (${sql.join(
 							trainIds.map((id) => sql`${id}`),

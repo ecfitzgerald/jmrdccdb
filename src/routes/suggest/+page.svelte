@@ -151,15 +151,18 @@
 					<label
 						class="block text-xs font-medium mb-1 tracking-widest uppercase"
 						style="color: var(--color-muted);"
-						for="roadName">Road / Operator</label
+						for="operatorId">Operator</label
 					>
-					<input
-						id="roadName"
-						name="roadName"
-						type="text"
-						placeholder="JR East"
+					<select
+						id="operatorId"
+						name="operatorId"
 						class="w-full rounded px-3 py-2 text-sm"
-					/>
+					>
+						<option value="">— None —</option>
+						{#each data.operators as op}
+							<option value={op.id}>{op.name}</option>
+						{/each}
+					</select>
 				</div>
 			</div>
 			<div>

@@ -1,0 +1,6615 @@
+{
+	"trains": [
+		{
+			"id": 1,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Aichi Loop",
+			"modelNumber": "10-1168",
+			"name": "2000 Series",
+			"era": null,
+			"notes": "Blue · Line: Aiken · DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 2,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Aichi Loop",
+			"modelNumber": "10-492",
+			"name": "2000 Series",
+			"era": null,
+			"notes": "Green · Line: Aiken · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 3,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Caltrain",
+			"modelNumber": "176-9003",
+			"name": "F40ph",
+			"era": "1985-",
+			"notes": "Santa Clara · Line: Caltrain · Deisel Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 4,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Caltrain",
+			"modelNumber": "176-9004",
+			"name": "F40ph",
+			"era": "1985-",
+			"notes": "Atherton · Line: Caltrain · Deisel Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 5,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "DB",
+			"modelNumber": "10-1512",
+			"name": "ICE 4",
+			"era": "2008-",
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 6,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Echigo Tokimeki",
+			"modelNumber": "10-1516",
+			"name": "ET127",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 7,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Eizan Electric",
+			"modelNumber": "10-1472",
+			"name": "900 Series",
+			"era": "1997-",
+			"notes": "Line: Maple Orange · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 8,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Eizan Electric",
+			"modelNumber": "10-1471",
+			"name": "900 Series",
+			"era": "1997-",
+			"notes": "Line: Maple Red · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 9,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "GWR",
+			"modelNumber": "10-1671",
+			"name": "Class 800/0",
+			"era": "2017-",
+			"notes": "Line: British Railways · BMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 10,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hakone Tozan",
+			"modelNumber": "10-1514",
+			"name": "Ge4/4 II",
+			"era": null,
+			"notes": null,
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 11,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hankyu",
+			"modelNumber": "10-1278",
+			"name": "9300",
+			"era": null,
+			"notes": "EMU · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 12,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hankyu",
+			"modelNumber": "10-1280",
+			"name": "9300",
+			"era": null,
+			"notes": "EMU · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 13,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hankyu",
+			"modelNumber": "10-050",
+			"name": "6300 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 14,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hankyu",
+			"modelNumber": "10-1243",
+			"name": "6300 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 15,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hankyu",
+			"modelNumber": "10-1244",
+			"name": "6300 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 16,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hankyu",
+			"modelNumber": "10-1436",
+			"name": "6300 Series",
+			"era": null,
+			"notes": "Small windows · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 17,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Hokuetsu Express",
+			"modelNumber": "10-810",
+			"name": "Series 681",
+			"era": null,
+			"notes": "8000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 18,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Ishikawa",
+			"modelNumber": "10-1508",
+			"name": "251 Series",
+			"era": null,
+			"notes": "Ancient Purple · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 19,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Ishikawa",
+			"modelNumber": "10-1509",
+			"name": "251 Series",
+			"era": null,
+			"notes": "Indigo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 20,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JNF",
+			"modelNumber": "3071-9",
+			"name": "ED76",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 21,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JNR",
+			"modelNumber": "10-1149",
+			"name": "181 Series",
+			"era": null,
+			"notes": "100 · Line: Asama · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 22,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "1-301",
+			"name": "EF58",
+			"era": "1946-",
+			"notes": "Big Window · Line: Blue · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 23,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3026",
+			"name": "EF60",
+			"era": null,
+			"notes": "Line: Blue · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 24,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "7010-1",
+			"name": "DD54",
+			"era": null,
+			"notes": "Line: Blue Train · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 25,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1170",
+			"name": "101 Series",
+			"era": "1958-",
+			"notes": "800 · Line: Chou Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 26,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-253",
+			"name": "101 Series",
+			"era": "1958-",
+			"notes": "Line: Chou Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 27,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-886",
+			"name": "101 Series",
+			"era": "1958-",
+			"notes": "Line: Chou Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 28,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3038",
+			"name": "EF58",
+			"era": "1953-",
+			"notes": "Unit 61 · Line: Crimson · Elec Loco · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 29,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1120",
+			"name": "485 Series",
+			"era": null,
+			"notes": "Initial · Line: Hibari · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 30,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1172",
+			"name": "Kumoha 53007 + Kuha 68 400",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 31,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1173",
+			"name": "Kumoha 53008 + Kuha 47009",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 32,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1183",
+			"name": "Kumoha 54 100 + Kuha 68 400",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 33,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1225",
+			"name": "Kumoha 42 (M · T) + Kuhanyuni 56",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 34,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1226",
+			"name": "Kumoha 53 000 + Kuha 47153",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 35,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1288",
+			"name": "Kumoha 52004 + Kumoha 54 100",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 36,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1315",
+			"name": "Kumoha Uni 64 + Kuha 68 400",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 37,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1316",
+			"name": "Kumoha 51 200 + Kuha 47 100",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 38,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1350",
+			"name": "Kumoha 54 0 + Kumoha 50 + Kuhayuni 56",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 39,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1351",
+			"name": "Kumoha 61 + Kuhani 67",
+			"era": null,
+			"notes": "Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 40,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1384",
+			"name": "80 Series",
+			"era": null,
+			"notes": "300 · Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 41,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1385",
+			"name": "80 Series",
+			"era": null,
+			"notes": "300 · Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 42,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3061-2",
+			"name": "EF65",
+			"era": null,
+			"notes": "1000 later · Line: JR · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 43,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1386",
+			"name": "Kiha 91",
+			"era": null,
+			"notes": "Line: KOU · DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 44,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1140",
+			"name": "581 Series",
+			"era": "1967-",
+			"notes": "Line: moonlight · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 45,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3023-4",
+			"name": "EF64",
+			"era": null,
+			"notes": "1031 · Line: Nagaoka · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 46,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3061-3",
+			"name": "EF65",
+			"era": null,
+			"notes": "1118 · Line: Rainbow Coaster · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 47,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-255",
+			"name": "101 Series",
+			"era": "1958-",
+			"notes": "Line: Sobu Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 48,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "1-302",
+			"name": "EF58",
+			"era": "1946-",
+			"notes": "Big Window · Line: Tea · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 49,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3023-3",
+			"name": "EF64",
+			"era": null,
+			"notes": "1001 · Line: Tea · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 50,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3027",
+			"name": "EF60",
+			"era": null,
+			"notes": "Line: Tea · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 51,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1156",
+			"name": "200 Series",
+			"era": null,
+			"notes": "Line: Tohoku/Joetsu · Shinkansen · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 52,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1147",
+			"name": "181 Series",
+			"era": null,
+			"notes": "100 · Line: Toki/Azusa · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 53,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1253",
+			"name": "Kiha 181",
+			"era": null,
+			"notes": "Line: Tsubasa · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 54,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3025-4",
+			"name": "EF60",
+			"era": "1984-",
+			"notes": "Unit 19 · Line: Yasuragi · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 55,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1271",
+			"name": "115 Series",
+			"era": null,
+			"notes": "300 · Line: Yokosuka",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 56,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-195",
+			"name": "113 Series",
+			"era": null,
+			"notes": "Line: Yokosuka · DCC: No",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 57,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-807",
+			"name": "113 Series",
+			"era": null,
+			"notes": "2000 · Line: Yokosuka · EMU · DCC: No",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 58,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "1-202",
+			"name": "D51",
+			"era": null,
+			"notes": "Steam",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 59,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3077-1",
+			"name": "EF10",
+			"era": "1934–1941",
+			"notes": "3 · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 60,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3081",
+			"name": "EF70",
+			"era": "1961-1987",
+			"notes": "1000 · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 61,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3021-4",
+			"name": "EF81",
+			"era": null,
+			"notes": "Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 62,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3023-1",
+			"name": "EF64",
+			"era": null,
+			"notes": "1000 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 63,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3023-6",
+			"name": "EF64",
+			"era": null,
+			"notes": "1032 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 64,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3075-1",
+			"name": "ED75",
+			"era": "1963-",
+			"notes": "1000 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 65,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3024",
+			"name": "EF64",
+			"era": null,
+			"notes": "1000 · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 66,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3025",
+			"name": "EF60",
+			"era": null,
+			"notes": "500 · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 67,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3060-1",
+			"name": "EF65",
+			"era": null,
+			"notes": "500 P Type · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 68,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3060-2",
+			"name": "EF65",
+			"era": null,
+			"notes": "500 F Type · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 69,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3061-1",
+			"name": "EF65",
+			"era": null,
+			"notes": "1000 later · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 70,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "1-703",
+			"name": "DE10",
+			"era": null,
+			"notes": "Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 71,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3012",
+			"name": "ED73",
+			"era": null,
+			"notes": "1000 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 72,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3013-1",
+			"name": "ED76",
+			"era": "1965-",
+			"notes": "0 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 73,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3062-1",
+			"name": "EF15",
+			"era": null,
+			"notes": "Standard · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 74,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3062-2",
+			"name": "EF15",
+			"era": null,
+			"notes": "Final · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 75,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3063",
+			"name": "EF16",
+			"era": null,
+			"notes": "Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 76,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3066-6",
+			"name": "EF81",
+			"era": null,
+			"notes": "Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 77,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3068",
+			"name": "ED16",
+			"era": "1931-1983",
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 78,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3073",
+			"name": "EF30",
+			"era": "1960-",
+			"notes": "Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 79,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "7010-2",
+			"name": "DD54",
+			"era": null,
+			"notes": "Medium · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 80,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "7010-3",
+			"name": "DD54",
+			"era": null,
+			"notes": "Early · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 81,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "7010-4",
+			"name": "DD54",
+			"era": null,
+			"notes": "Initial · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 82,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "7011-1",
+			"name": "DE10",
+			"era": null,
+			"notes": "Cold · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 83,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "7011-2",
+			"name": "DE10",
+			"era": null,
+			"notes": "Warm · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 84,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3069",
+			"name": "EF57",
+			"era": "1940-",
+			"notes": "Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 85,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3069-1",
+			"name": "EF57",
+			"era": "1940-",
+			"notes": "1 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 86,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1128",
+			"name": "485 Series",
+			"era": "1968-",
+			"notes": "300 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 87,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1497",
+			"name": "KiHa 81",
+			"era": "1960-",
+			"notes": "DMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 88,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-229",
+			"name": "KiHa 82",
+			"era": "1961-",
+			"notes": "DMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 89,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-239",
+			"name": "489 Series",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 90,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-241",
+			"name": "485 Series",
+			"era": "1968-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 91,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-550",
+			"name": "KiHa 82",
+			"era": "1961-",
+			"notes": "DMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 92,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-818",
+			"name": "489 Series",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 93,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-820",
+			"name": "KiHa 81",
+			"era": "1960-",
+			"notes": "DMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 94,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-849",
+			"name": "KiHa 81",
+			"era": "1960-",
+			"notes": "DMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 95,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1117",
+			"name": "Kiha 181",
+			"era": null,
+			"notes": "DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 96,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1154",
+			"name": "457 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 97,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1182",
+			"name": "Kumoni 83 100 (T) + Kumoni 13 (M) Iida Line Luggage Train",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 98,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1237",
+			"name": "583 Series",
+			"era": "1968-",
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 99,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1299",
+			"name": "155 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 100,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1354",
+			"name": "581 Series",
+			"era": "1967-",
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 101,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "10-1430",
+			"name": "EF63",
+			"era": null,
+			"notes": "2nd and 3rd order · Elec Loco · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 102,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "3047-2",
+			"name": "EF66",
+			"era": null,
+			"notes": "later · Elec Loco · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 103,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JNR",
+			"modelNumber": "6082",
+			"name": "Kiha 180",
+			"era": null,
+			"notes": "DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 104,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-1216",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "1100 · Line: Central · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 105,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-1217",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "1600 · Line: Central · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 106,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-1218",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "1300 · Line: Central · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 107,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-589",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "8500 · Line: Central · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 108,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-586",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "5000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 109,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-587",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "2500 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 110,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-588",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "2300 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 111,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-1445",
+			"name": "Kumoha 53007",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 112,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Central",
+			"modelNumber": "10-1446",
+			"name": "Kumoha 64000",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 113,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1389",
+			"name": "165 Series",
+			"era": null,
+			"notes": "Line: Alps · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 114,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1367",
+			"name": "HB-E300",
+			"era": null,
+			"notes": "Line: Aoike · DMU · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 115,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1433",
+			"name": "189 Series",
+			"era": null,
+			"notes": "Line: Asama · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 116,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1369",
+			"name": "HB-E300",
+			"era": null,
+			"notes": "Line: Asunaro · DMU · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 117,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1274",
+			"name": "E257",
+			"era": null,
+			"notes": "Line: Azusa/Kaiji · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 118,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1285",
+			"name": "255 Series",
+			"era": "1993-",
+			"notes": "Line: Boso View Express · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 119,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1463",
+			"name": "HB-E300",
+			"era": null,
+			"notes": "Line: Buna · DMU · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 120,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "3065-2",
+			"name": "EF510",
+			"era": "2010-2012",
+			"notes": "500 · Line: Cassiopeia · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 121,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1191",
+			"name": "103 Series",
+			"era": null,
+			"notes": "Line: Center · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 122,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-541",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "Line: Chuo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 123,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1461",
+			"name": "E231",
+			"era": null,
+			"notes": "500 · Line: Chuo Sobu · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 124,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1520",
+			"name": "E231",
+			"era": null,
+			"notes": "Line: Chuo Sobu · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 125,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1368",
+			"name": "HB-E300",
+			"era": null,
+			"notes": "Line: Furusato · DMU · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 126,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1494",
+			"name": "E231",
+			"era": null,
+			"notes": "3000 · Line: Hachimaku Kawagoe · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 127,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "3065-3",
+			"name": "EF510",
+			"era": "2010-2012",
+			"notes": "500 · Line: Hokutosei · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 128,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1334",
+			"name": "165 Series",
+			"era": null,
+			"notes": "800 · Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 129,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1290",
+			"name": "E531",
+			"era": "2005-",
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 130,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1293",
+			"name": "E531",
+			"era": "2005-",
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 131,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1337",
+			"name": "E231",
+			"era": null,
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 132,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1339",
+			"name": "E231",
+			"era": null,
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 133,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-281",
+			"name": "E531",
+			"era": "2005-",
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 134,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-551",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 135,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-553",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "Line: Joban Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 136,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1221",
+			"name": "E7",
+			"era": null,
+			"notes": "Line: Kagayaki · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 137,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1264",
+			"name": "E7",
+			"era": null,
+			"notes": "Line: Kagayaki · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 138,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1159",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "1000 · Line: Keihin Tohoku · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 139,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-543",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "1000 · Line: Keihin Tohoku · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 140,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-267",
+			"name": "209 Series",
+			"era": "1998-",
+			"notes": "500 · Line: Keihin-Tohoku Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 141,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1417",
+			"name": "209 Series",
+			"era": null,
+			"notes": "500 · Line: Musashino · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 142,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1498",
+			"name": "205",
+			"era": null,
+			"notes": "5000 · Line: Musushina · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 143,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1428",
+			"name": "115 Series",
+			"era": null,
+			"notes": "1000 · Line: Nagano · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 144,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1197",
+			"name": "211 Series",
+			"era": null,
+			"notes": "3000 · Line: Nagano · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 145,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1212",
+			"name": "211 Series",
+			"era": null,
+			"notes": "3000 · Line: Nagano · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 146,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1425",
+			"name": "211 Series",
+			"era": null,
+			"notes": "2000 · Line: Nagano · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 147,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1340",
+			"name": "E233",
+			"era": null,
+			"notes": "8000 · Line: Nanbu · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 148,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1341",
+			"name": "205 Series",
+			"era": null,
+			"notes": "Line: Nanbu · EMU · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 149,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-447",
+			"name": "205 Series",
+			"era": null,
+			"notes": "Line: Nanbu · EMU · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 150,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-490",
+			"name": "205 Series",
+			"era": null,
+			"notes": "1200 · Line: Nanbu · EMU · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 151,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-493",
+			"name": "205 Series",
+			"era": null,
+			"notes": "1200 1 panto · Line: Nanbu · EMU · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 152,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-821",
+			"name": "E259",
+			"era": "2009-",
+			"notes": "Line: Narita Express · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 153,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-847",
+			"name": "E259",
+			"era": "2009-",
+			"notes": "Line: Narita Express · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 154,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-404",
+			"name": "253 Series",
+			"era": "1991-",
+			"notes": "Line: Narita Express · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 155,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1488",
+			"name": "185 Series",
+			"era": null,
+			"notes": "Line: Sado · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 156,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1195",
+			"name": "E233",
+			"era": null,
+			"notes": "7000 · Line: Saikyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 157,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1408",
+			"name": "115 Series",
+			"era": null,
+			"notes": "300 · Line: Shonan · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 158,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1410",
+			"name": "115 Series",
+			"era": null,
+			"notes": "300 · Line: Shonan · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 159,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1193",
+			"name": "103 Series",
+			"era": null,
+			"notes": "Line: Sobu · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 160,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1415",
+			"name": "209 Series",
+			"era": "1998-",
+			"notes": "500 + PS28? · Line: Sobu-Senryu · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 161,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-296",
+			"name": "209 Series",
+			"era": "1998-",
+			"notes": "500 · Line: Sobu-Senryu · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 162,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1399",
+			"name": "E231",
+			"era": null,
+			"notes": "500 · Line: Sumiko Gurushi · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 163,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1342",
+			"name": "E351",
+			"era": null,
+			"notes": "Line: Super Azusa · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 164,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1110",
+			"name": "E657",
+			"era": null,
+			"notes": "Line: Super Hitachi · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 165,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1411",
+			"name": "251 Series",
+			"era": null,
+			"notes": "Line: Super View Odoriko · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 166,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1150",
+			"name": "E233",
+			"era": null,
+			"notes": "3000 · Line: Takasaki/Utsunomiya · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 167,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1114",
+			"name": "E233",
+			"era": null,
+			"notes": "3000 · Line: Tokaido · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 168,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1116",
+			"name": "E233",
+			"era": null,
+			"notes": "3000 · Line: Tokaido · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 169,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1267",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "3000 · Line: Tokaido Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 170,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1270",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "3000 · Line: Tokaido Ueno Tokyo · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 171,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-520",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "Line: Tokaido-Shonan Shinjuku · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 172,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-522",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "Line: Tokaido-Shonan Shinjuku · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 173,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-594",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "Line: Tokaido-Shonan Shinjuku · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 174,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1255",
+			"name": "E3",
+			"era": null,
+			"notes": "2000 · Line: Tsubasa · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 175,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1289",
+			"name": "E3",
+			"era": null,
+			"notes": "2000 · Line: Tsubasa · Shinkansen · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 176,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1247",
+			"name": "101 Series",
+			"era": null,
+			"notes": "Line: Tsurumi · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 177,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1227",
+			"name": "E231",
+			"era": null,
+			"notes": "500 Rilakkuma · Line: Yamanote · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 178,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1468",
+			"name": "E235",
+			"era": null,
+			"notes": "Line: Yamanote · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 179,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-934",
+			"name": "E231",
+			"era": null,
+			"notes": "500 Rilakkuma · Line: Yamanote · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 180,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1189",
+			"name": "103 Series",
+			"era": null,
+			"notes": "Line: Yamanote · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 181,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1232",
+			"name": "103 Series",
+			"era": null,
+			"notes": "ATC · Line: Yamanote · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 182,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-261",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "500 · Line: Yamanoto Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 183,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-578",
+			"name": "E231",
+			"era": "2002-",
+			"notes": "500 · Line: Yamanoto Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 184,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-890",
+			"name": "E231",
+			"era": null,
+			"notes": "500 · Line: Yamanoto Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 185,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1224",
+			"name": "E233",
+			"era": null,
+			"notes": "8000 · Line: Yokohama · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 186,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1444",
+			"name": "E233",
+			"era": "2014-",
+			"notes": "6000 · Line: Yokohama · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 187,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1118",
+			"name": "115 Series",
+			"era": null,
+			"notes": "800 · Line: Yokosuka · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 188,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-497",
+			"name": "E217",
+			"era": "1994-",
+			"notes": "Line: Yokosuka & Sobu Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 189,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-843",
+			"name": "E217",
+			"era": "1994-",
+			"notes": "Line: Yokosuka & Sobu Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 190,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-846",
+			"name": "E217",
+			"era": "1994-",
+			"notes": "Line: Yokosuka & Sobu Line · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 191,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1123",
+			"name": "E655",
+			"era": null,
+			"notes": "Nagomi · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 192,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1136",
+			"name": "E6",
+			"era": "2013-",
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 193,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1311",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "T · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 194,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1397",
+			"name": "E657",
+			"era": "2011-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 195,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1427",
+			"name": "E4",
+			"era": "1994-",
+			"notes": "Max time · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 196,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1447",
+			"name": "E001",
+			"era": null,
+			"notes": "Shika-shima · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 197,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1473",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "H · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 198,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1566",
+			"name": "E6",
+			"era": null,
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 199,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1644",
+			"name": "E261",
+			"era": "2021-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 200,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1661",
+			"name": "E261",
+			"era": "2021-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 201,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-221",
+			"name": "E3",
+			"era": null,
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 202,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-222",
+			"name": "E3",
+			"era": null,
+			"notes": "1000 · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 203,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-283",
+			"name": "E531",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 204,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-292",
+			"name": "E4",
+			"era": "1994-",
+			"notes": "Max · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 205,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-525",
+			"name": "E531",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 206,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-570",
+			"name": "E531",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 207,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-582",
+			"name": "E127",
+			"era": "1998-",
+			"notes": "100 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 208,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-593",
+			"name": "E127",
+			"era": "1998-",
+			"notes": "100 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 209,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-801",
+			"name": "E233",
+			"era": "2006-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 210,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-857",
+			"name": "E5",
+			"era": "2011-",
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 211,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-278",
+			"name": "E2",
+			"era": "2002-",
+			"notes": "1000 · Shinkansen · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 212,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-377",
+			"name": "E2",
+			"era": "2002-",
+			"notes": "Shinkansen · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 213,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-868",
+			"name": "E2",
+			"era": "2002-",
+			"notes": "Shinkansen · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 214,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1165",
+			"name": "Kiha 111+112",
+			"era": null,
+			"notes": "DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 215,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1169",
+			"name": "Kiha 110",
+			"era": null,
+			"notes": "100 · DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 216,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1240",
+			"name": "185 Series",
+			"era": null,
+			"notes": "AB · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 217,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1242",
+			"name": "185 Series",
+			"era": null,
+			"notes": "C1 · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 218,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1282",
+			"name": "E257",
+			"era": null,
+			"notes": "500 · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 219,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1442",
+			"name": "185 Series",
+			"era": null,
+			"notes": "200 · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 220,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1443",
+			"name": "185 Series",
+			"era": null,
+			"notes": "0 · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 221,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1501",
+			"name": "189 Series",
+			"era": null,
+			"notes": "Small Window Asama · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 222,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-1576",
+			"name": "251 Series",
+			"era": null,
+			"notes": "original color · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 223,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-347",
+			"name": "Kiha 111+112",
+			"era": null,
+			"notes": "DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 224,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "10-936",
+			"name": "Kiha 111+112+110",
+			"era": null,
+			"notes": "Tohoku Emotion · DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 225,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "6043",
+			"name": "Kiha 110-100",
+			"era": null,
+			"notes": "DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 226,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR East",
+			"modelNumber": "6043-1",
+			"name": "Kiha 110-100",
+			"era": null,
+			"notes": "DMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 227,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hakkaido",
+			"modelNumber": "10-476",
+			"name": "KiHa 283",
+			"era": "1997-",
+			"notes": "Line: Super-Ozora · DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 228,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hokkaido",
+			"modelNumber": "10-002",
+			"name": "H5",
+			"era": "2016-",
+			"notes": "Starter set · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 229,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hokkaido",
+			"modelNumber": "10-1374",
+			"name": "H5",
+			"era": "2016-",
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 230,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hokkaido",
+			"modelNumber": "10-498",
+			"name": "731 Series",
+			"era": "1997-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 231,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hokkaido",
+			"modelNumber": "10-499",
+			"name": "KiHa 201",
+			"era": "1997-",
+			"notes": "DMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 232,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hokkaido",
+			"modelNumber": "10-1327",
+			"name": "781 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 233,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Hokkaido",
+			"modelNumber": "10-1328",
+			"name": "711 Series",
+			"era": null,
+			"notes": "0 · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 234,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-1394",
+			"name": "885 Series",
+			"era": null,
+			"notes": "Line: Around Kyushu · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 235,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-246",
+			"name": "885 Series",
+			"era": null,
+			"notes": "Line: Around Kyushu · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 236,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-814",
+			"name": "813 Series",
+			"era": null,
+			"notes": "200 · Line: Fukuhoku Yutaka · EMU · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 237,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-410",
+			"name": "885 Series",
+			"era": null,
+			"notes": "Line: Kamome · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 238,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-813",
+			"name": "813 Series",
+			"era": null,
+			"notes": "200 · Line: Miami Fukuoka · EMU · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 239,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-1519",
+			"name": "DF200",
+			"era": "2013-",
+			"notes": "7000 · Line: Seven Stars · Deisel Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 240,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-1475",
+			"name": "883 Series",
+			"era": "1995-",
+			"notes": "Line: Sonic · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 241,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-288",
+			"name": "883 Series",
+			"era": "1995-",
+			"notes": "Line: Sonic · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 242,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-439",
+			"name": "883 Series",
+			"era": "1995-",
+			"notes": "Line: Sonic · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 243,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-485",
+			"name": "883 Series",
+			"era": "1995-",
+			"notes": "Line: Sonic · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 244,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-286",
+			"name": "885 Series",
+			"era": null,
+			"notes": "Line: White Sonic · EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 245,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "3013-2",
+			"name": "ED76",
+			"era": null,
+			"notes": "0 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 246,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-237",
+			"name": "787 Series",
+			"era": null,
+			"notes": "EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 247,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-320",
+			"name": "787 Series",
+			"era": null,
+			"notes": "EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 248,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Kyushu",
+			"modelNumber": "10-590",
+			"name": "787 Series",
+			"era": null,
+			"notes": "EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 249,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-896",
+			"name": "923",
+			"era": null,
+			"notes": "3000 · Line: Dr Yellow · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 250,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1287",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "1700 · Line: Iida · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 251,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-007",
+			"name": "N700",
+			"era": "2007-",
+			"notes": "Starter Set · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 252,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-019",
+			"name": "N700",
+			"era": "2012-",
+			"notes": "1000 or A Starter Set · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 253,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1174",
+			"name": "N700",
+			"era": "2012-",
+			"notes": "1000 or A · Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 254,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1378",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "3000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 255,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1382",
+			"name": "313 Series",
+			"era": "1999-",
+			"notes": "0 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 256,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-547",
+			"name": "N700",
+			"era": "2007-",
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 257,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1333",
+			"name": "285 Series",
+			"era": "1998-",
+			"notes": "3000 · EMU · DCC: No",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 258,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1371",
+			"name": "KiHa 25",
+			"era": "2010-",
+			"notes": "1000 · DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 259,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR Tokai",
+			"modelNumber": "10-1404",
+			"name": "KiHa 85",
+			"era": "1986-",
+			"notes": "DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 260,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1202",
+			"name": "489 Series",
+			"era": null,
+			"notes": "Line: Hakusan · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 261,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1395",
+			"name": "521 Series",
+			"era": null,
+			"notes": "Line: Hokuriku · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 262,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1209",
+			"name": "475 Series",
+			"era": null,
+			"notes": "Line: Hokuriku · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 263,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-921",
+			"name": "223 Series",
+			"era": "2006-",
+			"notes": "2500 · Line: Kansai Kishu Rd · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 264,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-926",
+			"name": "225 Series",
+			"era": "2010-",
+			"notes": "5000 · Line: Kansai Kishu Rd · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 265,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-945",
+			"name": "225 Series",
+			"era": "2010-",
+			"notes": "5100 · Line: Kansai Kishu Rd · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 266,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1107",
+			"name": "287 Series",
+			"era": null,
+			"notes": "Line: Konomori · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 267,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1179",
+			"name": "287 Series",
+			"era": null,
+			"notes": "Line: Kuroshio · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 268,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1363",
+			"name": "189 Series",
+			"era": null,
+			"notes": "Line: Kuroshio · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 269,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1112",
+			"name": "381 Series",
+			"era": null,
+			"notes": "Line: Kurushio · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 270,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1121",
+			"name": "321 Series",
+			"era": null,
+			"notes": "Line: Kyoto Kobe · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 271,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1465",
+			"name": "323 Series",
+			"era": "2016-",
+			"notes": "Line: Osaka Ring · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 272,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1506",
+			"name": "287 Series",
+			"era": null,
+			"notes": "Line: Panda Kuroshio Smile Adventure · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 273,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1201",
+			"name": "225 Series",
+			"era": null,
+			"notes": "6000 · Line: Tamba · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 274,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JR West",
+			"modelNumber": "10-1451",
+			"name": "381 Series",
+			"era": null,
+			"notes": "Line: Yuttari Yakumo · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 275,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "2016-8",
+			"name": "D51",
+			"era": null,
+			"notes": "200 · Steam · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 276,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1205",
+			"name": "223 Series",
+			"era": null,
+			"notes": "6000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 277,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1262",
+			"name": "W7",
+			"era": null,
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 278,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1391",
+			"name": "683 Series",
+			"era": "2001-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 279,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1439",
+			"name": "225 Series",
+			"era": "2010-",
+			"notes": "100 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 280,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1570",
+			"name": "KiHa87",
+			"era": null,
+			"notes": "Twilight Express Mizukaze · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 281,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-287",
+			"name": "321 Series",
+			"era": "2005-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 282,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-298",
+			"name": "683 Series",
+			"era": "2001-",
+			"notes": "2000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 283,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-388",
+			"name": "223 Series",
+			"era": null,
+			"notes": "1000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 284,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-536",
+			"name": "223 Series",
+			"era": "1999-",
+			"notes": "2000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 285,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-537",
+			"name": "223 Series",
+			"era": "1999-",
+			"notes": "2000 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 286,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-555",
+			"name": "683 Series",
+			"era": "2001-",
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 287,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-871",
+			"name": "225 Series",
+			"era": "2010-",
+			"notes": "0 · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 288,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1248",
+			"name": "381 Series",
+			"era": null,
+			"notes": "Panorama Shinano · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 289,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1313",
+			"name": "681 Series",
+			"era": null,
+			"notes": "Shirasagi · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 290,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1332",
+			"name": "285 Series",
+			"era": "1998-",
+			"notes": "0 · EMU · DCC: No",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 291,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1499",
+			"name": "D51",
+			"era": "2017-",
+			"notes": "200 Yamaguchi · Steam · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 292,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-385",
+			"name": "281 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 293,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-510",
+			"name": "500 Series",
+			"era": null,
+			"notes": "Shinkansen · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 294,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JR West",
+			"modelNumber": "10-1491",
+			"name": "221 Series",
+			"era": null,
+			"notes": "Renewal · Line: Yamoto Expressway · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 295,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "JRF",
+			"modelNumber": "3065-4",
+			"name": "EF510",
+			"era": null,
+			"notes": "500 · Line: Blue · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 296,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "1-705",
+			"name": "DE10",
+			"era": null,
+			"notes": "Line: JRF · Deisel Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 297,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3024-1",
+			"name": "EF64",
+			"era": null,
+			"notes": "1000 · Line: New Color · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 298,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3036-1",
+			"name": "EF200",
+			"era": "2005-",
+			"notes": "Line: New Paint · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 299,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3051-1",
+			"name": "EF510",
+			"era": "2002-",
+			"notes": "1 · Line: Red · Elec Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 300,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3059",
+			"name": "EF510",
+			"era": "2002-",
+			"notes": "0 · Line: Red Thunder · Elec Loco · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 301,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3065-5",
+			"name": "EF510",
+			"era": null,
+			"notes": "500 · Line: Silver · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 302,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "10-1418",
+			"name": "M250",
+			"era": null,
+			"notes": "EMU · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 303,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3034-3",
+			"name": "EF210",
+			"era": null,
+			"notes": "100 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 304,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3034-4",
+			"name": "EF210",
+			"era": null,
+			"notes": "100 · Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 305,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "3036",
+			"name": "EF200",
+			"era": "1992-",
+			"notes": "Elec Loco · DCC: Solder-LEDs",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 306,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "7007-3",
+			"name": "DF200",
+			"era": "1994-",
+			"notes": "0 · Diesel Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 307,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "7007-4",
+			"name": "DF200",
+			"era": "1994-",
+			"notes": "50 · Deisel Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 308,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "JRF",
+			"modelNumber": "1-310",
+			"name": "EF510",
+			"era": null,
+			"notes": "0 · Elec Loco · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 309,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Kashima",
+			"modelNumber": "10-1228",
+			"name": "6000 Series",
+			"era": null,
+			"notes": "DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 310,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Kashima",
+			"modelNumber": "10-1229",
+			"name": "6000 Series",
+			"era": null,
+			"notes": "new paint · DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 311,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Kashima",
+			"modelNumber": "10-1281",
+			"name": "6000 Series",
+			"era": null,
+			"notes": "GuP · DMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 312,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Keikyu",
+			"modelNumber": "10-1307",
+			"name": "2100 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 313,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Keikyu",
+			"modelNumber": "10-1309",
+			"name": "2100 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 314,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Keikyu",
+			"modelNumber": "10-1310",
+			"name": "2100 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 315,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Kinki Nippon",
+			"modelNumber": "10-295",
+			"name": "10100",
+			"era": "1959-",
+			"notes": "Car A & B? · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 316,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Kinki Nippon",
+			"modelNumber": "10-533",
+			"name": "10100",
+			"era": "1959-",
+			"notes": "Car C · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 317,
+			"manufacturer": "Kato",
+			"scale": "HO",
+			"roadName": "Kinki Nippon",
+			"modelNumber": "10-591",
+			"name": "10100",
+			"era": "1959-",
+			"notes": "Car A · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 318,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "LNER",
+			"modelNumber": "10-1674",
+			"name": "Class 800/2",
+			"era": "2017-",
+			"notes": "Azuma · BMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 319,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Odakyu",
+			"modelNumber": "10-1181",
+			"name": "Romance Car",
+			"era": null,
+			"notes": "3100 no AC · EMU · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 320,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Odakyu",
+			"modelNumber": "10-1284",
+			"name": "Romance Car",
+			"era": null,
+			"notes": "3100 AC · EMU · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 321,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "PRR",
+			"modelNumber": "137-2006",
+			"name": "GG1",
+			"era": "1934-1943",
+			"notes": "PRR · Line: North Eastern · Elec Loco · DCC: With Mods",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 322,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "RhB",
+			"modelNumber": "10-1145",
+			"name": "Ge4/4",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 323,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "RhB",
+			"modelNumber": "10-1219",
+			"name": "Ge4/4",
+			"era": null,
+			"notes": "UNESCO World Heritage · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 324,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "RhB",
+			"modelNumber": "10-1273",
+			"name": "ABe 8/12",
+			"era": null,
+			"notes": "Allegra · Elec Loco · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 325,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "RhB",
+			"modelNumber": "10-1318",
+			"name": "ABe 8/12",
+			"era": null,
+			"notes": "Bernina Express · Elec Loco · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 326,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1400",
+			"name": "40000 Series",
+			"era": "2017-",
+			"notes": "DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 327,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1401",
+			"name": "40000",
+			"era": null,
+			"notes": "EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 328,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1403",
+			"name": "40000 Series",
+			"era": "2017-",
+			"notes": "DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 329,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1101",
+			"name": "101 Series",
+			"era": null,
+			"notes": "Initial cooling · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 330,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1103",
+			"name": "101 Series",
+			"era": null,
+			"notes": "Red · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 331,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1185",
+			"name": "101 Series",
+			"era": null,
+			"notes": "New coating · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 332,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1207",
+			"name": "5000 Series",
+			"era": null,
+			"notes": "Red Arrow · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 333,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1208",
+			"name": "101 Series",
+			"era": null,
+			"notes": "Initial · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 334,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1251",
+			"name": "101 Series",
+			"era": null,
+			"notes": "Distributed Cooling · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 335,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1323",
+			"name": "5000 Series",
+			"era": null,
+			"notes": "Red Arrow · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 336,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-1356",
+			"name": "701 Series",
+			"era": null,
+			"notes": "non cooled · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 337,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-457",
+			"name": "101 Series",
+			"era": null,
+			"notes": "New coating · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 338,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Seibu",
+			"modelNumber": "10-460",
+			"name": "301 Series",
+			"era": null,
+			"notes": "Old paint · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 339,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "SNCF/SBB",
+			"modelNumber": "10-1325",
+			"name": "TGV",
+			"era": null,
+			"notes": "Lyria · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 340,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "SNFC",
+			"modelNumber": "10-1431",
+			"name": "TGV",
+			"era": null,
+			"notes": "Reseau · Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 341,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Taiwan",
+			"modelNumber": "10-1162",
+			"name": "700T",
+			"era": null,
+			"notes": "Shinkansen",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 342,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-1143",
+			"name": "Series 6000",
+			"era": null,
+			"notes": "Line: Chiyoda",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 343,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-877",
+			"name": "Series 16000",
+			"era": null,
+			"notes": "Line: Chiyoda · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 344,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-864",
+			"name": "Series 01",
+			"era": null,
+			"notes": "Line: Ginza · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 345,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-1109",
+			"name": "Series 500",
+			"era": null,
+			"notes": "300 · Line: Marunouchi · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 346,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-1126",
+			"name": "Series 02",
+			"era": null,
+			"notes": "Line: Marunouchi · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 347,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-1134",
+			"name": "Series 500",
+			"era": null,
+			"notes": "Line: Marunouchi · DCC: Solder-Motor",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 348,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-1249",
+			"name": "Series 02",
+			"era": null,
+			"notes": "Line: Marunouchi · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 349,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-1259",
+			"name": "Series 10000",
+			"era": null,
+			"notes": "Line: Yurakucho/Fukutoshin",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 350,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyo Metro",
+			"modelNumber": "10-866",
+			"name": "Series 10000",
+			"era": null,
+			"notes": "Line: Yurakucho/Fukutoshin",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 351,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu",
+			"modelNumber": "10-1457",
+			"name": "5000 Series",
+			"era": null,
+			"notes": "Line: Denen Toshi · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 352,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu",
+			"modelNumber": "10-1456",
+			"name": "5000 Series",
+			"era": null,
+			"notes": "Blue Frog · Line: Toyoko · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 353,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu",
+			"modelNumber": "10-1294",
+			"name": "5050-4000",
+			"era": null,
+			"notes": "Shibuya Hikarie · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 354,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu",
+			"modelNumber": "10-1305",
+			"name": "7000 Series",
+			"era": null,
+			"notes": "EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 355,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu Electric",
+			"modelNumber": "10-1246",
+			"name": "5050 Series",
+			"era": "2011-",
+			"notes": "4000",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 356,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu Electric",
+			"modelNumber": "10-1256",
+			"name": "5050 Series",
+			"era": "2011-",
+			"notes": "4000",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 357,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Tokyu Electric",
+			"modelNumber": "10-1424",
+			"name": "5050 Series",
+			"era": "2011-",
+			"notes": "4000",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 358,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Toyama",
+			"modelNumber": "10-1437",
+			"name": "521 Series",
+			"era": null,
+			"notes": "Line: Ainokaze · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 359,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": "Yokohama High Speed",
+			"modelNumber": "10-1459",
+			"name": "Y500",
+			"era": "2004-",
+			"notes": "EMU · DCC: Possibly",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 360,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1335",
+			"name": "165 Series",
+			"era": null,
+			"notes": "800 Ina · Line: Iida · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 361,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-289",
+			"name": "101 Series",
+			"era": "1958-",
+			"notes": "Line: Kansai · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 362,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-449",
+			"name": "165 Seriee",
+			"era": null,
+			"notes": "Line: Moonlight Brown · EMU · DCC: No",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 363,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1153",
+			"name": "115 Series",
+			"era": null,
+			"notes": "1000 · Line: Nagano · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 364,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1345",
+			"name": "Kumoha 11",
+			"era": null,
+			"notes": "200 · Line: Nambu · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 365,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1297",
+			"name": "TGV",
+			"era": null,
+			"notes": "Eurostar · Line: New Color · EMU · DCC: With Mods",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 366,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1346",
+			"name": "Kumoha 11",
+			"era": null,
+			"notes": "400 · Line: Tsurumi · EMU · DCC: Unknown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 367,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1324",
+			"name": "TGV",
+			"era": null,
+			"notes": "Duplex · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 368,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-916",
+			"name": "TGV",
+			"era": null,
+			"notes": "Duplex · EMU",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 369,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "2016-1",
+			"name": "D51 -498",
+			"era": null,
+			"notes": "Orient Express · Steam · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 370,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "2017-3",
+			"name": "C62",
+			"era": null,
+			"notes": "DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 371,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1127",
+			"name": "DD16",
+			"era": null,
+			"notes": "Deisel Loco · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 372,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "7008-C",
+			"name": "DD51",
+			"era": null,
+			"notes": "1034 · Deisel Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 373,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1295",
+			"name": "TGV",
+			"era": null,
+			"notes": "Eurostar · EMU · DCC: With Mods",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 374,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3061-4",
+			"name": "EF65-2000",
+			"era": null,
+			"notes": null,
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 375,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3064-1",
+			"name": "EDF80",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 376,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3076-1",
+			"name": "ED79",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 377,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3080-1",
+			"name": "ED78",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 378,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3082",
+			"name": "ED70",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 379,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "126-0023",
+			"name": "GS4",
+			"era": null,
+			"notes": "Morning Daylight",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 380,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-034",
+			"name": "End cars",
+			"era": null,
+			"notes": "Brown",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 381,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-034-1",
+			"name": "End cars",
+			"era": null,
+			"notes": "Blue",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 382,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "5134-1",
+			"name": "42 Series",
+			"era": null,
+			"notes": "Old Time Passenger Car",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 383,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "5257",
+			"name": "32 Series",
+			"era": null,
+			"notes": "Old Time Passenger Car",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 384,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "5269",
+			"name": "61 Series",
+			"era": null,
+			"notes": "Old Time Passenger Car",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 385,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3070-1",
+			"name": "ED56",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 386,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "3075-3",
+			"name": "ED75-700",
+			"era": null,
+			"notes": "Elec Loco",
+			"createdAt": "2026-06-06 12:22:05"
+		},
+		{
+			"id": 387,
+			"manufacturer": "Kato",
+			"scale": "N",
+			"roadName": null,
+			"modelNumber": "10-1132",
+			"name": "Series 0",
+			"era": null,
+			"notes": "2000 · Shinkansen · DCC: Solder-All",
+			"createdAt": "2026-06-06 12:22:05"
+		}
+	],
+	"trainFormatCompat": [
+		{
+			"id": 1,
+			"trainId": 5,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 2,
+			"trainId": 5,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 3,
+			"trainId": 6,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 4,
+			"trainId": 6,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 5,
+			"trainId": 9,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 6,
+			"trainId": 9,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 7,
+			"trainId": 11,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 8,
+			"trainId": 12,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 9,
+			"trainId": 17,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 10,
+			"trainId": 17,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 11,
+			"trainId": 18,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 12,
+			"trainId": 18,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 13,
+			"trainId": 19,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 14,
+			"trainId": 19,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 15,
+			"trainId": 21,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 16,
+			"trainId": 21,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 17,
+			"trainId": 25,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 18,
+			"trainId": 25,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 19,
+			"trainId": 26,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 20,
+			"trainId": 26,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 21,
+			"trainId": 27,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 22,
+			"trainId": 27,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 23,
+			"trainId": 29,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 24,
+			"trainId": 29,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 25,
+			"trainId": 47,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 26,
+			"trainId": 47,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 27,
+			"trainId": 52,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 28,
+			"trainId": 52,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 29,
+			"trainId": 55,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 30,
+			"trainId": 55,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 31,
+			"trainId": 58,
+			"formatId": 9,
+			"purpose": "Motor & Lights",
+			"notes": null
+		},
+		{
+			"id": 32,
+			"trainId": 86,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 33,
+			"trainId": 86,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 34,
+			"trainId": 87,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 35,
+			"trainId": 87,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 36,
+			"trainId": 88,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 37,
+			"trainId": 88,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 38,
+			"trainId": 89,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 39,
+			"trainId": 89,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 40,
+			"trainId": 90,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 41,
+			"trainId": 90,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 42,
+			"trainId": 91,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 43,
+			"trainId": 91,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 44,
+			"trainId": 92,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 45,
+			"trainId": 92,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 46,
+			"trainId": 93,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 47,
+			"trainId": 93,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 48,
+			"trainId": 94,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 49,
+			"trainId": 94,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 50,
+			"trainId": 104,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 51,
+			"trainId": 104,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 52,
+			"trainId": 105,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 53,
+			"trainId": 105,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 54,
+			"trainId": 106,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 55,
+			"trainId": 106,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 56,
+			"trainId": 107,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 57,
+			"trainId": 107,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 58,
+			"trainId": 108,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 59,
+			"trainId": 108,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 60,
+			"trainId": 109,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 61,
+			"trainId": 109,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 62,
+			"trainId": 110,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 63,
+			"trainId": 110,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 64,
+			"trainId": 118,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 65,
+			"trainId": 118,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 66,
+			"trainId": 122,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 67,
+			"trainId": 122,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 68,
+			"trainId": 123,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 69,
+			"trainId": 123,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 70,
+			"trainId": 124,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 71,
+			"trainId": 124,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 72,
+			"trainId": 126,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 73,
+			"trainId": 126,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 74,
+			"trainId": 129,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 75,
+			"trainId": 129,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 76,
+			"trainId": 130,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 77,
+			"trainId": 130,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 78,
+			"trainId": 131,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 79,
+			"trainId": 131,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 80,
+			"trainId": 132,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 81,
+			"trainId": 132,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 82,
+			"trainId": 133,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 83,
+			"trainId": 133,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 84,
+			"trainId": 134,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 85,
+			"trainId": 134,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 86,
+			"trainId": 135,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 87,
+			"trainId": 135,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 88,
+			"trainId": 136,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 89,
+			"trainId": 136,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 90,
+			"trainId": 137,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 91,
+			"trainId": 137,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 92,
+			"trainId": 138,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 93,
+			"trainId": 138,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 94,
+			"trainId": 139,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 95,
+			"trainId": 139,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 96,
+			"trainId": 140,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 97,
+			"trainId": 140,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 98,
+			"trainId": 141,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 99,
+			"trainId": 141,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 100,
+			"trainId": 143,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 101,
+			"trainId": 143,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 102,
+			"trainId": 147,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 103,
+			"trainId": 147,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 104,
+			"trainId": 152,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 105,
+			"trainId": 152,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 106,
+			"trainId": 153,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 107,
+			"trainId": 153,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 108,
+			"trainId": 156,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 109,
+			"trainId": 156,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 110,
+			"trainId": 157,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 111,
+			"trainId": 157,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 112,
+			"trainId": 158,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 113,
+			"trainId": 158,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 114,
+			"trainId": 160,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 115,
+			"trainId": 160,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 116,
+			"trainId": 161,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 117,
+			"trainId": 161,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 118,
+			"trainId": 162,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 119,
+			"trainId": 162,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 120,
+			"trainId": 164,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 121,
+			"trainId": 164,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 122,
+			"trainId": 166,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 123,
+			"trainId": 166,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 124,
+			"trainId": 167,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 125,
+			"trainId": 167,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 126,
+			"trainId": 168,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 127,
+			"trainId": 168,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 128,
+			"trainId": 169,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 129,
+			"trainId": 169,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 130,
+			"trainId": 170,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 131,
+			"trainId": 170,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 132,
+			"trainId": 171,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 133,
+			"trainId": 171,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 134,
+			"trainId": 172,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 135,
+			"trainId": 172,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 136,
+			"trainId": 173,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 137,
+			"trainId": 173,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 138,
+			"trainId": 174,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 139,
+			"trainId": 174,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 140,
+			"trainId": 176,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 141,
+			"trainId": 176,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 142,
+			"trainId": 177,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 143,
+			"trainId": 177,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 144,
+			"trainId": 178,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 145,
+			"trainId": 178,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 146,
+			"trainId": 179,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 147,
+			"trainId": 179,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 148,
+			"trainId": 182,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 149,
+			"trainId": 182,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 150,
+			"trainId": 183,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 151,
+			"trainId": 183,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 152,
+			"trainId": 184,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 153,
+			"trainId": 184,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 154,
+			"trainId": 185,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 155,
+			"trainId": 185,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 156,
+			"trainId": 186,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 157,
+			"trainId": 186,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 158,
+			"trainId": 187,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 159,
+			"trainId": 187,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 160,
+			"trainId": 188,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 161,
+			"trainId": 188,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 162,
+			"trainId": 189,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 163,
+			"trainId": 189,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 164,
+			"trainId": 190,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 165,
+			"trainId": 190,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 166,
+			"trainId": 191,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 167,
+			"trainId": 191,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 168,
+			"trainId": 192,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 169,
+			"trainId": 192,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 170,
+			"trainId": 193,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 171,
+			"trainId": 193,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 172,
+			"trainId": 194,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 173,
+			"trainId": 194,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 174,
+			"trainId": 195,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 175,
+			"trainId": 195,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 176,
+			"trainId": 196,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 177,
+			"trainId": 196,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 178,
+			"trainId": 197,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 179,
+			"trainId": 197,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 180,
+			"trainId": 198,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 181,
+			"trainId": 198,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 182,
+			"trainId": 199,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 183,
+			"trainId": 199,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 184,
+			"trainId": 200,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 185,
+			"trainId": 200,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 186,
+			"trainId": 201,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 187,
+			"trainId": 201,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 188,
+			"trainId": 202,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 189,
+			"trainId": 202,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 190,
+			"trainId": 203,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 191,
+			"trainId": 203,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 192,
+			"trainId": 204,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 193,
+			"trainId": 204,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 194,
+			"trainId": 205,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 195,
+			"trainId": 205,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 196,
+			"trainId": 206,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 197,
+			"trainId": 206,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 198,
+			"trainId": 207,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 199,
+			"trainId": 207,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 200,
+			"trainId": 208,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 201,
+			"trainId": 208,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 202,
+			"trainId": 209,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 203,
+			"trainId": 209,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 204,
+			"trainId": 210,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 205,
+			"trainId": 210,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 206,
+			"trainId": 211,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 207,
+			"trainId": 212,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 208,
+			"trainId": 213,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 209,
+			"trainId": 228,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 210,
+			"trainId": 228,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 211,
+			"trainId": 229,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 212,
+			"trainId": 229,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 213,
+			"trainId": 230,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 214,
+			"trainId": 230,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 215,
+			"trainId": 231,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 216,
+			"trainId": 231,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 217,
+			"trainId": 239,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 218,
+			"trainId": 249,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 219,
+			"trainId": 249,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 220,
+			"trainId": 250,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 221,
+			"trainId": 250,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 222,
+			"trainId": 251,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 223,
+			"trainId": 251,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 224,
+			"trainId": 252,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 225,
+			"trainId": 252,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 226,
+			"trainId": 253,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 227,
+			"trainId": 253,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 228,
+			"trainId": 254,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 229,
+			"trainId": 254,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 230,
+			"trainId": 255,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 231,
+			"trainId": 255,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 232,
+			"trainId": 256,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 233,
+			"trainId": 256,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 234,
+			"trainId": 260,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 235,
+			"trainId": 260,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 236,
+			"trainId": 261,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 237,
+			"trainId": 261,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 238,
+			"trainId": 263,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 239,
+			"trainId": 263,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 240,
+			"trainId": 264,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 241,
+			"trainId": 264,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 242,
+			"trainId": 265,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 243,
+			"trainId": 265,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 244,
+			"trainId": 266,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 245,
+			"trainId": 266,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 246,
+			"trainId": 267,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 247,
+			"trainId": 267,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 248,
+			"trainId": 270,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 249,
+			"trainId": 270,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 250,
+			"trainId": 271,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 251,
+			"trainId": 271,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 252,
+			"trainId": 272,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 253,
+			"trainId": 272,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 254,
+			"trainId": 276,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 255,
+			"trainId": 276,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 256,
+			"trainId": 277,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 257,
+			"trainId": 277,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 258,
+			"trainId": 278,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 259,
+			"trainId": 278,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 260,
+			"trainId": 279,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 261,
+			"trainId": 279,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 262,
+			"trainId": 280,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 263,
+			"trainId": 280,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 264,
+			"trainId": 281,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 265,
+			"trainId": 281,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 266,
+			"trainId": 282,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 267,
+			"trainId": 282,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 268,
+			"trainId": 283,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 269,
+			"trainId": 283,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 270,
+			"trainId": 284,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 271,
+			"trainId": 284,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 272,
+			"trainId": 285,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 273,
+			"trainId": 285,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 274,
+			"trainId": 286,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 275,
+			"trainId": 286,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 276,
+			"trainId": 287,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 277,
+			"trainId": 287,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 278,
+			"trainId": 315,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 279,
+			"trainId": 315,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 280,
+			"trainId": 316,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 281,
+			"trainId": 316,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 282,
+			"trainId": 317,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 283,
+			"trainId": 317,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 284,
+			"trainId": 318,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 285,
+			"trainId": 318,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 286,
+			"trainId": 319,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 287,
+			"trainId": 320,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 288,
+			"trainId": 324,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 289,
+			"trainId": 325,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 290,
+			"trainId": 326,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 291,
+			"trainId": 326,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 292,
+			"trainId": 327,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 293,
+			"trainId": 327,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 294,
+			"trainId": 328,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 295,
+			"trainId": 328,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 296,
+			"trainId": 339,
+			"formatId": 8,
+			"purpose": "Motor & Lights",
+			"notes": null
+		},
+		{
+			"id": 297,
+			"trainId": 340,
+			"formatId": 8,
+			"purpose": "Motor & Lights",
+			"notes": null
+		},
+		{
+			"id": 298,
+			"trainId": 341,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 299,
+			"trainId": 341,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 300,
+			"trainId": 342,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 301,
+			"trainId": 342,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 302,
+			"trainId": 344,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 303,
+			"trainId": 345,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 304,
+			"trainId": 346,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 305,
+			"trainId": 347,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 306,
+			"trainId": 348,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 307,
+			"trainId": 349,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 308,
+			"trainId": 349,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 309,
+			"trainId": 350,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 310,
+			"trainId": 350,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 311,
+			"trainId": 351,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 312,
+			"trainId": 351,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 313,
+			"trainId": 352,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 314,
+			"trainId": 352,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 315,
+			"trainId": 353,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 316,
+			"trainId": 353,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 317,
+			"trainId": 355,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 318,
+			"trainId": 355,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 319,
+			"trainId": 356,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 320,
+			"trainId": 356,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 321,
+			"trainId": 357,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 322,
+			"trainId": 357,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 323,
+			"trainId": 358,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 324,
+			"trainId": 358,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 325,
+			"trainId": 361,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 326,
+			"trainId": 361,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 327,
+			"trainId": 363,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 328,
+			"trainId": 363,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 329,
+			"trainId": 367,
+			"formatId": 8,
+			"purpose": "Motor & Lights",
+			"notes": null
+		},
+		{
+			"id": 330,
+			"trainId": 368,
+			"formatId": 8,
+			"purpose": "Motor & Lights",
+			"notes": null
+		},
+		{
+			"id": 331,
+			"trainId": 379,
+			"formatId": 1,
+			"purpose": "Motor Only",
+			"notes": null
+		},
+		{
+			"id": 332,
+			"trainId": 380,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 333,
+			"trainId": 381,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 334,
+			"trainId": 382,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 335,
+			"trainId": 383,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		},
+		{
+			"id": 336,
+			"trainId": 384,
+			"formatId": 6,
+			"purpose": "Lights Only",
+			"notes": null
+		}
+	]
+}
