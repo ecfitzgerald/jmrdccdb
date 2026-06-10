@@ -44,11 +44,23 @@ function evictIfNeeded(now: number): void {
 	}
 }
 
-/** Returns true if the IP has exceeded the failure threshold. */
-export function checkRateLimit(ip: string, now = Date.now()): boolean {
+export interface RateLimitResult {
+	limited: boolean;
+	/** Seconds until the window resets (0 when not limited). */
+	retryAfterSeconds: number;
+}
+
+/** Reports whether the IP has exceeded the failure threshold. */
+export function checkRateLimit(ip: string, now = Date.now()): RateLimitResult {
 	const entry = attempts.get(ip);
-	if (!entry || now - entry.windowStart >= WINDOW_MS) return false;
-	return entry.failures >= MAX_FAILURES;
+	if (!entry || now - entry.windowStart >= WINDOW_MS) {
+		return { limited: false, retryAfterSeconds: 0 };
+	}
+	if (entry.failures >= MAX_FAILURES) {
+		const retryAfterMs = WINDOW_MS - (now - entry.windowStart);
+		return { limited: true, retryAfterSeconds: Math.ceil(retryAfterMs / 1000) };
+	}
+	return { limited: false, retryAfterSeconds: 0 };
 }
 
 /** Record a failed login attempt for the given IP. */
@@ -88,29 +100,37 @@ if (import.meta.vitest) {
 
 	it('allows requests below the threshold', () => {
 		for (let i = 0; i < MAX_FAILURES - 1; i++) recordFailure('1.2.3.4');
-		expect(checkRateLimit('1.2.3.4')).toBe(false);
+		expect(checkRateLimit('1.2.3.4').limited).toBe(false);
 	});
 
 	it('blocks after MAX_FAILURES failures', () => {
 		for (let i = 0; i < MAX_FAILURES; i++) recordFailure('1.2.3.4');
-		expect(checkRateLimit('1.2.3.4')).toBe(true);
+		expect(checkRateLimit('1.2.3.4').limited).toBe(true);
 	});
 
 	it('does not affect a different IP', () => {
 		for (let i = 0; i < MAX_FAILURES; i++) recordFailure('1.2.3.4');
-		expect(checkRateLimit('5.6.7.8')).toBe(false);
+		expect(checkRateLimit('5.6.7.8').limited).toBe(false);
 	});
 
 	it('resets after the window expires', () => {
 		const t0 = Date.now();
 		for (let i = 0; i < MAX_FAILURES; i++) recordFailure('1.2.3.4', t0);
-		expect(checkRateLimit('1.2.3.4', t0 + WINDOW_MS)).toBe(false);
+		expect(checkRateLimit('1.2.3.4', t0 + WINDOW_MS).limited).toBe(false);
 	});
 
 	it('clearRateLimit removes the block', () => {
 		for (let i = 0; i < MAX_FAILURES; i++) recordFailure('1.2.3.4');
 		clearRateLimit('1.2.3.4');
-		expect(checkRateLimit('1.2.3.4')).toBe(false);
+		expect(checkRateLimit('1.2.3.4').limited).toBe(false);
+	});
+
+	it('reports a shrinking retry-after as the window elapses', () => {
+		const t0 = Date.now();
+		for (let i = 0; i < MAX_FAILURES; i++) recordFailure('1.2.3.4', t0);
+		expect(checkRateLimit('1.2.3.4', t0).retryAfterSeconds).toBe(WINDOW_MS / 1000);
+		const half = checkRateLimit('1.2.3.4', t0 + WINDOW_MS / 2);
+		expect(half.retryAfterSeconds).toBe(WINDOW_MS / 2 / 1000);
 	});
 
 	it('evicts entries when the map reaches MAX_TRACKED_IPS', () => {
