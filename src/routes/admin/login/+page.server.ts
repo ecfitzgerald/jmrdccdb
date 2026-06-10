@@ -14,15 +14,19 @@ export const load: PageServerLoad = async ({ cookies }) => {
 export const actions: Actions = {
 	login: async ({ request, cookies, getClientAddress }) => {
 		const ip = getClientAddress();
-		if (checkRateLimit(ip)) {
-			return fail(429, { error: 'Too many failed attempts. Try again later.' });
+		const limit = checkRateLimit(ip);
+		if (limit.limited) {
+			return fail(429, {
+				error: `Too many attempts. Try again in ${limit.retryAfterSeconds} seconds.`
+			});
 		}
 		const form = await request.formData();
 		const password = form.get('password')?.toString() ?? '';
 		// Cap input length to reject oversized payloads before hashing. Same
 		// generic response as a wrong password so length isn't an oracle.
-		if (password.length > 256 || !checkPassword(password, ADMIN_PASSWORD)) {
+		if (password.length > 256 || !checkPassword(password, ADMIN_PASSWORD ?? '')) {
 			recordFailure(ip);
+			console.warn(`[admin-login] failed attempt from ${ip} at ${new Date().toISOString()}`);
 			return fail(401, { error: 'Incorrect password.' });
 		}
 		clearRateLimit(ip);

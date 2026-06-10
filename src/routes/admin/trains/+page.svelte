@@ -65,8 +65,9 @@
 		<h2 class="font-semibold text-[var(--color-text)]">Add New Train</h2>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Manufacturer *</label>
+				<label for="manufacturer" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Manufacturer *</label>
 				<input
+					id="manufacturer"
 					name="manufacturer"
 					type="text"
 					placeholder="Kato"
@@ -74,8 +75,9 @@
 				/>
 			</div>
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Scale *</label>
+				<label for="scale" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Scale *</label>
 				<select
+					id="scale"
 					name="scale"
 					class="w-full rounded px-3 py-2 text-sm"
 				>
@@ -87,8 +89,9 @@
 			</div>
 		</div>
 		<div>
-			<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Name *</label>
+			<label for="name" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Name *</label>
 			<input
+				id="name"
 				name="name"
 				type="text"
 				placeholder="E235 Series Yamanote Line (11-car set)"
@@ -97,8 +100,9 @@
 		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model Number *</label>
+				<label for="modelNumber" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model Number *</label>
 				<input
+					id="modelNumber"
 					name="modelNumber"
 					type="text"
 					placeholder="10-1785"
@@ -117,8 +121,9 @@
 		</div>
 		<div class="grid grid-cols-2 gap-4">
 			<div>
-				<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Era</label>
+				<label for="era" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Era</label>
 				<input
+					id="era"
 					name="era"
 					type="text"
 					placeholder="2015–present"
@@ -135,8 +140,8 @@
 				/>
 			</div>
 		</div>
-		<div>
-			<label class="block text-xs font-medium text-[var(--color-muted)] mb-2">Compatible Formats</label>
+		<fieldset>
+			<legend class="block text-xs font-medium text-[var(--color-muted)] mb-2">Compatible Formats</legend>
 			<div class="flex flex-col gap-3">
 				{#each data.formats as fmt}
 					<div class="flex items-center gap-3 p-2 rounded" style="border: 1px solid var(--color-border);">
@@ -171,10 +176,11 @@
 					</div>
 				{/each}
 			</div>
-		</div>
+		</fieldset>
 		<div>
-			<label class="block text-xs font-medium text-[var(--color-muted)] mb-1">Notes</label>
+			<label for="notes" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Notes</label>
 			<textarea
+				id="notes"
 				name="notes"
 				rows="2"
 				class="w-full rounded px-3 py-2 text-sm"

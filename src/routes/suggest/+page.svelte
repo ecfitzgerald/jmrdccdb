@@ -6,11 +6,15 @@
 	import SoundIcon from '$lib/icons/SoundIcon.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
-	let type = $state(data.typeParam === 'add_compat' ? 'add_compat' : 'add_train');
+	let type = $state<'add_train' | 'add_compat' | 'add_decoder'>('add_train');
 	let compatFormatId = $state('');
 	let addDecoderFormatId = $state('');
 	let updateDecoderSearch = $state('');
 	let updateDecoderField = $state('');
+
+	$effect(() => {
+		type = data.typeParam === 'add_compat' ? 'add_compat' : 'add_train';
+	});
 
 	const decodersForFormat = $derived(
 		compatFormatId ? data.allDecoders.filter((d) => String(d.formatId) === compatFormatId) : []
