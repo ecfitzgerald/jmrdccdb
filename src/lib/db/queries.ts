@@ -152,7 +152,7 @@ if (import.meta.vitest) {
 			CREATE TABLE decoder_brands (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, website TEXT);
 			CREATE TABLE decoders (id INTEGER PRIMARY KEY AUTOINCREMENT, brand_id INTEGER NOT NULL, format_id INTEGER NOT NULL, model TEXT NOT NULL, notes TEXT, buy_url TEXT, sound_decoder INTEGER DEFAULT 0, motor INTEGER DEFAULT 1 NOT NULL, lights INTEGER DEFAULT 1 NOT NULL);
 			CREATE TABLE operators (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, sort_order INTEGER DEFAULT 0);
-			CREATE TABLE trains (id INTEGER PRIMARY KEY AUTOINCREMENT, manufacturer TEXT NOT NULL, scale TEXT NOT NULL, operator_id INTEGER, model_number TEXT NOT NULL, name TEXT NOT NULL, era TEXT, notes TEXT, created_at TEXT DEFAULT (datetime('now')));
+			CREATE TABLE trains (id INTEGER PRIMARY KEY AUTOINCREMENT, manufacturer TEXT NOT NULL, scale TEXT NOT NULL, operator_id INTEGER, model_number TEXT NOT NULL, name TEXT NOT NULL, line TEXT, type_id INTEGER, era TEXT, notes TEXT, created_at TEXT DEFAULT (datetime('now')));
 			CREATE TABLE train_format_compat (id INTEGER PRIMARY KEY AUTOINCREMENT, train_id INTEGER NOT NULL, format_id INTEGER NOT NULL, purpose TEXT DEFAULT 'Motor & Lights' NOT NULL, notes TEXT);
 			CREATE TABLE train_decoder_compat (id INTEGER PRIMARY KEY AUTOINCREMENT, train_id INTEGER NOT NULL, decoder_id INTEGER NOT NULL, confirmed INTEGER DEFAULT 1 NOT NULL, notes TEXT);
 			CREATE TABLE suggestions (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL, payload TEXT NOT NULL, submitter_note TEXT, submitter_email TEXT, status TEXT DEFAULT 'pending' NOT NULL, admin_note TEXT, created_at TEXT DEFAULT (datetime('now')));
