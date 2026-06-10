@@ -4,7 +4,16 @@ interface Session {
 	createdAt: Date;
 }
 
+// Server-side session lifetime. Kept in sync with the admin_auth cookie maxAge
+// (8h) so a stolen cookie cannot outlive the browser cookie expiry, regardless
+// of how long the server process has been running.
+const SESSION_TTL_MS = 1000 * 60 * 60 * 8;
+
 const sessions = new Map<string, Session>();
+
+function isExpired(session: Session, now = Date.now()): boolean {
+	return now - session.createdAt.getTime() >= SESSION_TTL_MS;
+}
 
 export function createSession(): string {
 	const token = crypto.randomBytes(32).toString('hex');
@@ -14,7 +23,21 @@ export function createSession(): string {
 
 export function validateSession(token: string | undefined): boolean {
 	if (!token) return false;
-	return sessions.has(token);
+	const session = sessions.get(token);
+	if (!session) return false;
+	if (isExpired(session)) {
+		sessions.delete(token);
+		return false;
+	}
+	return true;
+}
+
+// Remove expired sessions so the in-memory Map does not grow unbounded with
+// abandoned tokens that will never be revisited by validateSession.
+export function pruneExpiredSessions(now = Date.now()): void {
+	for (const [token, session] of sessions) {
+		if (isExpired(session, now)) sessions.delete(token);
+	}
 }
 
 export function deleteSession(token: string | undefined): void {
@@ -28,7 +51,7 @@ export function checkPassword(submitted: string, expected: string): boolean {
 }
 
 if (import.meta.vitest) {
-	const { it, expect, beforeEach } = import.meta.vitest;
+	const { it, expect, beforeEach, vi } = import.meta.vitest;
 
 	beforeEach(() => {
 		sessions.clear();
@@ -61,6 +84,57 @@ if (import.meta.vitest) {
 		const token = createSession();
 		deleteSession(token);
 		expect(validateSession(token)).toBe(false);
+	});
+
+	it('validateSession rejects a token older than 8h', () => {
+		vi.useFakeTimers();
+		try {
+			const token = createSession();
+			expect(validateSession(token)).toBe(true);
+			// Advance just past the 8h TTL.
+			vi.advanceTimersByTime(1000 * 60 * 60 * 8 + 1);
+			expect(validateSession(token)).toBe(false);
+		} finally {
+			vi.useRealTimers();
+		}
+	});
+
+	it('validateSession accepts a token just under 8h old', () => {
+		vi.useFakeTimers();
+		try {
+			const token = createSession();
+			vi.advanceTimersByTime(1000 * 60 * 60 * 8 - 1000);
+			expect(validateSession(token)).toBe(true);
+		} finally {
+			vi.useRealTimers();
+		}
+	});
+
+	it('validateSession prunes the expired token from the Map', () => {
+		vi.useFakeTimers();
+		try {
+			const token = createSession();
+			vi.advanceTimersByTime(1000 * 60 * 60 * 8 + 1);
+			validateSession(token);
+			// Re-validating a now-deleted token still returns false.
+			expect(validateSession(token)).toBe(false);
+		} finally {
+			vi.useRealTimers();
+		}
+	});
+
+	it('pruneExpiredSessions removes only expired sessions', () => {
+		vi.useFakeTimers();
+		try {
+			const oldToken = createSession();
+			vi.advanceTimersByTime(1000 * 60 * 60 * 8 + 1);
+			const freshToken = createSession();
+			pruneExpiredSessions();
+			expect(validateSession(oldToken)).toBe(false);
+			expect(validateSession(freshToken)).toBe(true);
+		} finally {
+			vi.useRealTimers();
+		}
 	});
 
 	it('checkPassword returns true for matching passwords', () => {

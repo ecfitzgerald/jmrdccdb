@@ -1,5 +1,17 @@
-import { sqliteTable, text, integer, real } from 'drizzle-orm/sqlite-core';
+import { sqliteTable, text, integer, real, uniqueIndex } from 'drizzle-orm/sqlite-core';
 import { sql } from 'drizzle-orm';
+
+export const operators = sqliteTable('operators', {
+	id: integer('id').primaryKey({ autoIncrement: true }),
+	name: text('name').notNull().unique(),
+	sortOrder: integer('sort_order').default(0)
+});
+
+export const trainTypes = sqliteTable('train_types', {
+	id: integer('id').primaryKey({ autoIncrement: true }),
+	name: text('name').notNull().unique(),
+	sortOrder: integer('sort_order').default(0)
+});
 
 export const dccFormats = sqliteTable('dcc_formats', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
@@ -29,15 +41,17 @@ export const decoders = sqliteTable('decoders', {
 	motor: integer('motor', { mode: 'boolean' }).notNull().default(true),
 	lights: integer('lights', { mode: 'boolean' }).notNull().default(true),
 	soundDecoder: integer('sound_decoder', { mode: 'boolean' }).default(false)
-});
+}, (t) => [uniqueIndex('idx_decoders_brand_model').on(t.brandId, t.model)]);
 
 export const trains = sqliteTable('trains', {
 	id: integer('id').primaryKey({ autoIncrement: true }),
 	manufacturer: text('manufacturer').notNull(),
 	scale: text('scale').notNull(),
-	roadName: text('road_name'),
+	operatorId: integer('operator_id').references(() => operators.id),
 	modelNumber: text('model_number').notNull(),
 	name: text('name').notNull(),
+	line: text('line'),
+	typeId: integer('type_id').references(() => trainTypes.id),
 	era: text('era'),
 	notes: text('notes'),
 	createdAt: text('created_at').default(sql`(datetime('now'))`)
@@ -53,7 +67,7 @@ export const trainFormatCompat = sqliteTable('train_format_compat', {
 		.references(() => dccFormats.id),
 	purpose: text('purpose').notNull().default('Motor & Lights'), // 'Motor Only' | 'Lights Only' | 'Motor & Lights'
 	notes: text('notes')
-});
+}, (t) => [uniqueIndex('idx_train_format_compat_train_format').on(t.trainId, t.formatId)]);
 
 export const trainDecoderCompat = sqliteTable('train_decoder_compat', {
 	id: integer('id').primaryKey({ autoIncrement: true }),

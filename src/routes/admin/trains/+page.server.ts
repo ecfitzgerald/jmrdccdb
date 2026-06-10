@@ -1,6 +1,6 @@
 import type { PageServerLoad, Actions } from './$types';
 import { db } from '$lib/db';
-import { trains, trainFormatCompat, trainDecoderCompat, dccFormats, decoders, decoderBrands } from '$lib/db/schema';
+import { trains, trainFormatCompat, trainDecoderCompat, dccFormats, decoders, decoderBrands, operators } from '$lib/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import { fail } from '@sveltejs/kit';
 
@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const allTrains = d.select().from(trains).orderBy(trains.manufacturer, trains.name).all();
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
 	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
-	const operators = d.selectDistinct({ v: trains.roadName }).from(trains).orderBy(trains.roadName).all().map(r => r.v).filter(Boolean) as string[];
+	const allOperators = d.select({ id: operators.id, name: operators.name }).from(operators).orderBy(operators.name).all();
 	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
 	const allDecoders = d
 		.select({ id: decoders.id, brandName: decoderBrands.name, model: decoders.model, formatId: decoders.formatId, motor: decoders.motor, lights: decoders.lights, soundDecoder: decoders.soundDecoder, notes: decoders.notes })
@@ -57,7 +57,7 @@ export const load: PageServerLoad = async ({ url }) => {
 		})),
 		formats,
 		manufacturers,
-		operators,
+		operators: allOperators,
 		scales,
 		allDecoders,
 		editId
@@ -71,7 +71,8 @@ export const actions: Actions = {
 		const scale = form.get('scale')?.toString() ?? '';
 		const name = form.get('name')?.toString() ?? '';
 		const modelNumber = form.get('modelNumber')?.toString() ?? '';
-		const roadName = form.get('roadName')?.toString() ?? '';
+		const operatorId = Number(form.get('operatorId'));
+		const line = form.get('line')?.toString() ?? '';
 		const era = form.get('era')?.toString() ?? '';
 		const notes = form.get('notes')?.toString() ?? '';
 
@@ -82,7 +83,7 @@ export const actions: Actions = {
 		if (scale.length > 50) return fail(400, { error: 'Scale too long (max 50).' });
 		if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
 		if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
-		if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
+		if (line.length > 200) return fail(400, { error: 'Line too long (max 200).' });
 		if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 		if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
 
@@ -94,7 +95,8 @@ export const actions: Actions = {
 				scale,
 				name,
 				modelNumber,
-				roadName: roadName || null,
+				operatorId: operatorId || null,
+				line: line || null,
 				era: era || null,
 				notes: notes || null
 			})
@@ -130,7 +132,8 @@ export const actions: Actions = {
 		const scale = form.get('scale')?.toString() ?? '';
 		const name = form.get('name')?.toString() ?? '';
 		const modelNumber = form.get('modelNumber')?.toString() ?? '';
-		const roadName = form.get('roadName')?.toString() ?? '';
+		const operatorId = Number(form.get('operatorId'));
+		const line = form.get('line')?.toString() ?? '';
 		const era = form.get('era')?.toString() ?? '';
 		const notes = form.get('notes')?.toString() ?? '';
 
@@ -141,7 +144,7 @@ export const actions: Actions = {
 		if (scale.length > 50) return fail(400, { error: 'Scale too long (max 50).' });
 		if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
 		if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
-		if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
+		if (line.length > 200) return fail(400, { error: 'Line too long (max 200).' });
 		if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 		if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
 
@@ -152,7 +155,8 @@ export const actions: Actions = {
 				scale,
 				name,
 				modelNumber,
-				roadName: roadName || null,
+				operatorId: operatorId || null,
+				line: line || null,
 				era: era || null,
 				notes: notes || null
 			})

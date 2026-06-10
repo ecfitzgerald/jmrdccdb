@@ -1,7 +1,8 @@
 import type { Actions, PageServerLoad } from './$types';
 import { fail, redirect } from '@sveltejs/kit';
-import { ADMIN_PASSWORD } from '$env/static/private';
+import { ADMIN_PASSWORD } from '$lib/server/env';
 import { checkPassword, createSession, deleteSession, validateSession } from '$lib/server/session';
+import { checkRateLimit, recordFailure, clearRateLimit } from '$lib/server/rate-limit';
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	if (validateSession(cookies.get('admin_auth'))) {
@@ -11,18 +12,30 @@ export const load: PageServerLoad = async ({ cookies }) => {
 };
 
 export const actions: Actions = {
-	login: async ({ request, cookies }) => {
+	login: async ({ request, cookies, getClientAddress }) => {
+		const ip = getClientAddress();
+		const limit = checkRateLimit(ip);
+		if (limit.limited) {
+			return fail(429, {
+				error: `Too many attempts. Try again in ${limit.retryAfterSeconds} seconds.`
+			});
+		}
 		const form = await request.formData();
 		const password = form.get('password')?.toString() ?? '';
-		if (!checkPassword(password, ADMIN_PASSWORD)) {
+		// Cap input length to reject oversized payloads before hashing. Same
+		// generic response as a wrong password so length isn't an oracle.
+		if (password.length > 256 || !checkPassword(password, ADMIN_PASSWORD ?? '')) {
+			recordFailure(ip);
+			console.warn(`[admin-login] failed attempt from ${ip} at ${new Date().toISOString()}`);
 			return fail(401, { error: 'Incorrect password.' });
 		}
+		clearRateLimit(ip);
 		const token = createSession();
 		cookies.set('admin_auth', token, {
 			path: '/',
 			httpOnly: true,
 			sameSite: 'strict',
-			maxAge: 60 * 60 * 24 * 30 // 30 days
+			maxAge: 60 * 60 * 8 // 8 hours
 		});
 		redirect(303, '/admin');
 	},

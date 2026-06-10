@@ -9,7 +9,7 @@ import {
 	decoders,
 	decoderBrands
 } from '$lib/db/schema';
-import { eq } from 'drizzle-orm';
+import { eq, inArray } from 'drizzle-orm';
 import { error, redirect, fail } from '@sveltejs/kit';
 import { distinctManufacturers, distinctScales, distinctOperators, decodersWithBrands } from '$lib/db/queries';
 
@@ -21,7 +21,12 @@ export const load: PageServerLoad = async ({ params }) => {
 	const [suggestion] = d.select().from(suggestions).where(eq(suggestions.id, id)).all();
 	if (!suggestion) error(404, 'Suggestion not found');
 
-	const payload = JSON.parse(suggestion.payload);
+	let payload: unknown;
+	try {
+		payload = JSON.parse(suggestion.payload);
+	} catch {
+		error(500, 'Suggestion payload is corrupt.');
+	}
 
 	// Load reference data based on type
 	const formats = d.select().from(dccFormats).orderBy(dccFormats.sortOrder).all();
@@ -59,7 +64,7 @@ export const actions: Actions = {
 			const scale = form.get('scale')?.toString() ?? '';
 			const name = form.get('name')?.toString() ?? '';
 			const modelNumber = form.get('modelNumber')?.toString() ?? '';
-			const roadName = form.get('roadName')?.toString() ?? '';
+			const operatorId = Number(form.get('operatorId'));
 			const era = form.get('era')?.toString() ?? '';
 			const notes = form.get('notes')?.toString() ?? '';
 
@@ -70,7 +75,6 @@ export const actions: Actions = {
 			if (scale.length > 50) return fail(400, { error: 'Scale too long (max 50).' });
 			if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
 			if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
-			if (roadName.length > 200) return fail(400, { error: 'Road name too long (max 200).' });
 			if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
 			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
 
@@ -81,7 +85,7 @@ export const actions: Actions = {
 					scale,
 					name,
 					modelNumber,
-					roadName: roadName || null,
+					operatorId: operatorId || null,
 					era: era || null,
 					notes: notes || null
 				})
@@ -120,10 +124,10 @@ export const actions: Actions = {
 				const rows = d
 					.select({ motor: decoders.motor, lights: decoders.lights })
 					.from(decoders)
-					.all()
-					.filter((dec: any) => decoderIds.includes(dec.id));
-				const m = rows.some((r: any) => r.motor);
-				const l = rows.some((r: any) => r.lights);
+					.where(inArray(decoders.id, decoderIds))
+					.all();
+				const m = rows.some((r) => r.motor);
+				const l = rows.some((r) => r.lights);
 				purpose = m && l ? 'Motor & Lights' : m ? 'Motor Only' : 'Lights Only';
 			}
 

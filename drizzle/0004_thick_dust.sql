@@ -1,0 +1,1 @@
+ALTER TABLE `trains` ADD `type` text;

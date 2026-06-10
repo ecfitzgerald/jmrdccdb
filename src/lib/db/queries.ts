@@ -1,5 +1,6 @@
 import {
 	trains,
+	operators,
 	decoders,
 	decoderBrands,
 	suggestions,
@@ -31,14 +32,8 @@ export function distinctScales(d: DB): string[] {
 		.map((r) => r.v);
 }
 
-export function distinctOperators(d: DB): string[] {
-	return d
-		.selectDistinct({ v: trains.roadName })
-		.from(trains)
-		.orderBy(trains.roadName)
-		.all()
-		.map((r) => r.v)
-		.filter(Boolean) as string[];
+export function distinctOperators(d: DB): Array<{ id: number; name: string }> {
+	return d.select({ id: operators.id, name: operators.name }).from(operators).orderBy(operators.name).all();
 }
 
 export function decodersWithBrands(d: DB) {
@@ -156,7 +151,8 @@ if (import.meta.vitest) {
 			CREATE TABLE dcc_formats (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, pin_count INTEGER, description TEXT, sort_order INTEGER DEFAULT 0);
 			CREATE TABLE decoder_brands (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, website TEXT);
 			CREATE TABLE decoders (id INTEGER PRIMARY KEY AUTOINCREMENT, brand_id INTEGER NOT NULL, format_id INTEGER NOT NULL, model TEXT NOT NULL, notes TEXT, buy_url TEXT, sound_decoder INTEGER DEFAULT 0, motor INTEGER DEFAULT 1 NOT NULL, lights INTEGER DEFAULT 1 NOT NULL);
-			CREATE TABLE trains (id INTEGER PRIMARY KEY AUTOINCREMENT, manufacturer TEXT NOT NULL, scale TEXT NOT NULL, road_name TEXT, model_number TEXT NOT NULL, name TEXT NOT NULL, era TEXT, notes TEXT, created_at TEXT DEFAULT (datetime('now')));
+			CREATE TABLE operators (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL UNIQUE, sort_order INTEGER DEFAULT 0);
+			CREATE TABLE trains (id INTEGER PRIMARY KEY AUTOINCREMENT, manufacturer TEXT NOT NULL, scale TEXT NOT NULL, operator_id INTEGER, model_number TEXT NOT NULL, name TEXT NOT NULL, line TEXT, type_id INTEGER, era TEXT, notes TEXT, created_at TEXT DEFAULT (datetime('now')));
 			CREATE TABLE train_format_compat (id INTEGER PRIMARY KEY AUTOINCREMENT, train_id INTEGER NOT NULL, format_id INTEGER NOT NULL, purpose TEXT DEFAULT 'Motor & Lights' NOT NULL, notes TEXT);
 			CREATE TABLE train_decoder_compat (id INTEGER PRIMARY KEY AUTOINCREMENT, train_id INTEGER NOT NULL, decoder_id INTEGER NOT NULL, confirmed INTEGER DEFAULT 1 NOT NULL, notes TEXT);
 			CREATE TABLE suggestions (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL, payload TEXT NOT NULL, submitter_note TEXT, submitter_email TEXT, status TEXT DEFAULT 'pending' NOT NULL, admin_note TEXT, created_at TEXT DEFAULT (datetime('now')));
@@ -190,18 +186,18 @@ if (import.meta.vitest) {
 		expect(result).toEqual(['HO', 'N']);
 	});
 
-	it('distinctOperators filters out nulls', () => {
+	it('distinctOperators returns all operators sorted by name', () => {
 		testDb
-			.insert(trains)
+			.insert(operators)
 			.values([
-				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A1', name: 'T1', roadName: 'JR East' },
-				{ manufacturer: 'Kato', scale: 'N', modelNumber: 'A2', name: 'T2', roadName: null },
-				{ manufacturer: 'Tomix', scale: 'N', modelNumber: 'B1', name: 'T3', roadName: 'JR West' }
+				{ name: 'JR West' },
+				{ name: 'JR East' }
 			])
 			.run();
 		const result = distinctOperators(testDb);
-		expect(result).toEqual(['JR East', 'JR West']);
-		expect(result).not.toContain(null);
+		expect(result).toEqual([{ id: 2, name: 'JR East' }, { id: 1, name: 'JR West' }]);
+		expect(result[0]).toHaveProperty('id');
+		expect(result[0]).toHaveProperty('name');
 	});
 
 	it('decodersWithBrands returns joined shape', () => {

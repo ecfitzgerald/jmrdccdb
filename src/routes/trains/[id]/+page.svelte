@@ -5,6 +5,11 @@
 	import SoundIcon from '$lib/icons/SoundIcon.svelte';
 	let { data }: { data: PageData } = $props();
 
+	// decoderCard is rendered with both format-level decoders and confirmed
+	// decoders; the latter add compatNotes/confirmed, so model those as optional.
+	type DecoderCard = PageData['formatDecoders'][number] &
+		Partial<Pick<PageData['confirmedDecoders'][number], 'compatNotes' | 'confirmed'>>;
+
 	let decoderFilter = $state<'all' | 'basic' | 'sound'>('all');
 
 	// Confirmed decoders grouped by formatId
@@ -17,12 +22,14 @@
 		return map;
 	});
 
-	// Format-level decoders grouped by formatId (excluding confirmed ones)
+	// Format-level decoders grouped by formatId — only shown for formats with no confirmed decoders
 	const formatByFormat = $derived(() => {
 		const confirmedIds = new Set(data.confirmedDecoders.map((d) => d.id));
+		const confirmedFormatIds = new Set(data.confirmedDecoders.map((d) => d.formatId));
 		const map = new Map<number, typeof data.formatDecoders>();
 		for (const dec of data.formatDecoders) {
 			if (confirmedIds.has(dec.id)) continue;
+			if (confirmedFormatIds.has(dec.formatId)) continue;
 			if (!map.has(dec.formatId)) map.set(dec.formatId, []);
 			map.get(dec.formatId)!.push(dec);
 		}
@@ -72,9 +79,13 @@
 			<h1 class="text-2xl font-bold mb-1" style="color: var(--color-text);">{data.train.name}</h1>
 			<div class="text-sm" style="color: var(--color-muted);">
 				<span class="font-semibold" style="color: var(--color-green);">{data.train.manufacturer}</span>
-				{#if data.train.roadName}
+				{#if data.train.operatorName}
 					<span class="mx-2" style="color: var(--color-border-mid);">·</span>
-					<span>{data.train.roadName}</span>
+					<span>{data.train.operatorName}</span>
+				{/if}
+				{#if data.train.line}
+					<span class="mx-2" style="color: var(--color-border-mid);">·</span>
+					<span>{data.train.line}</span>
 				{/if}
 			</div>
 		</div>
@@ -254,7 +265,7 @@
 	{/each}
 {/if}
 
-{#snippet decoderCard(dec: any, isConfirmed: boolean)}
+{#snippet decoderCard(dec: DecoderCard, isConfirmed: boolean)}
 	<div
 		class="jr-card-flat p-4 hover:border-[var(--color-green-mid)] transition-colors"
 		style="{dec.soundDecoder ? 'border-top: 3px solid #7c3aed;' : ''}{isConfirmed
