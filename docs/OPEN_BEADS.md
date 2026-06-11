@@ -59,6 +59,8 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 | jm-tch | dcc-compat ux: add-compat suggestion can't set format purpose; manual corrections offer no deep link |
 | jm-zog | dcc-compat ux: suggest form has weak validation and no reset after submit |
 | jm-7qs | dcc-compat: show Line column on main trains table, after Operator |
+| jm-dnn | dcc-compat suggest form: Manufacturer field should be a combobox of existing manufacturers |
+| jm-cma | dcc-compat suggest form: 'Model Name' field triggers 1Password autofill prompt |
 | hq-2h5 | Decoder suggestion: add product site URL and affiliate buy link fields |
 | hq-7ex | dcc-compat decoder confirm: soft warning when two same-family decoders selected for a train |
 | hq-fde | dcc-compat ui: update K2 and K4 SVG outlines in FormatDiagram.svelte once shapes are confirmed |
