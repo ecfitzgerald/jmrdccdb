@@ -52,9 +52,9 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 | jm-cma | dcc-compat suggest form: 'Model Name' field triggers 1Password autofill prompt |
 | jm-0z5 | dcc-compat suggest form: add 'Line' field to Add Train form |
 | jm-4k4 | dcc-compat suggest form: show format outline diagrams in Compatible DCC Formats checklist |
-| hq-2h5 | Decoder suggestion: add product site URL and affiliate buy link fields |
-| hq-7ex | dcc-compat decoder confirm: soft warning when two same-family decoders selected for a train |
-| hq-fde | dcc-compat ui: update K2 and K4 SVG outlines in FormatDiagram.svelte once shapes are confirmed |
+| jm-nfi | Decoder suggestion: add product site URL and affiliate buy link fields |
+| jm-7ox | dcc-compat decoder confirm: soft warning when two same-family decoders selected for a train |
+| jm-lbg | dcc-compat ui: update K2 and K4 SVG outlines in FormatDiagram.svelte once shapes are confirmed |
 
 ## Notes / possible duplicates or already-resolved
 
@@ -69,3 +69,9 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   anywhere in repo history, and the claimed fixes are absent from the code.
   All 4 reopened as P2 (listed above). jm-0ka tracks re-verifying the
   remaining 7 jm-gnz findings for the same issue.
+- 2026-06-12: Reviewed the P3 list. 8/11 entries checked out fine (verified
+  still-unaddressed or freshly created this session). 3 entries
+  (`hq-2h5`, `hq-7ex`, `hq-fde`) were **phantom IDs** — `bd show` found no
+  matching issue in either database, and no bead matched their titles by
+  text search either. Recreated as real beads (`jm-nfi`, `jm-7ox`, `jm-lbg`)
+  with the same descriptions and re-listed above.
