@@ -1,6 +1,6 @@
 import type { PageServerLoad } from './$types';
 import { db } from '$lib/db';
-import { trains, trainFormatCompat, dccFormats, decoders, decoderBrands, trainDecoderCompat, operators } from '$lib/db/schema';
+import { trains, trainFormatCompat, dccFormats, decoders, decoderBrands, trainDecoderCompat, operators, trainTypes } from '$lib/db/schema';
 import { eq, sql } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
 import { validateSession } from '$lib/server/session';
@@ -22,10 +22,12 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 			era: trains.era,
 			notes: trains.notes,
 			createdAt: trains.createdAt,
-			operatorName: operators.name
+			operatorName: operators.name,
+			typeName: trainTypes.name
 		})
 		.from(trains)
 		.leftJoin(operators, eq(trains.operatorId, operators.id))
+		.leftJoin(trainTypes, eq(trains.typeId, trainTypes.id))
 		.where(eq(trains.id, id))
 		.all();
 	if (!trainRow) error(404, 'Train not found');

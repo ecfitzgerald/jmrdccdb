@@ -79,6 +79,10 @@
 			<h1 class="text-2xl font-bold mb-1" style="color: var(--color-text);">{data.train.name}</h1>
 			<div class="text-sm" style="color: var(--color-muted);">
 				<span class="font-semibold" style="color: var(--color-green);">{data.train.manufacturer}</span>
+				{#if data.train.typeName}
+					<span class="mx-2" style="color: var(--color-border-mid);">·</span>
+					<span>{data.train.typeName}</span>
+				{/if}
 				{#if data.train.operatorName}
 					<span class="mx-2" style="color: var(--color-border-mid);">·</span>
 					<span>{data.train.operatorName}</span>
@@ -109,12 +113,25 @@
 		</div>
 	</div>
 	{#if data.train.notes}
-		<p
-			class="mt-4 text-sm p-3 rounded"
-			style="background: var(--color-warn-bg); color: var(--color-warn); border-left: 3px solid var(--color-warn);"
-		>
-			{data.train.notes}
-		</p>
+		{@const dccMatch = data.train.notes.match(/DCC:\s*(.+)/)}
+		{@const dccFragment = dccMatch ? dccMatch[0] : null}
+		{@const otherNotes = dccMatch ? data.train.notes.replace(dccMatch[0], '').trim() : data.train.notes}
+		{#if dccFragment}
+			<p
+				class="mt-4 text-sm p-3 rounded"
+				style="background: var(--color-warn-bg); color: var(--color-warn); border-left: 3px solid var(--color-warn);"
+			>
+				{dccFragment}
+			</p>
+		{/if}
+		{#if otherNotes && otherNotes !== dccFragment}
+			<p
+				class="mt-2 text-xs"
+				style="color: var(--color-dim);"
+			>
+				{otherNotes}
+			</p>
+		{/if}
 	{/if}
 	{#if data.train.createdAt}
 		<p
@@ -206,6 +223,7 @@
 						class="text-xs font-semibold tracking-widest uppercase mb-2 px-1 flex items-center gap-2"
 						style="color: var(--color-green);"
 					>
+						<!-- Checkmark icon (specialized, not shared as component) -->
 						<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"
 							><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg
 						>
