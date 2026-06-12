@@ -20,6 +20,7 @@ export const load: PageServerLoad = async () => {
 			operatorName: operators.name,
 			modelNumber: trains.modelNumber,
 			name: trains.name,
+			line: trains.line,
 			era: trains.era
 		})
 		.from(trains)

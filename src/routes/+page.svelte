@@ -13,14 +13,15 @@
 	let manufacturerFilter = $state('');
 	let scaleFilter = $state('');
 
-	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'operatorName';
+	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'operatorName' | 'line';
 
 	const sortColumns: [SortCol, string][] = [
 		['manufacturer', 'Manufacturer'],
 		['scale', 'Scale'],
 		['name', 'Model Name'],
 		['modelNumber', 'Model No.'],
-		['operatorName', 'Operator']
+		['operatorName', 'Operator'],
+		['line', 'Line']
 	];
 
 	let sortCol = $state<SortCol>('manufacturer');
@@ -49,7 +50,7 @@
 			if (formatFilter && !t.formats.some((f) => f.formatId === Number(formatFilter))) return false;
 			if (
 				qLower &&
-				![t.name, t.manufacturer, t.modelNumber, t.operatorName ?? ''].some((s) => s.toLowerCase().includes(qLower))
+				![t.name, t.manufacturer, t.modelNumber, t.operatorName ?? '', t.line ?? ''].some((s) => s.toLowerCase().includes(qLower))
 			)
 				return false;
 			return true;
@@ -269,6 +270,8 @@
 							<td class="px-4 py-3 font-mono text-xs" style="color: var(--color-muted);">{train.modelNumber}</td>
 
 							<td class="px-4 py-3 text-sm" style="color: var(--color-muted);">{train.operatorName ?? '—'}</td>
+
+							<td class="px-4 py-3 text-sm" style="color: var(--color-muted);">{train.line ?? '—'}</td>
 
 							<td class="px-4 py-3">
 								<div class="flex flex-wrap gap-1">
