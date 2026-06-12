@@ -21,6 +21,7 @@ export const load: PageServerLoad = async ({ params, cookies }) => {
 			line: trains.line,
 			era: trains.era,
 			notes: trains.notes,
+			createdAt: trains.createdAt,
 			operatorName: operators.name
 		})
 		.from(trains)

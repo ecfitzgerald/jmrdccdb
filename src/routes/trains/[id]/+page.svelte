@@ -116,6 +116,14 @@
 			{data.train.notes}
 		</p>
 	{/if}
+	{#if data.train.createdAt}
+		<p
+			class="mt-4 text-xs"
+			style="color: var(--color-dim);"
+		>
+			Added {new Date(data.train.createdAt).toLocaleDateString()}
+		</p>
+	{/if}
 </div>
 
 {#if data.compatFormats.length === 0}
