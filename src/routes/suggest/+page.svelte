@@ -303,7 +303,7 @@
 																<LightsIcon class="w-3 h-3" title="Lights" />
 															{/if}
 															{#if dec.soundDecoder}
-																<SoundIcon class="w-3 h-3" style="color: #7c3aed;" title="Sound" />
+																<SoundIcon class="w-3 h-3" style="color: var(--color-sound);" title="Sound" />
 															{/if}
 														</span>
 													</div>
@@ -381,7 +381,7 @@
 					<label class="flex items-center gap-2 cursor-pointer">
 						<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
 						<span class="flex items-center gap-1 text-sm">
-							<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
+							<SoundIcon class="w-3.5 h-3.5" style="color: var(--color-sound);" />
 							Sound
 						</span>
 					</label>
@@ -570,7 +570,7 @@
 												<LightsIcon class="w-3 h-3" title="Lights" />
 											{/if}
 											{#if dec.soundDecoder}
-												<SoundIcon class="w-3 h-3" style="color: #7c3aed;" title="Sound" />
+												<SoundIcon class="w-3 h-3" style="color: var(--color-sound);" title="Sound" />
 											{/if}
 										</span>
 									</div>
@@ -686,7 +686,7 @@
 						<label class="flex items-center gap-2 cursor-pointer">
 							<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" />
 							<span class="flex items-center gap-1 text-sm">
-								<SoundIcon class="w-3.5 h-3.5" style="color: #7c3aed;" />
+								<SoundIcon class="w-3.5 h-3.5" style="color: var(--color-sound);" />
 								Sound
 							</span>
 						</label>

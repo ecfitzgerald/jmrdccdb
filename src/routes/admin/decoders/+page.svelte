@@ -314,7 +314,7 @@
 						<td class="px-4 py-2 font-medium">{dec.brandName}</td>
 						<td class="px-4 py-2 font-mono text-xs"
 							>{dec.model}
-							{#if dec.soundDecoder}<span class="ml-1 text-xs bg-purple-100 text-purple-700 px-1.5 rounded">Sound</span
+							{#if dec.soundDecoder}<span class="ml-1 text-xs px-1.5 rounded" style="background: var(--color-sound-bg); color: var(--color-sound);">Sound</span
 								>{/if}
 						</td>
 						<td class="px-4 py-2 text-[var(--color-muted)] text-xs">{dec.formatName}</td>

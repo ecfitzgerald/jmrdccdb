@@ -31,6 +31,10 @@
 	--color-danger-bg: #fee2e2;
 	--color-ok: #166534;
 	--color-ok-bg: #dcfce7;
+
+	/* Sound decoder */
+	--color-sound: #7c3aed;
+	--color-sound-bg: #f3e8ff;
 }
 
 *,

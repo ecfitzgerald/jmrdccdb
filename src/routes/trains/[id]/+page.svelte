@@ -276,7 +276,7 @@
 {#snippet decoderCard(dec: DecoderCard, isConfirmed: boolean)}
 	<div
 		class="jr-card-flat p-4 hover:border-[var(--color-green-mid)] transition-colors"
-		style="{dec.soundDecoder ? 'border-top: 3px solid #7c3aed;' : ''}{isConfirmed
+		style="{dec.soundDecoder ? 'border-top: 3px solid var(--color-sound);' : ''}{isConfirmed
 			? 'border-left: 3px solid var(--color-green);'
 			: ''}"
 	>
@@ -290,7 +290,7 @@
 					<LightsIcon title="Lights" />
 				{/if}
 				{#if dec.soundDecoder}
-					<SoundIcon title="Sound" style="color: #7c3aed;" />
+					<SoundIcon title="Sound" style="color: var(--color-sound);" />
 				{/if}
 			</div>
 			{#if isConfirmed}

@@ -203,7 +203,7 @@
 									<span class="flex items-center gap-0.5 ml-1" style="color: var(--color-green);">
 										{#if dec.motor}<MotorIcon class="w-3 h-3" />{/if}
 										{#if dec.lights}<LightsIcon class="w-3 h-3" />{/if}
-										{#if dec.soundDecoder}<SoundIcon class="w-3 h-3" style="color:#7c3aed" />{/if}
+										{#if dec.soundDecoder}<SoundIcon class="w-3 h-3" style="color: var(--color-sound)" />{/if}
 									</span>
 								</label>
 							{/each}
@@ -504,7 +504,7 @@
 						<span style="color: {p.correctedValue.lights ? 'var(--color-green)' : 'var(--color-dim)'};">
 							<LightsIcon class="w-3.5 h-3.5 inline" /> Lights
 						</span>
-						<span style="color: {p.correctedValue.soundDecoder ? '#7c3aed' : 'var(--color-dim)'};">
+						<span style="color: {p.correctedValue.soundDecoder ? 'var(--color-sound)' : 'var(--color-dim)'};">
 							<SoundIcon class="w-3.5 h-3.5 inline" /> Sound
 						</span>
 					</div>
