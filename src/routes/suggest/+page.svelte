@@ -652,7 +652,7 @@
 			{#if updateDecoderField === 'model'}
 				<div>
 					<label
-						class="block text-xs font-medium mb-1 tracking-widests uppercase"
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
 						style="color: var(--color-muted);"
 						for="correctedModel">Correct model number *</label
 					>
@@ -709,7 +709,7 @@
 			{:else if updateDecoderField === 'notes'}
 				<div>
 					<label
-						class="block text-xs font-medium mb-1 tracking-widests uppercase"
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
 						style="color: var(--color-muted);"
 						for="correctedNotes">Correct notes *</label
 					>

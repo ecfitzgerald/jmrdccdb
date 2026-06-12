@@ -402,7 +402,7 @@
 			</div>
 			<div>
 				<label
-					class="block text-xs font-medium mb-1 tracking-widests uppercase"
+					class="block text-xs font-medium mb-1 tracking-widest uppercase"
 					style="color: var(--color-muted);"
 					for="buyUrl">Buy URL</label
 				>
@@ -424,7 +424,7 @@
 				<p class="text-sm font-mono">{p.field ?? '—'}</p>
 			</div>
 			<div class="p-3 rounded" style="background: var(--color-raised); border: 1px solid var(--color-border);">
-				<p class="text-xs font-medium mb-1 tracking-widests uppercase" style="color: var(--color-muted);">Train</p>
+				<p class="text-xs font-medium mb-1 tracking-widest uppercase" style="color: var(--color-muted);">Train</p>
 				<p class="text-sm">
 					{#if p.trainId}
 						{data.allTrains.find((t) => t.id === Number(p.trainId))?.name ?? `ID ${p.trainId}`}
