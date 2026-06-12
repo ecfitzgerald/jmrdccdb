@@ -230,7 +230,7 @@
 			{#each sorted as t (t.id)}
 				<tr class="hover:bg-[var(--color-raised)]">
 					<td class="px-4 py-2 font-medium">{t.manufacturer}</td>
-					<td class="px-4 py-2"><span class="bg-blue-100 text-blue-800 text-xs px-2 py-0.5 rounded">{t.scale}</span></td
+					<td class="px-4 py-2"><span class="text-xs font-bold px-2 py-0.5 rounded-sm" style="background: {t.scale === 'HO' ? 'var(--color-jrc-orange)' : 'var(--color-green)'}; color: #fff; letter-spacing: 0.06em;">{t.scale}</span></td
 					>
 					<td class="px-4 py-2">{t.name}</td>
 					<td class="px-4 py-2 font-mono text-xs text-[var(--color-muted)]">{t.modelNumber}</td>
