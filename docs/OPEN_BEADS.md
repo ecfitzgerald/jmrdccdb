@@ -25,17 +25,11 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 | Bead | Title |
 |------|-------|
 | jm-dtc | [bug] Edit-train-records feature (jm-fma) was reverted by stale-checkout commit, never restored |
-| hq-cv-pg7ve | dcc-compat ux: 'Edit' link on public train page is a dead end and exposed to all visitors |
-| hq-cv-qnmts | security: admin form actions are not authenticated (broken access control) |
-| hq-cv-rides | security regression: server-side admin sessions never expire (jm-cic regressed) |
-| hq-cv-sjnko | security: harden login rate limiter — client-IP source trust and unbounded map |
-| hq-cv-rzwla | dx: `ADMIN_PASSWORD` via `$env/static/private` breaks build & check on clean env |
-| hq-cv-4oyea | dcc-compat ux: no admin UI to edit a decoder, so approved decoder corrections have nowhere to land |
-| hq-cv-jwshk | dcc-compat ux: add-compat suggestion dead-ends when chosen format has no decoders |
-| hq-cv-qzkky | dcc-compat ux: Reject button is nested inside the Approve form on suggestion review |
-| hq-cv-vv4ao | dcc-compat ui: admin/trains scale badge uses blue instead of scale colours |
-| hq-cv-womgm | dcc-compat ui: typo 'tracking-widests' drops label letter-spacing |
-| hq-cv-j4h3y | dcc-compat ui: sound decoder colour is hardcoded and inconsistent; add palette token |
+| jm-1mj | dcc-compat ui: admin/trains scale badge uses blue instead of scale colours (reopened — falsely closed) |
+| jm-4nk | dcc-compat ui: typo 'tracking-widests' drops label letter-spacing (reopened — falsely closed) |
+| jm-18c | dcc-compat ui: sound decoder colour is hardcoded and inconsistent; add palette token (reopened — falsely closed) |
+| jm-kbd | dcc-compat ui: train detail re-inlines icon SVGs instead of icon components (reopened — falsely closed) |
+| jm-0ka | Re-verify remaining jm-gnz UI-audit findings for fabricated close reasons |
 | hq-4f5 | Train detail page: expose all train fields |
 | hq-d2f | Show line, era, and notes on train detail page |
 | hq-8xc | Suggestion form: Confirmed Decoders multi-select should cover all selected formats |
@@ -45,11 +39,6 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 | hq-vzo | Suggestion page: format field as multi-select dropdown |
 | hq-zna | Suggestion form: allow selecting multiple DCC formats at once |
 | hq-zj1 | Add link to instructions/help page |
-| hq-cv-npjta | Add line column to trains table and show on train detail page |
-| hq-cv-krm3q | audit: UX flow and usability review |
-| hq-cv-lgzfk | audit: security posture review |
-| hq-cv-oeph6 | audit: UI consistency and visual quality review |
-| hq-cv-xpfro | audit: developer experience and code quality review |
 
 ## P3
 
@@ -69,11 +58,14 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 
 ## Notes / possible duplicates or already-resolved
 
-- **hq-cv-npjta** ("Add line column to trains table") may already be done —
-  recent merges (PR #4/#6) added `trains.line` and `trains.operatorId`.
-  Verify and close if so.
-- **hq-cv-pg7ve** (Edit link is a dead end *and exposed to all visitors*)
-  overlaps with **jm-dtc** (Edit link is a dead end, period). The
-  `data.isAdmin` gate already addresses the "exposed to all visitors" half;
-  jm-dtc covers the remaining "dead end" half. Consider closing
-  hq-cv-pg7ve once jm-dtc lands, or merging the two.
+- 2026-06-12: Spot-checked all 16 P2 `hq-cv-*` convoy beads against
+  `feature/form-updates`. 13 were verified as genuinely done and closed
+  (hq-cv-pg7ve, qnmts, rides, sjnko, rzwla, 4oyea, jwshk, qzkky, npjta,
+  krm3q, lgzfk, oeph6, xpfro). hq-cv-pg7ve's remaining "dead end" half lives
+  on as jm-dtc (already tracked above).
+- **Fabricated close reasons found**: jm-1mj, jm-4nk, jm-18c, and jm-kbd
+  (all findings from the jm-gnz UI audit) were marked closed citing specific
+  commit hashes "on feature/form-development" — none of those hashes exist
+  anywhere in repo history, and the claimed fixes are absent from the code.
+  All 4 reopened as P2 (listed above). jm-0ka tracks re-verifying the
+  remaining 7 jm-gnz findings for the same issue.
