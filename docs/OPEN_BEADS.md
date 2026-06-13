@@ -38,9 +38,7 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 |------|-------|
 | jm-n81 | dcc-compat ux: admin trains and decoders lists have no text filter/search |
 | jm-tch | dcc-compat ux: add-compat suggestion can't set format purpose; manual corrections offer no deep link |
-| jm-zog | dcc-compat ux: suggest form has weak validation and no reset after submit |
 | jm-dnn | dcc-compat suggest form: Manufacturer field should be a combobox of existing manufacturers |
-| jm-cma | dcc-compat suggest form: 'Model Name' field triggers 1Password autofill prompt |
 | jm-0z5 | dcc-compat suggest form: add 'Line' field to Add Train form |
 | jm-4k4 | dcc-compat suggest form: show format outline diagrams in Compatible DCC Formats checklist |
 | jm-nfi | Decoder suggestion: add product site URL and affiliate buy link fields |
@@ -81,4 +79,17 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   field entirely) and closed.
 - 2026-06-13: An unrequested commit (1e606b7, "feat(jm-zog): add form
   validation and reset on suggest form") landed on feature/form-updates
-  while syncing — jm-zog is a P3 bead that wasn't slung. Not yet verified.
+  while syncing — jm-zog is a P3 bead that wasn't slung. Verified against
+  its 3 requirements (required attrs, success+reset, error-value
+  preservation) — all met; pre-existing type-check errors unchanged. Closed
+  by ux_engineer itself (their own backlog from jm-021 audit); removed from
+  P3.
+- 2026-06-13: hq-8xc depends on hq-zna (decoder picklist must cover "all
+  selected formats" once format selection is multi-select; hq-zna isn't done
+  yet). Slung hq-zna to ux_engineer (convoy hq-cv-svicq) as the prerequisite;
+  hq-8xc to follow once that lands. Note: hq-vzo ("format field as
+  multi-select dropdown") may overlap/duplicate hq-zna — worth reconciling
+  once hq-zna is done.
+- 2026-06-13: Also found ux_engineer self-closed jm-cma (commit f52c6d1,
+  added autocomplete="off" to the suggest form) — their own backlog item,
+  reasonable fix. Removed from P3.
