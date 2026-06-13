@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData, ActionData } from './$types';
+	import { enhance } from '$app/forms';
 	import FormatDiagram from '$lib/FormatDiagram.svelte';
 	import MotorIcon from '$lib/icons/MotorIcon.svelte';
 	import LightsIcon from '$lib/icons/LightsIcon.svelte';
@@ -11,6 +12,25 @@
 	let addDecoderFormatId = $state('');
 	let updateDecoderSearch = $state('');
 	let updateDecoderField = $state('');
+	let successMessage = $state('');
+	let formElement: HTMLFormElement;
+
+	function handleSubmit() {
+		return async ({ result }: any) => {
+			if (result.type === 'success') {
+				successMessage = '✓ Suggestion submitted successfully!';
+				formElement.reset();
+				trainFormatIds = new Set();
+				compatFormatId = '';
+				addDecoderFormatId = '';
+				updateDecoderSearch = '';
+				updateDecoderField = '';
+				setTimeout(() => {
+					successMessage = '';
+				}, 3000);
+			}
+		};
+	}
 
 	$effect(() => {
 		type = data.typeParam === 'add_compat' ? 'add_compat' : 'add_train';
@@ -74,7 +94,16 @@
 		</div>
 	{/if}
 
-	<form method="POST" class="jr-card p-6 space-y-5">
+	{#if successMessage}
+		<div
+			class="p-4 mb-4 rounded text-sm font-medium"
+			style="background: var(--color-ok-bg); color: var(--color-ok); border-left: 3px solid var(--color-ok);"
+		>
+			{successMessage}
+		</div>
+	{/if}
+
+	<form method="POST" class="jr-card p-6 space-y-5" bind:this={formElement} use:enhance={handleSubmit()}>
 		<!-- Suggestion type -->
 		<div>
 			<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
@@ -105,6 +134,7 @@
 						type="text"
 						placeholder="Kato, Tomix, Micro Ace…"
 						list="manufacturer-list"
+						required
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
 					<datalist id="manufacturer-list">
@@ -122,6 +152,7 @@
 					<select
 						id="scale"
 						name="scale"
+						required
 						class="w-full rounded px-3 py-2 text-sm"
 					>
 						<option value="N">N</option>
@@ -142,6 +173,7 @@
 					name="name"
 					type="text"
 					placeholder="E235 Series Yamanote Line (11-car set)"
+					required
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 			</div>
@@ -157,6 +189,7 @@
 						name="modelNumber"
 						type="text"
 						placeholder="10-1785"
+						required
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
 				</div>
@@ -364,6 +397,7 @@
 						type="text"
 						list="brand-list"
 						placeholder="Digitrax, TCS, SoundTraxx…"
+						required
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
 					<datalist id="brand-list">
@@ -383,6 +417,7 @@
 						name="model"
 						type="text"
 						placeholder="DN163K0"
+						required
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
 				</div>
@@ -425,6 +460,7 @@
 					id="decoderFormat"
 					name="formatId"
 					bind:value={addDecoderFormatId}
+					required
 					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select a format…</option>
