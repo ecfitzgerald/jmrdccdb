@@ -104,8 +104,14 @@
 						name="manufacturer"
 						type="text"
 						placeholder="Kato, Tomix, Micro Ace…"
+						list="manufacturer-list"
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
+					<datalist id="manufacturer-list">
+						{#each data.manufacturers as m}
+							<option value={m}></option>
+						{/each}
+					</datalist>
 				</div>
 				<div>
 					<label
