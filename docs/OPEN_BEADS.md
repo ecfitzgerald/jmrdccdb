@@ -24,7 +24,6 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 
 | Bead | Title |
 |------|-------|
-| jm-7oq | dcc-compat ui: admin dashboard stat-card colours — dead 'cls' array still has unconverted Tailwind blue/amber/green (reopened, narrowed) |
 | hq-8xc | Suggestion form: Confirmed Decoders multi-select should cover all selected formats |
 | hq-ofg | Add 'Suggest edit' entry points on train and decoder detail pages |
 | hq-oza | Fold add-compatibility fields into the train suggestion form |
@@ -76,6 +75,10 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   ui_engineer and jm-0ka to ux_engineer. jm-0ka re-verified the remaining 7
   jm-gnz findings: jm-nzy was genuinely incomplete (fixed in 6687fb9);
   jm-yds/jm-1y5/jm-tl2/jm-pgl/jm-3ou verified fixed; jm-7oq was only 3/4
-  fixed and reopened (narrowed to dead-code dashboard stat-card colours,
-  listed above). jm-0ka closed. jm-dtc verified fixed (commit 5aaa21a,
-  inline edit form restored) and closed.
+  fixed and reopened (narrowed to dead-code dashboard stat-card colours).
+  jm-0ka closed. jm-dtc verified fixed (commit 5aaa21a, inline edit form
+  restored) and closed. jm-7oq fixed (commit 71482eb, removed dead 'cls'
+  field entirely) and closed.
+- 2026-06-13: An unrequested commit (1e606b7, "feat(jm-zog): add form
+  validation and reset on suggest form") landed on feature/form-updates
+  while syncing — jm-zog is a P3 bead that wasn't slung. Not yet verified.
