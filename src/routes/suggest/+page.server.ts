@@ -55,6 +55,7 @@ export const actions: Actions = {
 			const modelNumber = form.get('modelNumber')?.toString() ?? '';
 			const operatorId = Number(form.get('operatorId'));
 			const era = form.get('era')?.toString() ?? '';
+			const line = form.get('line')?.toString() ?? '';
 
 			if (!manufacturer || !scale || !name || !modelNumber) {
 				return fail(400, { error: 'Manufacturer, scale, name, and model number are required.' });
@@ -64,6 +65,7 @@ export const actions: Actions = {
 			if (name.length > 200) return fail(400, { error: 'Name too long (max 200).' });
 			if (modelNumber.length > 100) return fail(400, { error: 'Model number too long (max 100).' });
 			if (era.length > 100) return fail(400, { error: 'Era too long (max 100).' });
+			if (line.length > 100) return fail(400, { error: 'Line too long (max 100).' });
 
 			payload = {
 				manufacturer,
@@ -72,6 +74,7 @@ export const actions: Actions = {
 				modelNumber,
 				operatorId,
 				era,
+				line,
 				formatIds: form.getAll('formatIds'),
 				decoderIds: form.getAll('decoderIds').map(Number).filter(Boolean)
 			};

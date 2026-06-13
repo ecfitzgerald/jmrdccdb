@@ -172,19 +172,35 @@
 					</select>
 				</div>
 			</div>
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="era">Era / Years</label
-				>
-				<input
-					id="era"
-					name="era"
-					type="text"
-					placeholder="2015–present"
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
+			<div class="grid grid-cols-2 gap-4">
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="era">Era / Years</label
+					>
+					<input
+						id="era"
+						name="era"
+						type="text"
+						placeholder="2015–present"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="line">Line</label
+					>
+					<input
+						id="line"
+						name="line"
+						type="text"
+						placeholder="Yamanote Line"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
 			</div>
 			<div>
 				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
