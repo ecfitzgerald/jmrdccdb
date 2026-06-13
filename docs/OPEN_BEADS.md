@@ -25,13 +25,7 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 | Bead | Title |
 |------|-------|
 | jm-dtc | [bug] Edit-train-records feature (jm-fma) was reverted by stale-checkout commit, never restored |
-| jm-1mj | dcc-compat ui: admin/trains scale badge uses blue instead of scale colours (reopened — falsely closed) |
-| jm-4nk | dcc-compat ui: typo 'tracking-widests' drops label letter-spacing (reopened — falsely closed) |
-| jm-18c | dcc-compat ui: sound decoder colour is hardcoded and inconsistent; add palette token (reopened — falsely closed) |
-| jm-kbd | dcc-compat ui: train detail re-inlines icon SVGs instead of icon components (reopened — falsely closed) |
 | jm-0ka | Re-verify remaining jm-gnz UI-audit findings for fabricated close reasons |
-| hq-4f5 | Train detail page: expose all train fields |
-| hq-d2f | Show line, era, and notes on train detail page |
 | hq-8xc | Suggestion form: Confirmed Decoders multi-select should cover all selected formats |
 | hq-ofg | Add 'Suggest edit' entry points on train and decoder detail pages |
 | hq-oza | Fold add-compatibility fields into the train suggestion form |
@@ -47,7 +41,6 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 | jm-n81 | dcc-compat ux: admin trains and decoders lists have no text filter/search |
 | jm-tch | dcc-compat ux: add-compat suggestion can't set format purpose; manual corrections offer no deep link |
 | jm-zog | dcc-compat ux: suggest form has weak validation and no reset after submit |
-| jm-7qs | dcc-compat: show Line column on main trains table, after Operator |
 | jm-dnn | dcc-compat suggest form: Manufacturer field should be a combobox of existing manufacturers |
 | jm-cma | dcc-compat suggest form: 'Model Name' field triggers 1Password autofill prompt |
 | jm-0z5 | dcc-compat suggest form: add 'Line' field to Add Train form |
@@ -75,3 +68,8 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   matching issue in either database, and no bead matched their titles by
   text search either. Recreated as real beads (`jm-nfi`, `jm-7ox`, `jm-lbg`)
   with the same descriptions and re-listed above.
+- 2026-06-13: Closed 6 beads (jm-1mj, jm-4nk, jm-18c, jm-kbd, hq-4f5, hq-d2f)
+  after verifying their fixes are real commits (8d7614a, b7cb3d4, bb851ab,
+  35bb3cc, 8381b5f) and ancestors of `feature/form-updates` HEAD, pushed to
+  origin. jm-7qs (Line column on main trains table) slung to ui_engineer as
+  convoy hq-cv-shs5w; removed from P3 while in progress.
