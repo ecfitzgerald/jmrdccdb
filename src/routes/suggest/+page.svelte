@@ -103,7 +103,7 @@
 		</div>
 	{/if}
 
-	<form method="POST" class="jr-card p-6 space-y-5" bind:this={formElement} use:enhance={handleSubmit()}>
+	<form method="POST" class="jr-card p-6 space-y-5" autocomplete="off" bind:this={formElement} use:enhance={handleSubmit()}>
 		<!-- Suggestion type -->
 		<div>
 			<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
