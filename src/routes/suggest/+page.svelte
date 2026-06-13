@@ -232,6 +232,9 @@
 								class="accent-[var(--color-green)] w-4 h-4 shrink-0"
 							/>
 							<span class="text-sm">{fmt.name}</span>
+							<div class="ml-auto" style="color: var(--color-dim);">
+								<FormatDiagram name={fmt.name} size={24} />
+							</div>
 						</label>
 					{/each}
 					{#if data.formats.some((f) => LIGHTING.has(f.name))}
@@ -258,6 +261,9 @@
 									class="accent-[var(--color-green)] w-4 h-4 shrink-0"
 								/>
 								<span class="text-sm">{fmt.name}</span>
+								<div class="ml-auto" style="color: var(--color-dim);">
+									<FormatDiagram name={fmt.name} size={24} />
+								</div>
 							</label>
 						{/each}
 					{/if}
