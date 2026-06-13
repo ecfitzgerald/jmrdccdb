@@ -35,7 +35,10 @@
 	}
 
 	$effect(() => {
-		type = data.typeParam === 'add_compat' ? 'add_compat' : 'add_train';
+		type = data.typeParam === 'add_compat' ? 'add_compat' : data.typeParam === 'update_decoder' ? 'update_decoder' : 'add_train';
+		if (data.preselectedDecoder && type === 'update_decoder') {
+			updateDecoderSearch = `${data.preselectedDecoder.brandName} ${data.preselectedDecoder.model}`;
+		}
 	});
 
 	const decodersForFormatss = $derived(
@@ -532,6 +535,7 @@
 				<select
 					id="compatTrainId"
 					name="trainId"
+					required
 					class="w-full rounded px-3 py-2 text-sm"
 				>
 					<option value="">Select a train…</option>
@@ -698,6 +702,7 @@
 					list="update-decoder-list"
 					bind:value={updateDecoderSearch}
 					placeholder="Type brand or model to search…"
+					required
 					class="w-full rounded px-3 py-2 text-sm"
 				/>
 				<datalist id="update-decoder-list">

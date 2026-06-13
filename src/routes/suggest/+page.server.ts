@@ -9,6 +9,7 @@ const VALID_TYPES = ['add_train', 'add_decoder', 'add_compat', 'correction', 'up
 export const load: PageServerLoad = async ({ url }) => {
 	const d = db();
 	const trainId = url.searchParams.get('trainId');
+	const decoderId = url.searchParams.get('decoderId');
 	const typeParam = url.searchParams.get('type') ?? '';
 
 	const allTrains = d
@@ -24,12 +25,13 @@ export const load: PageServerLoad = async ({ url }) => {
 	const allBrands = d.select({ id: decoderBrands.id, name: decoderBrands.name }).from(decoderBrands).orderBy(decoderBrands.name).all();
 
 	const preselectedTrain = trainId ? (allTrains.find((t) => t.id === Number(trainId)) ?? null) : null;
+	const preselectedDecoder = decoderId ? (allDecoders.find((d) => d.id === Number(decoderId)) ?? null) : null;
 
 	const manufacturers = d.selectDistinct({ v: trains.manufacturer }).from(trains).orderBy(trains.manufacturer).all().map(r => r.v);
 	const allOperators = d.select({ id: operators.id, name: operators.name }).from(operators).orderBy(operators.name).all();
 	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
 
-	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, typeParam, manufacturers, operators: allOperators, scales };
+	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, preselectedDecoder, typeParam, manufacturers, operators: allOperators, scales };
 };
 
 export const actions: Actions = {
