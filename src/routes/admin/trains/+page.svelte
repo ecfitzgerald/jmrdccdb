@@ -3,6 +3,7 @@
 	import FormatDiagram from '$lib/FormatDiagram.svelte';
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 	let showAdd = $state(false);
+	let editingId = $state<number | null>(data.editId ?? null);
 
 	type SortCol = 'manufacturer' | 'scale' | 'name' | 'modelNumber' | 'line' | 'formats';
 	let sortCol = $state<SortCol>('manufacturer');
@@ -228,27 +229,202 @@
 		</thead>
 		<tbody class="divide-y divide-[var(--color-border)]">
 			{#each sorted as t (t.id)}
-				<tr class="hover:bg-[var(--color-raised)]">
-					<td class="px-4 py-2 font-medium">{t.manufacturer}</td>
-					<td class="px-4 py-2"><span class="text-xs font-bold px-2 py-0.5 rounded-sm" style="background: {t.scale === 'HO' ? 'var(--color-jrc-orange)' : 'var(--color-green)'}; color: #fff; letter-spacing: 0.06em;">{t.scale}</span></td
-					>
-					<td class="px-4 py-2">{t.name}</td>
-					<td class="px-4 py-2 font-mono text-xs text-[var(--color-muted)]">{t.modelNumber}</td>
-					<td class="px-4 py-2 text-sm text-[var(--color-text)]">{t.line || '—'}</td>
-					<td class="px-4 py-2 text-xs text-[var(--color-dim)]">{t.formats.join(', ') || '—'}</td>
-					<td class="px-4 py-2 text-right">
-						<form
-							method="POST"
-							action="?/delete"
-							onsubmit={(e) => {
-								if (!confirm('Delete this train?')) e.preventDefault();
-							}}
+				{#if editingId === t.id}
+					<tr class="bg-[var(--color-raised)]">
+						<td colspan="7" class="px-4 py-4">
+							<form
+								method="POST"
+								action="?/update"
+								class="space-y-3"
+								onsubmit={() => editingId = null}
+							>
+								<h3 class="font-medium text-[var(--color-text)] mb-3">Edit Train</h3>
+								<input type="hidden" name="id" value={t.id} />
+
+								<div class="grid grid-cols-2 gap-4">
+									<div>
+										<label for="edit-manufacturer" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Manufacturer *</label>
+										<input
+											id="edit-manufacturer"
+											name="manufacturer"
+											type="text"
+											value={t.manufacturer}
+											class="w-full rounded px-3 py-2 text-sm"
+										/>
+									</div>
+									<div>
+										<label for="edit-scale" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Scale *</label>
+										<select
+											id="edit-scale"
+											name="scale"
+											value={t.scale}
+											class="w-full rounded px-3 py-2 text-sm"
+										>
+											<option value="N">N</option>
+											<option value="HO">HO</option>
+											<option value="Z">Z</option>
+											<option value="O">O</option>
+											<option value="TT">TT</option>
+											<option value="S">S</option>
+										</select>
+									</div>
+								</div>
+
+								<div>
+									<label for="edit-name" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Name *</label>
+									<input
+										id="edit-name"
+										name="name"
+										type="text"
+										value={t.name}
+										class="w-full rounded px-3 py-2 text-sm"
+									/>
+								</div>
+
+								<div class="grid grid-cols-2 gap-4">
+									<div>
+										<label for="edit-modelNumber" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Model Number *</label>
+										<input
+											id="edit-modelNumber"
+											name="modelNumber"
+											type="text"
+											value={t.modelNumber}
+											class="w-full rounded px-3 py-2 text-sm"
+										/>
+									</div>
+									<div>
+										<label for="edit-operatorId" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Operator</label>
+										<select id="edit-operatorId" name="operatorId" class="w-full rounded px-3 py-2 text-sm">
+											<option value="">— None —</option>
+											{#each data.operators as op}
+												<option value={op.id} selected={op.id === t.operatorId}>{op.name}</option>
+											{/each}
+										</select>
+									</div>
+								</div>
+
+								<div class="grid grid-cols-2 gap-4">
+									<div>
+										<label for="edit-era" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Era</label>
+										<input
+											id="edit-era"
+											name="era"
+											type="text"
+											value={t.era ?? ''}
+											class="w-full rounded px-3 py-2 text-sm"
+										/>
+									</div>
+									<div>
+										<label for="edit-line" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Line</label>
+										<input
+											id="edit-line"
+											name="line"
+											type="text"
+											value={t.line ?? ''}
+											class="w-full rounded px-3 py-2 text-sm"
+										/>
+									</div>
+								</div>
+
+								<fieldset>
+									<legend class="block text-xs font-medium text-[var(--color-muted)] mb-2">Compatible Formats</legend>
+									<div class="flex flex-col gap-3">
+										{#each data.formats as fmt}
+											<div class="flex items-center gap-3 p-2 rounded" style="border: 1px solid var(--color-border);">
+												<input
+													type="checkbox"
+													name="formatIds"
+													value={fmt.id}
+													id="edit-fmt-{fmt.id}"
+													checked={t.formatCompat.some(fc => fc.formatId === fmt.id)}
+													class="accent-[var(--color-green)] shrink-0"
+												/>
+												<div style="color: var(--color-green);">
+													<FormatDiagram name={fmt.name} size={72} />
+												</div>
+												<div class="flex-1">
+													<label
+														for="edit-fmt-{fmt.id}"
+														class="text-sm font-medium cursor-pointer block"
+														style="color: var(--color-text);">{fmt.name}</label
+													>
+													{#if fmt.description}
+														<p class="text-xs mt-0.5" style="color: var(--color-dim);">{fmt.description}</p>
+													{/if}
+												</div>
+												<select
+													name="formatPurposes"
+													class="rounded px-2 py-1 text-xs shrink-0"
+													value={t.formatCompat.find(fc => fc.formatId === fmt.id)?.purpose ?? 'Motor & Lights'}
+												>
+													<option>Motor & Lights</option>
+													<option>Motor Only</option>
+													<option>Lights Only</option>
+												</select>
+											</div>
+										{/each}
+									</div>
+								</fieldset>
+
+								<div>
+									<label for="edit-notes" class="block text-xs font-medium text-[var(--color-muted)] mb-1">Notes</label>
+									<textarea
+										id="edit-notes"
+										name="notes"
+										rows="2"
+										class="w-full rounded px-3 py-2 text-sm"
+									>{t.notes ?? ''}</textarea>
+								</div>
+
+								<div class="flex gap-2">
+									<button
+										type="submit"
+										class="bg-[var(--color-green)] text-white px-5 py-2 rounded text-sm font-medium hover:bg-[var(--color-green-dark)] transition-colors"
+									>
+										Save Train
+									</button>
+									<button
+										type="button"
+										onclick={() => editingId = null}
+										class="border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 rounded text-sm font-medium hover:bg-[var(--color-raised)] transition-colors"
+									>
+										Cancel
+									</button>
+								</div>
+							</form>
+						</td>
+					</tr>
+				{:else}
+					<tr class="hover:bg-[var(--color-raised)]">
+						<td class="px-4 py-2 font-medium">{t.manufacturer}</td>
+						<td class="px-4 py-2"><span class="text-xs font-bold px-2 py-0.5 rounded-sm" style="background: {t.scale === 'HO' ? 'var(--color-jrc-orange)' : 'var(--color-green)'}; color: #fff; letter-spacing: 0.06em;">{t.scale}</span></td
 						>
-							<input type="hidden" name="id" value={t.id} />
-							<button type="submit" class="text-[var(--color-danger)] hover:text-[var(--color-danger)] text-xs">Delete</button>
-						</form>
-					</td>
-				</tr>
+						<td class="px-4 py-2">{t.name}</td>
+						<td class="px-4 py-2 font-mono text-xs text-[var(--color-muted)]">{t.modelNumber}</td>
+						<td class="px-4 py-2 text-sm text-[var(--color-text)]">{t.line || '—'}</td>
+						<td class="px-4 py-2 text-xs text-[var(--color-dim)]">{t.formats.join(', ') || '—'}</td>
+						<td class="px-4 py-2 text-right flex justify-end gap-2">
+							<button
+								type="button"
+								onclick={() => editingId = t.id}
+								class="text-[var(--color-green)] hover:text-[var(--color-green-dark)] text-xs font-medium"
+							>
+								Edit
+							</button>
+							<form
+								method="POST"
+								action="?/delete"
+								onsubmit={(e) => {
+									if (!confirm('Delete this train?')) e.preventDefault();
+								}}
+								style="display: inline;"
+							>
+								<input type="hidden" name="id" value={t.id} />
+								<button type="submit" class="text-[var(--color-danger)] hover:text-[var(--color-danger)] text-xs">Delete</button>
+							</form>
+						</td>
+					</tr>
+				{/if}
 			{/each}
 		</tbody>
 	</table>
