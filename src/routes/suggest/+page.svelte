@@ -9,6 +9,7 @@
 
 	let type = $state<'add_train' | 'add_compat' | 'add_decoder'>('add_train');
 	let compatFormatId = $state('');
+	let compatFormatIds = $state(new Set<number>());
 	let addDecoderFormatId = $state('');
 	let updateDecoderSearch = $state('');
 	let updateDecoderField = $state('');
@@ -22,6 +23,7 @@
 				formElement.reset();
 				trainFormatIds = new Set();
 				compatFormatId = '';
+				compatFormatIds = new Set();
 				addDecoderFormatId = '';
 				updateDecoderSearch = '';
 				updateDecoderField = '';
@@ -36,8 +38,10 @@
 		type = data.typeParam === 'add_compat' ? 'add_compat' : 'add_train';
 	});
 
-	const decodersForFormat = $derived(
-		compatFormatId ? data.allDecoders.filter((d) => String(d.formatId) === compatFormatId) : []
+	const decodersForFormatss = $derived(
+		compatFormatIds.size > 0
+			? data.allDecoders.filter((d) => compatFormatIds.has(d.formatId))
+			: []
 	);
 
 	let trainFormatIds = $state(new Set<number>());
@@ -540,42 +544,59 @@
 			</div>
 
 			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="compatFormatId">DCC Format *</label
+				<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
+					>DCC Formats *</label
 				>
-				<select
-					id="compatFormatId"
-					name="formatId"
-					bind:value={compatFormatId}
-					class="w-full rounded px-3 py-2 text-sm"
-				>
-					<option value="">Select a format…</option>
+				<div class="rounded border overflow-hidden" style="border-color: var(--color-border);">
 					{#each data.formats as fmt}
-						<option value={String(fmt.id)}>{fmt.name}</option>
-					{/each}
-				</select>
-				{#if compatFormatId}
-					{@const selectedFmt = data.formats.find((f) => String(f.id) === compatFormatId)}
-					{#if selectedFmt}
-						<div
-							class="mt-2 flex items-center gap-3 p-3 rounded"
-							style="background: var(--color-raised); border: 1px solid var(--color-border);"
+						<label
+							class="flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors hover:bg-[var(--color-raised)] border-b last:border-b-0"
+							style="border-color: var(--color-border);"
 						>
-							<div style="color: var(--color-green);">
-								<FormatDiagram name={selectedFmt.name} size={96} />
+							<input
+								type="checkbox"
+								name="formatId"
+								value={fmt.id}
+								onchange={(e) => {
+									const s = new Set(compatFormatIds);
+									if (e.currentTarget.checked) s.add(fmt.id);
+									else s.delete(fmt.id);
+									compatFormatIds = s;
+								}}
+								class="accent-[var(--color-green)] w-4 h-4 shrink-0"
+							/>
+							<span class="text-sm flex-1">{fmt.name}</span>
+							<div style="color: var(--color-dim);">
+								<FormatDiagram name={fmt.name} size={24} />
 							</div>
-							<div>
-								<p class="text-xs font-semibold" style="color: var(--color-text);">{selectedFmt.name}</p>
-								{#if selectedFmt.description}
-									<p class="text-xs mt-0.5" style="color: var(--color-muted);">{selectedFmt.description}</p>
-								{/if}
-							</div>
-						</div>
-					{/if}
-				{/if}
+						</label>
+					{/each}
+				</div>
 			</div>
+
+			{#if compatFormatIds.size > 0}
+				<div class="space-y-2">
+					<p class="text-xs font-semibold" style="color: var(--color-text);">Selected formats:</p>
+					<div class="flex flex-wrap gap-2">
+						{#each data.formats.filter((f) => compatFormatIds.has(f.id)) as fmt}
+							<div
+								class="flex items-center gap-3 p-2 rounded"
+								style="background: var(--color-raised); border: 1px solid var(--color-border);"
+							>
+								<div style="color: var(--color-green);">
+									<FormatDiagram name={fmt.name} size={40} />
+								</div>
+								<div>
+									<p class="text-xs font-semibold" style="color: var(--color-text);">{fmt.name}</p>
+									{#if fmt.description}
+										<p class="text-xs mt-0.5" style="color: var(--color-muted);">{fmt.description}</p>
+									{/if}
+								</div>
+							</div>
+						{/each}
+					</div>
+				</div>
+			{/if}
 
 			<!-- Decoder picklist — updates when format changes -->
 			<div>
@@ -585,14 +606,14 @@
 						>Select all you have tested and confirmed working</span
 					>
 				</label>
-				{#if !compatFormatId}
+				{#if compatFormatIds.size === 0}
 					<p
 						class="text-sm italic py-3 px-3 rounded"
 						style="color: var(--color-dim); background: var(--color-raised); border: 1px solid var(--color-border);"
 					>
-						Select a format above to see available decoders
+						Select one or more formats above to see available decoders
 					</p>
-				{:else if decodersForFormat.length === 0}
+				{:else if decodersForFormatss.length === 0}
 					<div
 						class="py-3 px-3 rounded flex items-center justify-between gap-4"
 						style="background: var(--color-raised); border: 1px solid var(--color-border);"
@@ -611,7 +632,7 @@
 					</div>
 				{:else}
 					<div class="rounded border overflow-hidden" style="border-color: var(--color-border);">
-						{#each decodersForFormat as dec, i}
+						{#each decodersForFormats as dec, i}
 							<label
 								class="flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors hover:bg-[var(--color-raised)]"
 								style="border-top: {i > 0 ? '1px solid var(--color-border)' : 'none'};"

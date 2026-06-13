@@ -80,19 +80,20 @@ export const actions: Actions = {
 			};
 		} else if (type === 'add_compat') {
 			const decoderIds = form.getAll('decoderIds').map(Number).filter(Boolean);
+			const formatIds = form.getAll('formatId').map(Number).filter(Boolean);
 			const notes = form.get('notes')?.toString() ?? '';
 
 			if (notes.length > 1000) return fail(400, { error: 'Notes too long (max 1000).' });
 
 			payload = {
 				trainId: form.get('trainId'),
-				formatId: form.get('formatId'),
+				formatIds,
 				purpose: form.get('purpose'),
 				decoderIds,
 				notes
 			};
-			if (!payload.trainId || !payload.formatId) {
-				return fail(400, { error: 'Train and format are required.' });
+			if (!payload.trainId || formatIds.length === 0) {
+				return fail(400, { error: 'Train and at least one format are required.' });
 			}
 			if (decoderIds.length === 0) {
 				return fail(400, { error: 'Please select at least one confirmed decoder.' });
