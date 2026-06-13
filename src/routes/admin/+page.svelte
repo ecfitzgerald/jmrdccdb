@@ -2,11 +2,11 @@
 	import type { PageData } from './$types';
 	let { data }: { data: PageData } = $props();
 
-	type DashboardCard = readonly [number, string, string, string];
+	type DashboardCard = readonly [number, string, string];
 	const cards = $derived.by(() => [
-		[data.pendingCount, 'Pending Suggestions', '/admin/suggestions', 'bg-[var(--color-warn-bg)] border-[var(--color-warn)] text-amber-800'],
-		[data.trainCount, 'Trains', '/admin/trains', 'bg-blue-50 border-blue-200 text-blue-800'],
-		[data.decoderCount, 'Decoders', '/admin/decoders', 'bg-[var(--color-ok-bg)] border-[var(--color-green-mid)] text-green-800'],
+		[data.pendingCount, 'Pending Suggestions', '/admin/suggestions'],
+		[data.trainCount, 'Trains', '/admin/trains'],
+		[data.decoderCount, 'Decoders', '/admin/decoders'],
 	] as const as DashboardCard[]);
 </script>
 
@@ -15,7 +15,7 @@
 <h1 class="text-2xl font-bold text-[var(--color-text)] mb-6">Dashboard</h1>
 
 <div class="grid grid-cols-3 gap-4 mb-8">
-	{#each cards as [count, label, href, cls]}
+	{#each cards as [count, label, href]}
 		<a
 			{href}
 			class="block jr-card-flat border border-[var(--color-border)] rounded p-5 hover:border-[var(--color-border-mid)] transition-colors"
