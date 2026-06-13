@@ -24,8 +24,7 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 
 | Bead | Title |
 |------|-------|
-| jm-dtc | [bug] Edit-train-records feature (jm-fma) was reverted by stale-checkout commit, never restored |
-| jm-0ka | Re-verify remaining jm-gnz UI-audit findings for fabricated close reasons |
+| jm-7oq | dcc-compat ui: admin dashboard stat-card colours — dead 'cls' array still has unconverted Tailwind blue/amber/green (reopened, narrowed) |
 | hq-8xc | Suggestion form: Confirmed Decoders multi-select should cover all selected formats |
 | hq-ofg | Add 'Suggest edit' entry points on train and decoder detail pages |
 | hq-oza | Fold add-compatibility fields into the train suggestion form |
@@ -73,3 +72,10 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   35bb3cc, 8381b5f) and ancestors of `feature/form-updates` HEAD, pushed to
   origin. jm-7qs (Line column on main trains table) slung to ui_engineer as
   convoy hq-cv-shs5w; removed from P3 while in progress.
+- 2026-06-13: Closed jm-7qs (verified, commit 199e87b). Slung jm-dtc to
+  ui_engineer and jm-0ka to ux_engineer. jm-0ka re-verified the remaining 7
+  jm-gnz findings: jm-nzy was genuinely incomplete (fixed in 6687fb9);
+  jm-yds/jm-1y5/jm-tl2/jm-pgl/jm-3ou verified fixed; jm-7oq was only 3/4
+  fixed and reopened (narrowed to dead-code dashboard stat-card colours,
+  listed above). jm-0ka closed. jm-dtc verified fixed (commit 5aaa21a,
+  inline edit form restored) and closed.
