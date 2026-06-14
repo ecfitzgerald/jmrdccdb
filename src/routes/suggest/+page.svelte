@@ -688,56 +688,159 @@
 
 			<!-- Update Decoder form -->
 		{:else if type === 'update_decoder'}
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="updateDecoderInput">Decoder *</label
-				>
-				<input
-					id="updateDecoderInput"
-					type="text"
-					list="update-decoder-list"
-					bind:value={updateDecoderSearch}
-					placeholder="Type brand or model to search…"
-					required
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
-				<datalist id="update-decoder-list">
-					{#each data.allDecoders as dec}
-						<option value="{dec.brandName} {dec.model}"
-							>{dec.brandName} {dec.model} — {data.formats.find((f) => f.id === dec.formatId)?.name ?? ''}</option
+			{#if data.preselectedDecoder}
+				<!-- Edit mode: show add_decoder layout with pre-filled values -->
+				<input type="hidden" name="decoderId" value={data.preselectedDecoder.id} />
+				<div class="grid grid-cols-2 gap-4">
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="updateBrandName">Brand *</label
 						>
-					{/each}
-				</datalist>
-				<input
-					type="hidden"
-					name="decoderId"
-					value={data.allDecoders.find((d) => `${d.brandName} ${d.model}` === updateDecoderSearch)?.id ?? ''}
-				/>
-			</div>
+						<input
+							id="updateBrandName"
+							name="brandName"
+							type="text"
+							value={data.preselectedDecoder.brandName}
+							list="brand-list"
+							required
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+						<datalist id="brand-list">
+							{#each data.allBrands as b}
+								<option value={b.name}></option>
+							{/each}
+						</datalist>
+					</div>
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="updateDecoderModel">Model Number *</label
+						>
+						<input
+							id="updateDecoderModel"
+							name="model"
+							type="text"
+							value={data.preselectedDecoder.model}
+							required
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+				</div>
+				<div>
+					<label class="block text-xs font-medium mb-2 tracking-widest uppercase" style="color: var(--color-muted);"
+						>Features</label
+					>
+					<div class="flex flex-wrap gap-4">
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="motor" class="accent-[var(--color-green)]" checked={data.preselectedDecoder.motor} />
+							<span class="flex items-center gap-1 text-sm">
+								<MotorIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+								Motor
+							</span>
+						</label>
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="lights" class="accent-[var(--color-green)]" checked={data.preselectedDecoder.lights} />
+							<span class="flex items-center gap-1 text-sm">
+								<LightsIcon class="w-3.5 h-3.5" style="color: var(--color-green);" />
+								Lights
+							</span>
+						</label>
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input type="checkbox" name="soundDecoder" class="accent-[var(--color-green)]" checked={data.preselectedDecoder.soundDecoder} />
+							<span class="flex items-center gap-1 text-sm">
+								<SoundIcon class="w-3.5 h-3.5" style="color: var(--color-sound);" />
+								Sound
+							</span>
+						</label>
+					</div>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="updateDecoderFormat">DCC Format *</label
+					>
+					<select
+						id="updateDecoderFormat"
+						name="formatId"
+						value={data.preselectedDecoder.formatId}
+						required
+						class="w-full rounded px-3 py-2 text-sm"
+					>
+						<option value="">Select a format…</option>
+						{#each data.formats as fmt}
+							<option value={String(fmt.id)}>{fmt.name}</option>
+						{/each}
+					</select>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="updateDecoderNotes">Notes</label
+					>
+					<textarea
+						id="updateDecoderNotes"
+						name="notes"
+						rows="3"
+						class="w-full rounded px-3 py-2 text-sm"
+					>{data.preselectedDecoder.notes ?? ''}</textarea>
+				</div>
+			{:else}
+				<!-- Generic correction mode -->
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="updateDecoderInput">Decoder *</label
+					>
+					<input
+						id="updateDecoderInput"
+						type="text"
+						list="update-decoder-list"
+						bind:value={updateDecoderSearch}
+						placeholder="Type brand or model to search…"
+						required
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+					<datalist id="update-decoder-list">
+						{#each data.allDecoders as dec}
+							<option value="{dec.brandName} {dec.model}"
+								>{dec.brandName} {dec.model} — {data.formats.find((f) => f.id === dec.formatId)?.name ?? ''}</option
+							>
+						{/each}
+					</datalist>
+					<input
+						type="hidden"
+						name="decoderId"
+						value={data.allDecoders.find((d) => `${d.brandName} ${d.model}` === updateDecoderSearch)?.id ?? ''}
+					/>
+				</div>
 
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="updateField">Field to correct *</label
-				>
-				<select
-					id="updateField"
-					name="updateField"
-					bind:value={updateDecoderField}
-					class="w-full rounded px-3 py-2 text-sm"
-				>
-					<option value="">Select a field…</option>
-					<option value="model">Model number</option>
-					<option value="capabilities">Capabilities (motor / lights / sound)</option>
-					<option value="format">DCC Format</option>
-					<option value="notes">Notes</option>
-				</select>
-			</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="updateField">Field to correct *</label
+					>
+					<select
+						id="updateField"
+						name="updateField"
+						bind:value={updateDecoderField}
+						class="w-full rounded px-3 py-2 text-sm"
+					>
+						<option value="">Select a field…</option>
+						<option value="model">Model number</option>
+						<option value="capabilities">Capabilities (motor / lights / sound)</option>
+						<option value="format">DCC Format</option>
+						<option value="notes">Notes</option>
+					</select>
+				</div>
 
-			{#if updateDecoderField === 'model'}
+				{#if updateDecoderField === 'model'}
 				<div>
 					<label
 						class="block text-xs font-medium mb-1 tracking-widest uppercase"
@@ -810,70 +913,206 @@
 					/>
 				</div>
 			{/if}
+		{/if}
 
 		<!-- Correction form -->
 		{:else if type === 'correction'}
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="trainId">Train</label
-				>
-				<select
-					id="trainId"
-					name="trainId"
-					class="w-full rounded px-3 py-2 text-sm"
-				>
-					<option value="">Select a train (or leave blank for general correction)…</option>
-					{#each data.allTrains as t}
-						<option value={t.id} selected={data.preselectedTrain?.id === t.id}>
-							{t.manufacturer} — {t.name} ({t.modelNumber})
-						</option>
-					{/each}
-				</select>
-			</div>
-			<div>
-				<label
-					class="block text-xs font-medium mb-1 tracking-widest uppercase"
-					style="color: var(--color-muted);"
-					for="field">What field needs correcting?</label
-				>
-				<input
-					id="field"
-					name="field"
-					type="text"
-					placeholder="e.g. model number, compatible format, decoder notes"
-					class="w-full rounded px-3 py-2 text-sm"
-				/>
-			</div>
-			<div class="grid grid-cols-2 gap-4">
-				<div>
-					<label
-						class="block text-xs font-medium mb-1 tracking-widest uppercase"
-						style="color: var(--color-muted);"
-						for="currentValue">Current (wrong) value</label
-					>
-					<input
-						id="currentValue"
-						name="currentValue"
-						type="text"
-						class="w-full rounded px-3 py-2 text-sm"
-					/>
+			{#if data.fullTrain}
+				<!-- Edit mode: show add_train layout with pre-filled values -->
+				<input type="hidden" name="trainId" value={data.fullTrain.id} />
+				<div class="grid grid-cols-2 gap-4">
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="correctionManufacturer">Manufacturer *</label
+						>
+						<input
+							id="correctionManufacturer"
+							name="manufacturer"
+							type="text"
+							value={data.fullTrain.manufacturer}
+							required
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="correctionScale">Scale *</label
+						>
+						<select
+							id="correctionScale"
+							name="scale"
+							value={data.fullTrain.scale}
+							required
+							class="w-full rounded px-3 py-2 text-sm"
+						>
+							<option value="N">N</option>
+							<option value="HO">HO</option>
+							<option value="Z">Z</option>
+							<option value="O">O</option>
+						</select>
+					</div>
 				</div>
 				<div>
 					<label
 						class="block text-xs font-medium mb-1 tracking-widest uppercase"
 						style="color: var(--color-muted);"
-						for="suggestedValue">Correct value *</label
+						for="correctionName">Model Name *</label
 					>
 					<input
-						id="suggestedValue"
-						name="suggestedValue"
+						id="correctionName"
+						name="name"
 						type="text"
+						value={data.fullTrain.name}
+						required
 						class="w-full rounded px-3 py-2 text-sm"
 					/>
 				</div>
-			</div>
+				<div class="grid grid-cols-2 gap-4">
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="correctionModelNumber">Model Number *</label
+						>
+						<input
+							id="correctionModelNumber"
+							name="modelNumber"
+							type="text"
+							value={data.fullTrain.modelNumber}
+							required
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="correctionOperator">Operator</label
+						>
+						<select
+							id="correctionOperator"
+							name="operatorId"
+							value={data.fullTrain.operatorId ?? ''}
+							class="w-full rounded px-3 py-2 text-sm"
+						>
+							<option value="">— None —</option>
+							{#each data.operators as op}
+								<option value={op.id}>{op.name}</option>
+							{/each}
+						</select>
+					</div>
+				</div>
+				<div class="grid grid-cols-2 gap-4">
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="correctionEra">Era / Years</label
+						>
+						<input
+							id="correctionEra"
+							name="era"
+							type="text"
+							value={data.fullTrain.era ?? ''}
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="correctionLine">Line</label
+						>
+						<input
+							id="correctionLine"
+							name="line"
+							type="text"
+							value={data.fullTrain.line ?? ''}
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="correctionNotes">Notes</label
+					>
+					<textarea
+						id="correctionNotes"
+						name="notes"
+						rows="3"
+						class="w-full rounded px-3 py-2 text-sm"
+					>{data.fullTrain.notes ?? ''}</textarea>
+				</div>
+			{:else}
+				<!-- Generic correction mode -->
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="trainId">Train</label
+					>
+					<select
+						id="trainId"
+						name="trainId"
+						class="w-full rounded px-3 py-2 text-sm"
+					>
+						<option value="">Select a train (or leave blank for general correction)…</option>
+						{#each data.allTrains as t}
+							<option value={t.id}>
+								{t.manufacturer} — {t.name} ({t.modelNumber})
+							</option>
+						{/each}
+					</select>
+				</div>
+				<div>
+					<label
+						class="block text-xs font-medium mb-1 tracking-widest uppercase"
+						style="color: var(--color-muted);"
+						for="field">What field needs correcting?</label
+					>
+					<input
+						id="field"
+						name="field"
+						type="text"
+						placeholder="e.g. model number, compatible format, decoder notes"
+						class="w-full rounded px-3 py-2 text-sm"
+					/>
+				</div>
+				<div class="grid grid-cols-2 gap-4">
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="currentValue">Current (wrong) value</label
+						>
+						<input
+							id="currentValue"
+							name="currentValue"
+							type="text"
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+					<div>
+						<label
+							class="block text-xs font-medium mb-1 tracking-widest uppercase"
+							style="color: var(--color-muted);"
+							for="suggestedValue">Correct value *</label
+						>
+						<input
+							id="suggestedValue"
+							name="suggestedValue"
+							type="text"
+							class="w-full rounded px-3 py-2 text-sm"
+						/>
+					</div>
+				</div>
+			{/if}
 		{/if}
 
 		<!-- Common fields -->

@@ -24,6 +24,17 @@ export const load: PageServerLoad = async ({ url }) => {
 
 	const allBrands = d.select({ id: decoderBrands.id, name: decoderBrands.name }).from(decoderBrands).orderBy(decoderBrands.name).all();
 
+	// Load full train data for correction pre-population
+	let fullTrain = null;
+	if (trainId) {
+		const fullTrainData = d
+			.select()
+			.from(trains)
+			.where(eq(trains.id, Number(trainId)))
+			.get();
+		fullTrain = fullTrainData ?? null;
+	}
+
 	const preselectedTrain = trainId ? (allTrains.find((t) => t.id === Number(trainId)) ?? null) : null;
 	const preselectedDecoder = decoderId ? (allDecoders.find((d) => d.id === Number(decoderId)) ?? null) : null;
 
@@ -31,7 +42,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	const allOperators = d.select({ id: operators.id, name: operators.name }).from(operators).orderBy(operators.name).all();
 	const scales = [...new Set([...d.selectDistinct({ v: trains.scale }).from(trains).orderBy(trains.scale).all().map(r => r.v), 'N', 'HO', 'Z', 'O', 'TT', 'S'])].sort();
 
-	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, preselectedDecoder, typeParam, manufacturers, operators: allOperators, scales };
+	return { allTrains, formats, allDecoders, allBrands, preselectedTrain, preselectedDecoder, fullTrain, typeParam, manufacturers, operators: allOperators, scales };
 };
 
 export const actions: Actions = {
