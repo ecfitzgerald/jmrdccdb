@@ -1,4 +1,5 @@
 import type { PageServerLoad, Actions } from './$types';
+import { eq } from 'drizzle-orm';
 import { db } from '$lib/db';
 import { suggestions, trains, dccFormats, decoderBrands, operators } from '$lib/db/schema';
 import { fail } from '@sveltejs/kit';
