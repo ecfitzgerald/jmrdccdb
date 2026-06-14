@@ -24,12 +24,10 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 
 | Bead | Title |
 |------|-------|
-| hq-8xc | Suggestion form: Confirmed Decoders multi-select should cover all selected formats |
 | hq-ofg | Add 'Suggest edit' entry points on train and decoder detail pages |
 | hq-oza | Fold add-compatibility fields into the train suggestion form |
 | hq-vrb | Suggestion forms: edit mode pre-populates existing train/decoder data |
 | hq-vzo | Suggestion page: format field as multi-select dropdown |
-| hq-zna | Suggestion form: allow selecting multiple DCC formats at once |
 | hq-zj1 | Add link to instructions/help page |
 
 ## P3
@@ -93,3 +91,24 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 - 2026-06-13: Also found ux_engineer self-closed jm-cma (commit f52c6d1,
   added autocomplete="off" to the suggest form) — their own backlog item,
   reasonable fix. Removed from P3.
+- 2026-06-14: hq-zna landed (1e94754) but had a typo bug — the decoder
+  picklist's `{#each}` referenced `decodersForFormats` while the `$derived`
+  was declared as `decodersForFormatss`, an undefined variable that would
+  throw at runtime as soon as a selected format had confirmed decoders.
+  Also `compatFormatId` (single-value) was left orphaned after the
+  multi-select refactor. Fixed directly by mayor (2fc4b06): renamed to the
+  correctly-spelled `decodersForFormats`, removed the dead `compatFormatId`
+  state, pointed "Add a decoder" at the first selected format. Verified and
+  closed hq-zna. hq-8xc closed as a side effect — the fixed
+  `decodersForFormats` already filters `data.allDecoders` across all
+  `compatFormatIds` (each decoder has one formatId, so no dupes), satisfying
+  hq-8xc's requirement. hq-vzo/hq-zna overlap note: resolved, hq-zna covered
+  it.
+- 2026-06-14: hq-vrb (commit 8128153) does NOT meet its spec — the
+  'correction' and 'update_decoder' suggestion types are still the old
+  generic "field / current value / suggested value" forms, not the
+  add_train/add_decoder layouts pre-filled with current record values as
+  required. Only the train/decoder picker itself gets pre-selected via
+  preselectedTrain/preselectedDecoder. Nudged ux_engineer with the specific
+  gap (~line 815 'correction' section, ~line 690 'update_decoder' section)
+  and what's needed; kept in P2 pending rework.
