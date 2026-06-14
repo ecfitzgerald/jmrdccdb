@@ -104,11 +104,21 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   `compatFormatIds` (each decoder has one formatId, so no dupes), satisfying
   hq-8xc's requirement. hq-vzo/hq-zna overlap note: resolved, hq-zna covered
   it.
-- 2026-06-14: hq-vrb (commit 8128153) does NOT meet its spec — the
-  'correction' and 'update_decoder' suggestion types are still the old
+- 2026-06-14: hq-vrb (commit 8128153) did NOT meet its spec — the
+  'correction' and 'update_decoder' suggestion types were still the old
   generic "field / current value / suggested value" forms, not the
   add_train/add_decoder layouts pre-filled with current record values as
-  required. Only the train/decoder picker itself gets pre-selected via
-  preselectedTrain/preselectedDecoder. Nudged ux_engineer with the specific
-  gap (~line 815 'correction' section, ~line 690 'update_decoder' section)
-  and what's needed; kept in P2 pending rework.
+  required. Nudged ux_engineer with the gap.
+- 2026-06-14: ux_engineer pushed a follow-up (ff08173) adding the
+  add_train/add_decoder edit-mode layouts as specced — but it introduced two
+  more bugs. (1) The new `fullTrain` query used `eq(trains.id, ...)` without
+  importing `eq` from drizzle-orm — every `/suggest?trainId=...` request
+  (including the pre-existing preselectedTrain flow) 500'd. Fixed directly by
+  mayor (d9f25cc), pushed. (2) The `actions.default` handler was never updated
+  for the new edit-mode field sets: submitting the edit-mode 'correction' form
+  always fails with "Please specify what to correct" (action still requires
+  `suggestedValue`), and the edit-mode 'update_decoder' form always fails with
+  "Please select a valid field to correct" (action still requires
+  `updateField`) — in both cases the user's edits are silently dropped.
+  Reported back to ux_engineer with exact fix needed; hq-vrb remains open in
+  P2 pending the action-handler update.
