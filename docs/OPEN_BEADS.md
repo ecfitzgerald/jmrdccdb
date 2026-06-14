@@ -24,9 +24,9 @@ added on `feature/form-updates` and should merge to `main` with that branch.
 
 | Bead | Title |
 |------|-------|
+| hq-8cu | Admin suggestion review page doesn't render hq-vrb edit-mode payloads |
 | hq-ofg | Add 'Suggest edit' entry points on train and decoder detail pages |
 | hq-oza | Fold add-compatibility fields into the train suggestion form |
-| hq-vrb | Suggestion forms: edit mode pre-populates existing train/decoder data |
 | hq-vzo | Suggestion page: format field as multi-select dropdown |
 | hq-zj1 | Add link to instructions/help page |
 
@@ -122,3 +122,14 @@ added on `feature/form-updates` and should merge to `main` with that branch.
   `updateField`) — in both cases the user's edits are silently dropped.
   Reported back to ux_engineer with exact fix needed; hq-vrb remains open in
   P2 pending the action-handler update.
+- 2026-06-14: ux_engineer pushed a203f34 fixing the action handlers as
+  requested (correction/update_decoder now detect edit-mode by presence of
+  manufacturer+name / brandName+model and build full-record payloads, with
+  the old generic-form logic preserved as fallback). Verified: type-clean,
+  /suggest?trainId=1&type=correction loads fine. Closed hq-vrb.
+  New gap found: /admin/suggestions/[id]/+page.svelte still renders the old
+  generic payload shape (p.field/p.currentValue/p.suggestedValue/
+  p.correctedValue) for correction/update_decoder, so new edit-mode
+  suggestions show as '-' placeholders to the reviewing admin. Created
+  hq-8cu (P2, ux_engineer) to add a proper diff view for the new payload
+  shape.
