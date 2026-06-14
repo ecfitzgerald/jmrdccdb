@@ -8,7 +8,6 @@
 	let { data, form }: { data: PageData; form: ActionData } = $props();
 
 	let type = $state<'add_train' | 'add_compat' | 'add_decoder'>('add_train');
-	let compatFormatId = $state('');
 	let compatFormatIds = $state(new Set<number>());
 	let addDecoderFormatId = $state('');
 	let updateDecoderSearch = $state('');
@@ -22,7 +21,6 @@
 				successMessage = '✓ Suggestion submitted successfully!';
 				formElement.reset();
 				trainFormatIds = new Set();
-				compatFormatId = '';
 				compatFormatIds = new Set();
 				addDecoderFormatId = '';
 				updateDecoderSearch = '';
@@ -41,7 +39,7 @@
 		}
 	});
 
-	const decodersForFormatss = $derived(
+	const decodersForFormats = $derived(
 		compatFormatIds.size > 0
 			? data.allDecoders.filter((d) => compatFormatIds.has(d.formatId))
 			: []
@@ -617,7 +615,7 @@
 					>
 						Select one or more formats above to see available decoders
 					</p>
-				{:else if decodersForFormatss.length === 0}
+				{:else if decodersForFormats.length === 0}
 					<div
 						class="py-3 px-3 rounded flex items-center justify-between gap-4"
 						style="background: var(--color-raised); border: 1px solid var(--color-border);"
@@ -627,7 +625,7 @@
 						</p>
 						<button
 							type="button"
-							onclick={() => switchToAddDecoder(Number(compatFormatId))}
+							onclick={() => switchToAddDecoder([...compatFormatIds][0])}
 							class="text-xs font-medium px-3 py-1.5 rounded shrink-0 transition-opacity hover:opacity-80"
 							style="background: var(--color-green); color: #fff;"
 						>
