@@ -133,43 +133,115 @@ export const actions: Actions = {
 
 			payload = { brandName, formatId, model, motor, lights, soundDecoder, notes, buyUrl: buyUrl || null };
 		} else if (type === 'correction') {
-			const currentValue = form.get('currentValue')?.toString() ?? '';
-			const suggestedValue = form.get('suggestedValue')?.toString() ?? '';
-			const field = form.get('field')?.toString() ?? '';
+			// Check if this is edit-mode (full form submission with manufacturer/name/etc) or generic mode (field/currentValue/suggestedValue)
+			const manufacturer = form.get('manufacturer')?.toString() ?? '';
+			const name = form.get('name')?.toString() ?? '';
 
-			if (field.length > 100) return fail(400, { error: 'Field name too long (max 100).' });
-			if (currentValue.length > 1000) return fail(400, { error: 'Current value too long (max 1000).' });
-			if (suggestedValue.length > 1000) return fail(400, { error: 'Suggested value too long (max 1000).' });
+			if (manufacturer && name) {
+				// Edit mode: full train form was submitted
+				const scale = form.get('scale')?.toString() ?? '';
+				const modelNumber = form.get('modelNumber')?.toString() ?? '';
+				const operatorId = Number(form.get('operatorId')) || null;
+				const era = form.get('era')?.toString() ?? '';
+				const line = form.get('line')?.toString() ?? '';
+				const notes = form.get('notes')?.toString() ?? '';
+				const trainId = form.get('trainId')?.toString() ?? '';
 
-			payload = { trainId: form.get('trainId'), field, currentValue, suggestedValue };
-			if (!payload.trainId || !suggestedValue) {
-				return fail(400, { error: 'Please specify what to correct.' });
-			}
-		} else if (type === 'update_decoder') {
-			const decoderId = form.get('decoderId')?.toString() ?? '';
-			const updateField = form.get('updateField')?.toString() ?? '';
-			const VALID_FIELDS = ['model', 'capabilities', 'format', 'notes'];
+				if (!trainId || !scale || !modelNumber) {
+					return fail(400, { error: 'Train ID, scale, and model number are required.' });
+				}
+				if (manufacturer.length > 200) return fail(400, { error: 'Manufacturer too long.' });
+				if (name.length > 200) return fail(400, { error: 'Name too long.' });
+				if (scale.length > 50) return fail(400, { error: 'Scale too long.' });
+				if (modelNumber.length > 100) return fail(400, { error: 'Model number too long.' });
+				if (era.length > 100) return fail(400, { error: 'Era too long.' });
+				if (line.length > 100) return fail(400, { error: 'Line too long.' });
+				if (notes.length > 1000) return fail(400, { error: 'Notes too long.' });
 
-			if (!decoderId) return fail(400, { error: 'Please select a decoder.' });
-			if (!updateField || !VALID_FIELDS.includes(updateField)) {
-				return fail(400, { error: 'Please select a valid field to correct.' });
-			}
-
-			let correctedValue: unknown;
-			if (updateField === 'capabilities') {
-				correctedValue = {
-					motor: form.get('motor') === 'on',
-					lights: form.get('lights') === 'on',
-					soundDecoder: form.get('soundDecoder') === 'on'
+				payload = {
+					trainId,
+					manufacturer,
+					scale,
+					name,
+					modelNumber,
+					operatorId,
+					era,
+					line,
+					notes
 				};
 			} else {
-				const raw = form.get('correctedValue')?.toString() ?? '';
-				if (!raw) return fail(400, { error: 'Please provide the corrected value.' });
-				if (raw.length > 500) return fail(400, { error: 'Value too long (max 500).' });
-				correctedValue = raw;
-			}
+				// Generic mode: field/currentValue/suggestedValue form
+				const currentValue = form.get('currentValue')?.toString() ?? '';
+				const suggestedValue = form.get('suggestedValue')?.toString() ?? '';
+				const field = form.get('field')?.toString() ?? '';
 
-			payload = { decoderId, field: updateField, correctedValue };
+				if (field.length > 100) return fail(400, { error: 'Field name too long (max 100).' });
+				if (currentValue.length > 1000) return fail(400, { error: 'Current value too long (max 1000).' });
+				if (suggestedValue.length > 1000) return fail(400, { error: 'Suggested value too long (max 1000).' });
+
+				payload = { trainId: form.get('trainId'), field, currentValue, suggestedValue };
+				if (!payload.trainId || !suggestedValue) {
+					return fail(400, { error: 'Please specify what to correct.' });
+				}
+			}
+		} else if (type === 'update_decoder') {
+			// Check if this is edit-mode (full decoder form) or generic mode (field/correctedValue)
+			const brandName = form.get('brandName')?.toString() ?? '';
+			const model = form.get('model')?.toString() ?? '';
+
+			if (brandName && model) {
+				// Edit mode: full decoder form was submitted
+				const formatId = form.get('formatId')?.toString() ?? '';
+				const motor = form.get('motor') === 'on';
+				const lights = form.get('lights') === 'on';
+				const soundDecoder = form.get('soundDecoder') === 'on';
+				const notes = form.get('notes')?.toString() ?? '';
+				const decoderId = form.get('decoderId')?.toString() ?? '';
+
+				if (!decoderId || !formatId) {
+					return fail(400, { error: 'Decoder ID and format are required.' });
+				}
+				if (brandName.length > 200) return fail(400, { error: 'Brand name too long.' });
+				if (model.length > 200) return fail(400, { error: 'Model number too long.' });
+				if (notes.length > 1000) return fail(400, { error: 'Notes too long.' });
+
+				payload = {
+					decoderId,
+					brandName,
+					model,
+					formatId,
+					motor,
+					lights,
+					soundDecoder,
+					notes
+				};
+			} else {
+				// Generic mode: field/correctedValue form
+				const decoderId = form.get('decoderId')?.toString() ?? '';
+				const updateField = form.get('updateField')?.toString() ?? '';
+				const VALID_FIELDS = ['model', 'capabilities', 'format', 'notes'];
+
+				if (!decoderId) return fail(400, { error: 'Please select a decoder.' });
+				if (!updateField || !VALID_FIELDS.includes(updateField)) {
+					return fail(400, { error: 'Please select a valid field to correct.' });
+				}
+
+				let correctedValue: unknown;
+				if (updateField === 'capabilities') {
+					correctedValue = {
+						motor: form.get('motor') === 'on',
+						lights: form.get('lights') === 'on',
+						soundDecoder: form.get('soundDecoder') === 'on'
+					};
+				} else {
+					const raw = form.get('correctedValue')?.toString() ?? '';
+					if (!raw) return fail(400, { error: 'Please provide the corrected value.' });
+					if (raw.length > 500) return fail(400, { error: 'Value too long (max 500).' });
+					correctedValue = raw;
+				}
+
+				payload = { decoderId, field: updateField, correctedValue };
+			}
 		}
 
 		db()
